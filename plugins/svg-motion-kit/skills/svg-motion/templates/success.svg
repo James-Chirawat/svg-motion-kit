@@ -1,0 +1,48 @@
+<!-- smk: success feedback after save/submit. A tick draws itself once, short rays burst, then a quiet ring pulse. Roles: primary, accent, background, foreground, mutedForeground, border. Texts: title, subtitle. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" class="__S__" role="img" aria-labelledby="smk-title-__U__">
+  <title id="smk-title-__U__">{{text:title|Changes saved}}</title>
+  <style>
+    .__S__ {
+      --c-bg: {{background|#F4F1EA~#121814}}; --c-fg: {{foreground|#1F2A24~#E8EFE9}}; --c-muted: {{mutedForeground|#6B746E~#93A199}};
+      --c-line: {{border|#E4DED2~#223027}}; --c-primary: {{primary|#1F6F4A~#4FB286}}; --c-accent: {{accent|primary|#B8922A~#D9B84A}};
+      --c-soft: color-mix(in srgb, var(--c-primary) 16%, var(--c-bg));
+    }
+    {{dark}}
+    .__S__ text { font-family: {{font}}; }
+    .__S__ .card  { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
+    .__S__ .disc  { fill: var(--c-soft); }
+    .__S__ .ring  { fill: none; stroke: var(--c-primary); stroke-width: 6; stroke-linecap: round; }
+    .__S__ .tick  { fill: none; stroke: var(--c-primary); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+    .__S__ .pulse { fill: none; stroke: var(--c-primary); stroke-width: 2; opacity: 0; transform-origin: 180px 108px; animation: __K__-pulse 2.6s 1.6s ease-out infinite; }
+    .__S__ .ray   { stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; }
+    .__S__ .title { fill: var(--c-fg); font-size: 16px; font-weight: 650; }
+    .__S__ .sub   { fill: var(--c-muted); font-size: 13px; }
+    .__S__ .draw  { stroke-dasharray: 1; stroke-dashoffset: 0; animation: __K__-draw .7s cubic-bezier(.65, 0, .35, 1) both; }
+    .__S__ .grow  { transform-origin: 180px 108px; animation: __K__-grow .5s cubic-bezier(.34, 1.56, .64, 1) both; }
+    .__S__ .burst { transform-origin: 180px 108px; opacity: 0; animation: __K__-burst .7s 1.05s ease-out both; }
+    .__S__ .rise  { animation: __K__-rise .6s ease-out both; }
+    @keyframes __K__-draw  { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes __K__-grow  { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes __K__-burst { 0% { opacity: 0; transform: scale(.85); } 30% { opacity: 1; } 100% { opacity: 0; transform: scale(1.15); } }
+    @keyframes __K__-pulse { 0% { opacity: .5; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.45); } }
+    @keyframes __K__-rise  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .__S__ * { animation: none !important; } .__S__ .burst { opacity: 0; } }
+  </style>
+  <rect class="card" data-smk-card x="1" y="1" width="358" height="262" rx="{{radius|20}}"/>
+  <circle class="pulse" cx="180" cy="108" r="52"/>
+  <circle class="disc grow" cx="180" cy="108" r="52"/>
+  <circle class="ring draw" cx="180" cy="108" r="52" pathLength="1" transform="rotate(-90 180 108)" style="animation-delay:.15s"/>
+  <path class="tick draw" pathLength="1" d="M157 109 L173 125 L204 92" style="animation-delay:.7s"/>
+  <g class="burst">
+    <line class="ray" x1="180" y1="38" x2="180" y2="26"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(45 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(90 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(135 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(180 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(225 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(270 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(315 180 108)"/>
+  </g>
+  <text class="title rise" x="180" y="208" text-anchor="middle" style="animation-delay:1s">{{text:title|Changes saved}}</text>
+  <text class="sub rise" x="180" y="230" text-anchor="middle" style="animation-delay:1.15s">{{text:subtitle|Synced just now}}</text>
+</svg>

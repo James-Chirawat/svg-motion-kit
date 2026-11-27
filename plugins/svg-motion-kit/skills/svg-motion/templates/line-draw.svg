@@ -1,0 +1,38 @@
+<!-- smk: line-draw chart for dashboards, stats or a banner. The line draws itself once, points pop in, the area fades in, then a bead travels the line. Roles: primary, accent, background, foreground, border. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" width="360" height="200" class="__S__" role="img" aria-labelledby="smk-title-__U__">
+  <title id="smk-title-__U__">{{text:title|A line chart that draws itself}}</title>
+  <style>
+    .__S__ {
+      --c-bg: {{background|#F4EFE6~#15130F}}; --c-fg: {{foreground|#1B1A17~#EDE7DC}}; --c-line: {{border|#DDD4C3~#2E2A23}};
+      --c-primary: {{primary|#1B1A17~#EDE7DC}}; --c-accent: {{accent|#E2462B~#FF6A4D}};
+      --c-area: color-mix(in srgb, var(--c-primary) 10%, var(--c-bg));
+    }
+    {{dark}}
+    .__S__ .card  { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
+    .__S__ .grid  { fill: none; stroke: var(--c-line); stroke-width: 1.5; stroke-dasharray: 2 6; }
+    .__S__ .base  { fill: none; stroke: var(--c-line); stroke-width: 2; stroke-linecap: round; }
+    .__S__ .area  { fill: var(--c-area); }
+    .__S__ .line  { fill: none; stroke: var(--c-primary); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .__S__ .point { fill: var(--c-bg); stroke: var(--c-primary); stroke-width: 2.5; }
+    .__S__ .bead  { fill: none; stroke: var(--c-accent); stroke-width: 6; stroke-linecap: round; stroke-dasharray: .03 .97; opacity: 0; }
+    .__S__ .draw  { stroke-dasharray: 1; stroke-dashoffset: 0; animation: __K__-draw 1.8s linear both; }
+    .__S__ .pop   { transform-box: fill-box; transform-origin: center; animation: __K__-pop .45s cubic-bezier(.34, 1.56, .64, 1) both; }
+    .__S__ .fade  { animation: __K__-fade .8s ease-out both; }
+    .__S__ .bead  { animation: __K__-show .4s 2.4s both, __K__-travel 2.8s 2.4s linear infinite; }
+    @keyframes __K__-draw   { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes __K__-pop    { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+    @keyframes __K__-fade   { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes __K__-show   { to { opacity: 1; } }
+    @keyframes __K__-travel { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1; } }
+    @media (prefers-reduced-motion: reduce) { .__S__ * { animation: none !important; } }
+  </style>
+  <rect class="card" data-smk-card x="1" y="1" width="358" height="198" rx="{{radius|20}}"/>
+  <path class="grid" d="M32 60 H328 M32 100 H328 M32 140 H328"/>
+  <path class="base" d="M32 168 H328"/>
+  <path class="area fade" d="M36 150 C80 150 92 96 136 100 S196 140 232 112 S292 50 324 58 L324 168 L36 168 Z" style="animation-delay:1.8s"/>
+  <path class="line draw" pathLength="1" d="M36 150 C80 150 92 96 136 100 S196 140 232 112 S292 50 324 58" style="animation-delay:.2s"/>
+  <path class="bead" pathLength="1" d="M36 150 C80 150 92 96 136 100 S196 140 232 112 S292 50 324 58"/>
+  <circle class="point pop" cx="136" cy="100" r="5" style="animation-delay:.8s"/>
+  <circle class="point pop" cx="232" cy="112" r="5" style="animation-delay:1.4s"/>
+  <circle class="point pop" cx="324" cy="58" r="5" style="animation-delay:2s"/>
+</svg>

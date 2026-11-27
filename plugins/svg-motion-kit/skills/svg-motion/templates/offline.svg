@@ -1,0 +1,49 @@
+<!-- smk: offline / connection lost. A plug keeps reaching for a socket but never connects; three dots show it is retrying. Roles: primary, background, foreground, mutedForeground, border. Texts: title, subtitle. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" class="__S__" role="img" aria-labelledby="smk-title-__U__">
+  <title id="smk-title-__U__">{{text:title|You're offline}}</title>
+  <style>
+    .__S__ {
+      --c-bg: {{background|#FBF6EF~#1A1410}}; --c-fg: {{foreground|#2B2118~#F3E9DF}}; --c-muted: {{mutedForeground|#8C7B6B~#A8968A}};
+      --c-line: {{border|#EADFD0~#33281F}}; --c-primary: {{primary|#C4561C~#E5814A}};
+      --c-soft: color-mix(in srgb, var(--c-primary) 14%, var(--c-bg));
+    }
+    {{dark}}
+    .__S__ text { font-family: {{font}}; }
+    .__S__ .card   { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
+    .__S__ .cable  { fill: none; stroke: var(--c-fg); stroke-width: 6; stroke-linecap: round; }
+    .__S__ .plug   { fill: var(--c-primary); }
+    .__S__ .prong  { fill: var(--c-fg); }
+    .__S__ .socket { fill: var(--c-soft); stroke: var(--c-primary); stroke-width: 2.5; }
+    .__S__ .hole   { fill: var(--c-fg); }
+    .__S__ .spark  { fill: none; stroke: var(--c-primary); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; animation: __K__-spark 2.8s linear infinite; }
+    .__S__ .dot    { fill: var(--c-primary); transform-box: fill-box; transform-origin: center; animation: __K__-bob 1.2s ease-in-out infinite; }
+    .__S__ .title  { fill: var(--c-fg); font-size: 16px; font-weight: 650; }
+    .__S__ .sub    { fill: var(--c-muted); font-size: 13px; }
+    .__S__ .reach-l { animation: __K__-reach-l 2.8s cubic-bezier(.45, 0, .55, 1) infinite; }
+    .__S__ .reach-r { animation: __K__-reach-r 2.8s cubic-bezier(.45, 0, .55, 1) infinite; }
+    @keyframes __K__-reach-l { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(10px); } }
+    @keyframes __K__-reach-r { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-10px); } }
+    @keyframes __K__-spark   { 0%, 42%, 60%, 100% { opacity: 0; } 47%, 53% { opacity: 1; } }
+    @keyframes __K__-bob     { 0%, 60%, 100% { transform: translateY(0); opacity: .35; } 30% { transform: translateY(-4px); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .__S__ * { animation: none !important; } .__S__ .dot { opacity: .6; } }
+  </style>
+  <rect class="card" data-smk-card x="1" y="1" width="358" height="262" rx="{{radius|20}}"/>
+  <g class="reach-l">
+    <path class="cable" d="M-10 150 C60 150 72 112 122 112"/>
+    <rect class="plug" x="118" y="94" width="42" height="36" rx="9"/>
+    <rect class="prong" x="158" y="102" width="18" height="6" rx="3"/>
+    <rect class="prong" x="158" y="116" width="18" height="6" rx="3"/>
+  </g>
+  <g class="reach-r">
+    <path class="cable" d="M370 150 C300 150 288 112 238 112"/>
+    <rect class="socket" x="200" y="94" width="42" height="36" rx="9"/>
+    <rect class="hole" x="206" y="102" width="10" height="6" rx="3"/>
+    <rect class="hole" x="206" y="116" width="10" height="6" rx="3"/>
+  </g>
+  <path class="spark" d="M183 98 L189 108 L184 110 L191 122"/>
+  <text class="title" x="180" y="200" text-anchor="middle">{{text:title|You're offline}}</text>
+  <text class="sub" x="180" y="222" text-anchor="middle">{{text:subtitle|We'll reconnect automatically}}</text>
+  <circle class="dot" cx="168" cy="242" r="3.5"/>
+  <circle class="dot" cx="180" cy="242" r="3.5" style="animation-delay:.15s"/>
+  <circle class="dot" cx="192" cy="242" r="3.5" style="animation-delay:.3s"/>
+</svg>

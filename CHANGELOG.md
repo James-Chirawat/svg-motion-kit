@@ -14,6 +14,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- `svg-motion` building blocks:
+  - `validate-svg.mjs`, a quality and safety gate with an `inline` and a `standalone` mode. It checks for hardcoded colours, reduced-motion support, layout-triggering animation, accessibility, scripts and external references, duplicate ids, page-leaking selectors, and size.
+  - Eight theme-driven templates: loader, empty-state, error, success, offline, upload, line-draw, hero.
+  - `render-template.mjs` fills a template from `theme.json` with roles, dark mode, radius and fonts, and gives every instance a unique scope and ids. Syntax is documented in `references/templates.md`.
+- CI: tests on Node 18 and 22, README SVG validation, and `claude plugin validate`.
 - `docs/ROADMAP.md` and `docs/ROADMAP.th.md`: the full plan from v0.1 to v1.0.
 
 - Three more README examples in three non-purple themes: `success.svg` (forest), `offline.svg` (terracotta), `upload.svg` (ink + amber).
