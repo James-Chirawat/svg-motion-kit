@@ -3,131 +3,95 @@
 </p>
 
 <p align="center">
-  ชุด skill สำหรับ Claude Code ที่อ่านธีมจากโปรเจกต์ หาจุดที่ UX ควรปรับ<br>
-  วาด SVG เคลื่อนไหวที่เข้ากับเว็บ และตรวจ frontend ทั้งด้าน UX, performance, security และความเรียบร้อย
+  <a href="https://github.com/James-Chirawat/svg-motion-kit/actions/workflows/ci.yml"><img src="https://github.com/James-Chirawat/svg-motion-kit/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.0-1B1A17" alt="เวอร์ชัน 1.0.0"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1B1A17" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/node-%E2%89%A518-1B1A17" alt="Node 18 ขึ้นไป">
 </p>
 
 <p align="center">
-  <a href="README.md">English</a> · <b>ภาษาไทย</b>
+  <a href="README.md">English</a> · <b>ภาษาไทย</b> · <a href="https://james-chirawat.github.io/svg-motion-kit/">เว็บไซต์และ gallery</a>
 </p>
 
-> [!NOTE]
-> **v1.0.0** มีครบทั้ง 8 skill แล้ว ใช้ `audit` ตรวจทั้งหมดได้ในครั้งเดียว ทั้ง security, UX และ accessibility, performance, ดีไซน์ และความเรียบร้อย ดูทุก template ในหลายธีมได้ที่ [gallery](docs/gallery/index.html)
+**svg-motion-kit** คือ plugin ของ Claude Code ที่ช่วยเก็บงาน frontend ให้เสร็จสมบูรณ์ สิ่งที่มันทำ:
 
-## ขั้นตอนการทำงานครอบคลุมอะไรบ้าง
+- อ่านธีมจริงจากโค้ดของโปรเจกต์
+- หาจุดที่ UX ควรปรับ แล้วใส่ SVG เคลื่อนไหวที่เข้ากับดีไซน์
+- ตรวจ security, accessibility, performance, ดีไซน์ และความเรียบร้อยของงาน
 
-แม้ชื่อจะเขียนว่า SVG แต่ชุดเครื่องมือนี้ครอบคลุมทุกขั้นตอนที่ทำให้ frontend ดูเสร็จสมบูรณ์ แต่ละขั้นเป็น skill แยกกัน จะใช้ตัวเดียวหรือรันทั้งหมดก็ได้
+ทุกข้อที่ตรวจเจอมีหลักฐานระดับ `ไฟล์:บรรทัด` และแก้ไขให้ทีละ diff
 
-| ขั้น | Skill | ทำอะไร | สถานะ |
-|---|---|---|---|
-| **1. ธีม** | `theme-extract` | อ่าน design token จริงของโปรเจกต์ (Tailwind v3/v4, CSS variables, shadcn/ui, dark mode, radius, ฟอนต์ และ library ที่ติดตั้งไว้) แล้วบันทึกลง `.svg-motion/theme.json` | ✅ |
-| **2. สำรวจ** | `svg-motion` | สแกนโค้ดหาจังหวะที่ผู้ใช้ต้องรอ ติดขัด หรือไม่ได้รับ feedback (empty, loading, error, success, offline, upload) แล้วจัดอันดับว่าใส่ motion ตรงไหนได้ประโยชน์ที่สุด | ✅ v0.1 |
-| **3. ดูหน้าตา** | `design-lint` | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) แล้วเสนอทิศทางดีไซน์ที่อิงกลุ่มผู้ใช้จริง | ✅ v0.1 |
-| **4. วาด** | `svg-motion` | สร้าง SVG เคลื่อนไหวที่ตรงธีม แล้ววางเป็น component ตาม framework ของโปรเจกต์ โดยแสดง diff ก่อน | ✅ v0.1 |
-| **5. ตรวจ** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX และ accessibility:** สถานะของหน้า, ฟอร์ม, มือถือ, contrast<br>**Performance:** รูป WebP/AVIF, subset ฟอนต์ไทย, การดึงข้อมูล, cache, bundle<br>**Security:** secret รั่ว, XSS รวมถึง SVG ที่ไม่ปลอดภัย, header<br>**ความเรียบร้อย:** การใช้ design system, i18n, meta/OG, หน้า 404/500, SEO | ✅ v0.2–v0.5 |
-| **6. รายงานและแก้** | `audit` | รายงานเดียวเรียงตามความสำคัญ ทุกข้ออ้างอิงไฟล์และบรรทัด และแก้ทีละข้อพร้อมแสดง diff | ✅ v1.0 |
+## ติดตั้ง
 
-กติกาที่ใช้กับทุกขั้น:
+```text
+/plugin install svg-motion-kit --marketplace James-Chirawat/svg-motion-kit
+```
 
-- **ค่าเริ่มต้นคืออ่านอย่างเดียว** ไม่มีอะไรถูกแก้โดยที่คุณยังไม่ได้ดูและอนุมัติ diff
-- **ทุกข้อต้องมีหลักฐาน ไม่ใช่ความรู้สึก** ทุก finding ระบุไฟล์และบรรทัด การตรวจที่ทำแบบตายตัวได้เป็น script ส่วน Claude ทำเฉพาะงานที่ต้องใช้วิจารณญาณ
-- **บอกขีดจำกัดตามจริง** การอ่านโค้ดวัดความเร็วจริงไม่ได้ และพิสูจน์ไม่ได้ว่าปลอดภัย รายงานจะบอกไว้ชัด และแนะนำ Lighthouse หรือการตรวจที่จริงจังกว่า
-- **ใช้รสนิยมของโปรเจกต์คุณ** สี radius ฟอนต์ และ library animation มาจากโค้ดของคุณ ไม่ติดตั้งอะไรเพิ่มโดยไม่ถามก่อน
-- **script ไม่มี dependency** ใช้ Node 18 ขึ้นไป ไม่ใช้ network ถ้าคุณไม่อนุญาต และใช้ได้ทั้งภาษาไทยและอังกฤษ
-
-แผนฉบับเต็มพร้อมสิ่งที่ตรวจทุกข้อ อยู่ใน [docs/ROADMAP.th.md](docs/ROADMAP.th.md)
-
-## ตัวอย่าง
-
-ทุกภาพใช้ชุดสีของตัวเอง เพราะผลลัพธ์ควรเข้ากับธีมของโปรเจกต์*คุณ* ไม่ใช่โทนม่วงแบบที่ AI ชอบใช้ ส่วน banner, hero และไอคอนใช้ธีมประจำของชุดเครื่องมือนี้ คือสีกระดาษ หมึกดำ และแดงชาด
-
-| Loader | Empty state | Hero |
-|:---:|:---:|:---:|
-| <img src="docs/assets/loader.svg" alt="ตัวโหลดแบบวงกลมหมุนและ skeleton" width="260"> | <img src="docs/assets/empty-state.svg" alt="หน้าว่างที่มีกล่องลอยขึ้นลง" width="260"> | <img src="docs/assets/hero.svg" alt="หน้าเว็บประกอบตัวเองขึ้นมา แล้วมีเคอร์เซอร์มาคลิกปุ่ม" width="260"> |
-| น้ำเงินเข้ม + มิ้นต์ · วงหมุน + แสงวิ่ง | เขียวหัวเป็ด + ส้มปะการัง · ลอย + โผล่ | กระดาษ + หมึก · ประกอบหน้า + คลิก |
-
-| บันทึกสำเร็จ | ออฟไลน์ | อัปโหลด |
-|:---:|:---:|:---:|
-| <img src="docs/assets/success.svg" alt="บันทึกสำเร็จ: เครื่องหมายถูกวาดตัวเองในวงกลม" width="260"> | <img src="docs/assets/offline.svg" alt="ออฟไลน์: ปลั๊กพยายามเสียบเข้าเต้ารับ" width="260"> | <img src="docs/assets/upload.svg" alt="กำลังอัปโหลดไฟล์ พร้อมแถบความคืบหน้า" width="260"> |
-| เขียวป่า · วาดเครื่องหมายถูก + ชีพจร | ส้มอิฐ · ยื่นเข้าหา + ลองใหม่ | ดำ + เหลืองอำพัน · แถบโหลด + เสร็จ |
-
-แต่ละภาพเป็นไฟล์ SVG ไฟล์เดียว ขนาด 3–6 KB มีชุดสีสำหรับ dark mode ในตัว และรองรับการตั้งค่า `prefers-reduced-motion`
-
-## Skills
-
-| Skill | สถานะ | หน้าที่ |
-|---|---|---|
-| `theme-extract` | ✅ v0.1 | อ่าน design token ของโปรเจกต์ แล้วบันทึกเป็น `.svg-motion/theme.json` |
-| `svg-motion` | ✅ v0.1 | หาจุดที่ motion ช่วยให้ UX ดีขึ้น แล้วสร้าง SVG เคลื่อนไหวที่เข้ากับธีม (loader, empty/error/success state, banner) ออกมาเป็น component |
-| `design-lint` | ✅ v0.1 | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) และเสนอทิศทางดีไซน์ที่มีเหตุผลรองรับ |
-| `ui-audit` | ✅ v0.2 | สถานะของหน้า (UX states), ฟอร์ม, มือถือ, microcopy, contrast ตาม WCAG และ accessibility พื้นฐาน |
-| `perf-audit` | ✅ v0.3 | รูปภาพ (AVIF/WebP, ขนาด), ฟอนต์ (รวมถึงการ subset ฟอนต์ไทย), การดึงข้อมูล, cache และ bundle |
-| `security-audit` | ✅ v0.4 | secret รั่ว, จุดเสี่ยง XSS (รวมถึง SVG ที่ไม่ปลอดภัย), auth ฝั่ง client และ security header |
-| `polish-audit` | ✅ v0.5 | การใช้ design system, สุขภาพโค้ด, i18n, meta/OG, หน้า 404/500 และ SEO พื้นฐาน |
-| `audit` | ✅ v1.0 | รันทุก audit แล้วรวมเป็นรายงานเดียวเรียงตามความสำคัญ และแก้ไขอย่างปลอดภัยพร้อม diff |
-
-## การติดตั้ง
-
-พิมพ์ใน Claude Code:
+ถ้าใช้ Claude Code เวอร์ชันก่อน 2.1.275 ให้ติดตั้ง 2 ขั้นตอน:
 
 ```text
 /plugin marketplace add James-Chirawat/svg-motion-kit
 /plugin install svg-motion-kit@svg-motion-kit
 ```
 
-จากนั้นสั่งงานเป็นภาษาธรรมดาได้เลย จะพิมพ์ไทยหรืออังกฤษก็ได้:
+ต้องมี Claude Code และ Node.js 18 ขึ้นไป ไม่ต้องติดตั้งอะไรเพิ่ม
 
-| พิมพ์ว่า | Skill ที่ทำงาน |
+## เริ่มใช้งาน
+
+พิมพ์สั่งได้เลย ภาษาไทยหรืออังกฤษก็ได้:
+
+| พิมพ์ว่า | สิ่งที่เกิดขึ้น |
 |---|---|
-| *"ตรวจเว็บทั้งหมดก่อนขึ้น production แล้วบอกว่าควรแก้อะไรก่อน"* | `audit` (จากนั้นสั่ง *"แก้ F2 กับ F5"*) |
-| *"ทำ loader ให้เข้าธีมหน่อย"* · *"ใส่ภาพ empty state ในหน้ารายการสั่งซื้อ"* | `svg-motion` |
-| *"ทำไมเว็บดูเหมือน AI ทำ"* | `design-lint` |
-| *"มี key หลุดไหม ก่อนเปิด repo เป็น public"* | `security-audit` |
-| *"เว็บช้าบนมือถือ"* | `perf-audit` |
-| *"ตรวจ UX / accessibility"* | `ui-audit` |
-| *"พร้อมขึ้น production ไหม meta tag, หน้า 404"* | `polish-audit` |
+| *"ตรวจเว็บทั้งหมดก่อนขึ้น production แล้วบอกว่าควรแก้อะไรก่อน"* | `audit` ตรวจทุกด้าน แล้วสรุปเป็นรายงานเดียว เรียงตามความสำคัญ ทุกข้อมีหมายเลข |
+| *"แก้ F2 กับ F5"* | แก้ให้ทีละข้อ แสดง diff ทุกครั้ง แล้วตรวจซ้ำว่าแก้สำเร็จ |
+| *"ใส่ภาพ empty state เคลื่อนไหวในหน้ารายการสั่งซื้อ"* | `svg-motion` สร้างภาพด้วยสีของธีมโปรเจกต์ แล้ววางเป็น component |
+| *"ทำไมหน้าเว็บดูเหมือน AI ทำ"* | `design-lint` ชี้จุดที่ดูซ้ำซาก แล้วเสนอทิศทางดีไซน์ 3 แบบ |
 
-## หลักการ
+## Skills
 
-SVG ทุกชิ้นที่สร้างต้อง:
+| Skill | หน้าที่ |
+|---|---|
+| **audit** | รันการตรวจทุกด้านด้านล่างนี้ แล้วรวมเป็นรายงานเดียว มีคะแนนรวม หัวข้อ "ทำอันนี้ก่อน" และหมายเลขทุกข้อ สั่งแก้ตามหมายเลขได้เลย |
+| **svg-motion** | หาจังหวะ empty, loading, error, success, offline และ upload แล้วสร้าง SVG เคลื่อนไหวจาก template 8 แบบ ตรวจคุณภาพ และ export เป็น component ของ React, Vue หรือ Svelte |
+| **theme-extract** | อ่าน design token จริงจาก Tailwind v3/v4, CSS variables, shadcn/ui, dark mode, radius และฟอนต์ |
+| **design-lint** | ให้คะแนนว่า UI ดู generic แค่ไหน (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน…) และเสนอทางเลือกที่มีเหตุผลรองรับ |
+| **ui-audit** | สถานะของหน้าที่ขาดไป, label ของฟอร์ม, focus, ขนาดปุ่มกด, alt ของรูป และ contrast ตาม WCAG ที่คำนวณจากธีมจริง |
+| **perf-audit** | format รูป, น้ำหนักและ subset ของฟอนต์ไทย, request ที่รอกันเป็นทอด (waterfall), N+1, cache, bundle ที่หนัก, script ภายนอก |
+| **security-audit** | key ที่หลุด (แสดงแบบปิดบังค่าเสมอ), `.env` ที่ถูก commit, ค่าลับที่หลุดผ่าน public env, จุดเสี่ยง XSS, route และ server action ที่ไม่ตรวจสิทธิ์, security header |
+| **polish-audit** | metadata และรูป Open Graph, favicon, หน้า 404 และหน้า error, robots และ sitemap, i18n, ส่วนที่ไม่ตรงกับ design system |
 
-- ใช้สีจาก token ของธีมหรือ `currentColor` ห้ามใส่โค้ดสีตายตัว ยกเว้นเป็นค่าสำรอง (fallback)
-- รองรับ `prefers-reduced-motion` และไม่กะพริบเกิน 3 ครั้งต่อวินาที (WCAG 2.3.1)
-- ขยับด้วย `transform` และ `opacity` เท่านั้น
-- ใส่ attribute สำหรับการเข้าถึงให้ถูกต้อง ภาพตกแต่งใส่ `aria-hidden="true"` ส่วนภาพที่สื่อความหมายใส่ `role="img"` พร้อม `<title>`
-- มีขนาดเล็ก (เป้าหมายไม่เกิน 15 KB) และไม่ต้องพึ่ง library ใดตอนรัน
+## ตัวอย่าง
 
-script ที่แถมมาเป็น Node ล้วน (`.mjs`) ไม่มี dependency ไม่เชื่อมต่อ network และสั้นพอจะอ่านทั้งหมดได้ก่อนรัน
+ภาพทุกชิ้นใช้ชุดสีของโปรเจกต์ และเปลี่ยนตาม dark mode ไปด้วย
 
-## Roadmap
+| Loader | Empty state | Success |
+|:---:|:---:|:---:|
+| <img src="docs/assets/loader.svg" alt="ตัวโหลดแบบวงกลมหมุนและ skeleton" width="260"> | <img src="docs/assets/empty-state.svg" alt="หน้าว่างพร้อมกล่องที่เปิดอยู่" width="260"> | <img src="docs/assets/success.svg" alt="บันทึกสำเร็จ เครื่องหมายถูกวาดตัวเอง" width="260"> |
+| **Offline** | **Upload** | **Hero** |
+| <img src="docs/assets/offline.svg" alt="ออฟไลน์ ปลั๊กพยายามเสียบเข้าเต้ารับ" width="260"> | <img src="docs/assets/upload.svg" alt="กำลังอัปโหลดไฟล์" width="260"> | <img src="docs/assets/hero.svg" alt="หน้าเว็บประกอบตัวเองขึ้นมา" width="260"> |
 
-- [x] **v0.0** วางโครง repo, ไฟล์ marketplace, ตัวอย่างใน README และไอคอน
-- [x] **v0.1** Motion ที่ตรงธีม: `theme-extract` ✅, `svg-motion` (scout + วาด + วางลงโปรเจกต์), `design-lint`
-- [x] **v0.2** UX และ accessibility: `ui-audit`, รูปแบบรายงานกลาง และสูตรสำหรับ Vue และ Svelte
-- [x] **v0.3** Performance: `perf-audit`, ตรวจด้วย Lighthouse (ไม่บังคับ) และใช้ library motion เมื่อโปรเจกต์มีอยู่แล้ว
-- [x] **v0.4** Security: `security-audit`
-- [x] **v0.5** ความเป็นมืออาชีพ: `polish-audit`
-- [x] **v1.0** รายงานเดียว แก้ไขได้ปลอดภัย: ตัวรวม `audit`, โหมดแก้ไข, หน้า gallery และส่งเข้า plugin directory
+ดูครบทั้ง 8 template ใน 5 ธีมได้ที่ **[gallery](https://james-chirawat.github.io/svg-motion-kit/gallery/)**
 
-รายละเอียด สิ่งที่ตรวจ และเกณฑ์ "เสร็จเมื่อ" ของทุกเวอร์ชันอยู่ใน **[docs/ROADMAP.th.md](docs/ROADMAP.th.md)**
+## ทำงานอย่างไร
 
-## ดูตัวอย่างในเครื่อง
+1. **ธีม:** อ่าน design token จากโค้ดจริง ไม่เดาเอง
+2. **ตรวจ:** script ที่ทำงานแบบตายตัวสแกนโค้ดอย่างรวดเร็ว จากนั้น Claude เปิดไฟล์ยืนยันทุกข้อสำคัญก่อนรายงาน
+3. **รายงาน:** ใส่หมายเลขทุกข้อ เรียงตามความรุนแรง ด้าน และแรงที่ต้องใช้แก้ แล้วบันทึกไว้ที่ `.svg-motion/audit.md`
+4. **แก้:** คุณเลือกเองว่าจะแก้ข้อไหน ทุกการแก้เป็นการเปลี่ยนน้อยที่สุดที่ได้ผล แสดง diff ก่อน แล้วตรวจซ้ำ
 
-```bash
-python3 -m http.server 8765 --directory docs
-```
+## ความปลอดภัยและความน่าเชื่อถือ
 
-แล้วเปิด <http://127.0.0.1:8765/preview.html>
+- **ค่าเริ่มต้นคืออ่านอย่างเดียว:** จะแก้โค้ดก็ต่อเมื่อคุณสั่ง และแก้ทีละ diff
+- **ไม่ใช้ network และไม่มี dependency:** script ที่แถมมาเป็น Node.js ล้วน อ่านเฉพาะโปรเจกต์ของคุณ ส่วนเครื่องมือเสริม (`npm audit`, Lighthouse) จะรันเฉพาะเมื่อคุณอนุญาต
+- **ค่าลับไม่หลุด:** key ที่ตรวจเจอถูกปิดบังค่าในทุก output และคำแนะนำการแก้จะบอกให้ rotate key ก่อนเสมอ
+- **บอกขีดจำกัดตามจริง:** นี่คือการตรวจระดับโค้ด ไม่ได้แทน Lighthouse, `npm audit`, การทำ pentest หรือการเปิดดูเว็บในเบราว์เซอร์ และทุกรายงานจะบอกว่าอะไรที่ยังไม่ได้ตรวจ
 
-## ร่วมพัฒนา
+## อ่านเพิ่มเติม
 
-ยินดีรับทั้ง issue และ pull request ดูรายละเอียดได้ที่ [CONTRIBUTING.md](CONTRIBUTING.md)
-
-รันชุดทดสอบด้วยคำสั่งนี้ (ใช้ Node 18 ขึ้นไป ไม่ต้องติดตั้งอะไรเพิ่ม):
-
-```bash
-npm test
-```
+- [Changelog](CHANGELOG.md)
+- [Roadmap](docs/ROADMAP.th.md)
+- [ร่วมพัฒนา](CONTRIBUTING.md)
+- [วิธีทดสอบ](docs/TESTING.md)
 
 ## License
 

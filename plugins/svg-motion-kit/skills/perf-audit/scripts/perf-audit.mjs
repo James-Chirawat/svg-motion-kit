@@ -37,11 +37,11 @@ export function perfAudit(rootDir) {
     const size = fileSize(root, f);
     if (/(^|\/)(favicon|apple-touch-icon|icon|og|opengraph-image|twitter-image)[^/]*$/.test(f)) continue;
     if (RASTER.has(ext) && size > 100 * KB) {
-      add({ id: 'perf.image.format', severity: size > 500 * KB ? 'high' : size > 200 * KB ? 'medium' : 'low', effort: 'S', title: 'PNG/JPEG/GIF that should be AVIF or WebP', file: f, evidence: `${ext.slice(1).toUpperCase()} ${kb(size)}`, why: 'AVIF/WebP are typically 30–70% smaller at the same quality; heavy images are the most common cause of slow Largest Contentful Paint.', fix: ext === '.gif' ? 'Replace animated GIFs with <video autoplay muted loop playsinline> (MP4/WebM) or a CSS/SVG animation.' : 'Convert to AVIF/WebP (e.g. `npx @squoosh/cli` or sharp), keep the original as fallback only if old browsers matter; in Next, next/image does this automatically.', autofix: false });
+      add({ id: 'perf.image.format', severity: size > 500 * KB ? 'high' : size > 200 * KB ? 'medium' : 'low', effort: 'S', title: 'PNG/JPEG/GIF that should be AVIF or WebP', file: f, evidence: `${ext.slice(1).toUpperCase()} ${kb(size)}`, why: 'AVIF/WebP are typically 30–70% smaller at the same quality; heavy images are the most common cause of slow Largest Contentful Paint.', fix: ext === '.gif' ? 'Replace animated GIFs with <video autoplay muted loop playsinline> (MP4/WebM) or a CSS/SVG animation.' : 'Convert to AVIF/WebP (e.g. `npx --yes @squoosh/cli@0.7.3` or sharp), keep the original as fallback only if old browsers matter; in Next, next/image does this automatically.', autofix: false });
     } else if (!RASTER.has(ext) && ext !== '.svg' && size > 400 * KB) {
       add({ id: 'perf.image.weight', severity: 'medium', effort: 'S', title: 'Very large image file', file: f, evidence: `${ext.slice(1).toUpperCase()} ${kb(size)}`, why: 'Even modern formats need sensible dimensions; this is likely larger than any screen it is shown on.', fix: 'Resize to the largest displayed width (×2 for retina) and re-encode.' });
     } else if (ext === '.svg' && size > 50 * KB) {
-      add({ id: 'perf.svg.weight', severity: 'low', effort: 'S', title: 'Heavy SVG file', file: f, evidence: kb(size), why: 'Exported SVGs often carry editor metadata and excessive precision.', fix: 'Run svgo (`npx svgo file.svg`), or simplify paths; for photos use a raster format instead.' });
+      add({ id: 'perf.svg.weight', severity: 'low', effort: 'S', title: 'Heavy SVG file', file: f, evidence: kb(size), why: 'Exported SVGs often carry editor metadata and excessive precision.', fix: 'Run svgo (`npx --yes svgo@3.3.2 file.svg`), or simplify paths; for photos use a raster format instead.' });
     }
   }
 

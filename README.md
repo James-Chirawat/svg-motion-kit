@@ -3,131 +3,90 @@
 </p>
 
 <p align="center">
-  Claude Code skills that read your project's theme, find where the UX needs help,<br>
-  draw animated SVG that fits, and review the frontend for UX, performance, security and polish.
+  <a href="https://github.com/James-Chirawat/svg-motion-kit/actions/workflows/ci.yml"><img src="https://github.com/James-Chirawat/svg-motion-kit/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.0-1B1A17" alt="Version 1.0.0"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1B1A17" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/node-%E2%89%A518-1B1A17" alt="Node 18 or later">
 </p>
 
 <p align="center">
-  <b>English</b> · <a href="README.th.md">ภาษาไทย</a>
+  <b>English</b> · <a href="README.th.md">ภาษาไทย</a> · <a href="https://james-chirawat.github.io/svg-motion-kit/">Website &amp; gallery</a>
 </p>
 
-> [!NOTE]
-> **v1.0.0**: all eight skills are in. `audit` runs the whole review in one go: security, UX and accessibility, performance, design and polish. See every template in several themes in the [gallery](docs/gallery/index.html).
-
-## What the workflow covers
-
-The name says SVG, but the kit follows the whole loop of making a frontend feel finished. Each step is its own skill: use one, or run them all.
-
-| Step | Skill | What happens | Status |
-|---|---|---|---|
-| **1. Theme** | `theme-extract` | Reads your real design tokens (Tailwind v3/v4, CSS variables, shadcn/ui, dark mode, radius, fonts, installed libraries) into `.svg-motion/theme.json`. | ✅ |
-| **2. Scout** | `svg-motion` | Scans the code for moments where users wait, get stuck or get no feedback (empty, loading, error, success, offline, upload), and ranks where motion helps most. | ✅ v0.1 |
-| **3. Look** | `design-lint` | Flags the generic AI-made look (purple gradients, glass, blobs, emoji icons) and proposes design directions grounded in your audience. | ✅ v0.1 |
-| **4. Draw** | `svg-motion` | Generates theme-true animated SVG and places it as a component for your framework, showing the diff first. | ✅ v0.1 |
-| **5. Review** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX and accessibility** (states, forms, mobile, contrast). **Performance** (WebP/AVIF images, Thai font subsets, data fetching, caching, bundle). **Security** (leaked secrets, XSS incl. unsafe SVG, headers). **Polish** (design-system use, i18n, meta/OG, 404/500, SEO). | ✅ v0.2–v0.5 |
-| **6. Report and fix** | `audit` | One prioritised report with file:line evidence. Fixes are applied one at a time, each shown as a diff. | ✅ v1.0 |
-
-Ground rules for every step:
-
-- **Read-only by default.** Nothing changes without a diff you approve.
-- **Evidence, not vibes.** Every finding points to a file and line. Deterministic checks are scripts; Claude only does the judgement calls.
-- **Honest limits.** Static analysis can't measure real load times or prove security. Reports say so and point to Lighthouse or a proper review.
-- **Your project's taste.** Colours, radius, fonts and motion libraries come from your code. Nothing new gets installed without asking.
-- **Zero-dependency scripts**, Node 18+, no network unless you agree. English and Thai.
-
-The full plan with every check is in [docs/ROADMAP.md](docs/ROADMAP.md).
-
-## Examples
-
-Every example uses its own palette, because the output should follow *your* project, not a default "AI purple". The banner, hero and icon use the kit's own theme: paper, ink and vermilion.
-
-| Loader | Empty state | Hero |
-|:---:|:---:|:---:|
-| <img src="docs/assets/loader.svg" alt="Spinner and skeleton loader" width="260"> | <img src="docs/assets/empty-state.svg" alt="Empty state with a floating open box" width="260"> | <img src="docs/assets/hero.svg" alt="A web page assembles itself and a cursor clicks its button" width="260"> |
-| navy + mint · spinner + shimmer | teal + coral · float + peek | paper + ink · build + click |
-
-| Success | Offline | Upload |
-|:---:|:---:|:---:|
-| <img src="docs/assets/success.svg" alt="Changes saved: a tick draws inside a circle" width="260"> | <img src="docs/assets/offline.svg" alt="You're offline: a plug keeps reaching for a socket" width="260"> | <img src="docs/assets/upload.svg" alt="A file uploading with a progress bar" width="260"> |
-| forest · tick draw + pulse | terracotta · reach + retry | ink + amber · progress + done |
-
-Each example is a single self-contained SVG of 3–6 KB, with a built-in dark palette and `prefers-reduced-motion` support.
-
-## Skills
-
-| Skill | Status | What it does |
-|---|---|---|
-| `theme-extract` | ✅ v0.1 | Reads the project's design tokens into `.svg-motion/theme.json` |
-| `svg-motion` | ✅ v0.1 | Finds where motion helps UX, then generates theme-aware animated SVG (loaders, empty/error/success states, banners) as components |
-| `design-lint` | ✅ v0.1 | Flags the generic "AI-made" look (purple gradients, glass, blobs, emoji icons) and proposes grounded design directions |
-| `ui-audit` | ✅ v0.2 | UX states, forms, mobile, microcopy, WCAG contrast and accessibility basics |
-| `perf-audit` | ✅ v0.3 | Images (AVIF/WebP, sizing), fonts (incl. Thai subsets), data fetching, caching, bundle |
-| `security-audit` | ✅ v0.4 | Leaked secrets, XSS sinks (incl. unsafe SVG), client-side auth, security headers |
-| `polish-audit` | ✅ v0.5 | Design-system use, code health, i18n, meta/OG, 404/500 pages, SEO basics |
-| `audit` | ✅ v1.0 | Runs everything, one prioritised report, safe fixes with diffs |
+**svg-motion-kit** is a Claude Code plugin for finishing frontends. It reads your project's real theme, finds where the UX needs help, adds animated SVG that matches your design, and reviews security, accessibility, performance, design and polish. Every finding comes with `file:line` evidence, and fixes are applied one diff at a time.
 
 ## Install
 
-In Claude Code:
+```text
+/plugin install svg-motion-kit --marketplace James-Chirawat/svg-motion-kit
+```
+
+On Claude Code versions before 2.1.275, use two steps:
 
 ```text
 /plugin marketplace add James-Chirawat/svg-motion-kit
 /plugin install svg-motion-kit@svg-motion-kit
 ```
 
-Then ask in your own words, in English or Thai:
+Requires Claude Code and Node.js 18 or later. Nothing else is installed.
 
-| Ask | Skill |
+## Quick start
+
+Ask in your own words, in English or Thai:
+
+| You ask | What happens |
 |---|---|
-| *"audit my site before launch, what should I fix first?"* · *"ตรวจเว็บทั้งหมดก่อนขึ้น production"* | `audit` (then *"fix F2 and F5"*) |
-| *"add an animated empty state to the orders page"* · *"ทำ loader ให้เข้าธีมหน่อย"* | `svg-motion` |
-| *"why does our landing page look AI-generated?"* | `design-lint` |
-| *"check for leaked keys before I make the repo public"* | `security-audit` |
-| *"why is the site slow on phones?"* · *"เว็บช้า"* | `perf-audit` |
-| *"accessibility check"* · *"ตรวจ UX"* | `ui-audit` |
-| *"is this production-ready? meta tags, 404…"* | `polish-audit` |
+| *"Audit my site before launch. What should I fix first?"* | `audit` runs every review, writes one prioritised report with numbered findings, and waits for you to choose |
+| *"Fix F2 and F5"* | Fixes are applied one at a time, each shown as a diff and re-checked afterwards |
+| *"Add an animated empty state to the orders page"* | `svg-motion` draws it in your theme's colours and places it as a component |
+| *"Why does our landing page look AI-generated?"* | `design-lint` points out the clichés and proposes three design directions |
+| *"ตรวจเว็บทั้งหมดก่อนขึ้น production"* | Same as the first row, answered in Thai |
 
-## Principles
+## Skills
 
-Every generated SVG must:
+| Skill | What it does |
+|---|---|
+| **audit** | Runs every review below and merges them into one report: an overall score, a "do these first" list, and numbered findings you can fix by number |
+| **svg-motion** | Finds empty, loading, error, success, offline and upload moments. Renders theme-true animated SVG from 8 templates, validates it, and exports React, Vue or Svelte components |
+| **theme-extract** | Reads your real design tokens from Tailwind v3/v4, CSS variables, shadcn/ui, dark mode, radius and fonts |
+| **design-lint** | Scores how generic the UI looks (purple gradients, glassmorphism, blob orbs, emoji icons…) and proposes grounded alternatives |
+| **ui-audit** | Missing states, form labels, focus, tap targets, alt text, and WCAG contrast computed from your theme |
+| **perf-audit** | Image formats, Thai font weights and subsets, request waterfalls, N+1 calls, caching, heavy bundles, third-party scripts |
+| **security-audit** | Leaked keys (always masked), committed `.env` files, public env leaks, XSS sinks, unauthenticated routes and server actions, security headers |
+| **polish-audit** | Metadata and Open Graph image, favicon, 404 and error pages, robots and sitemap, i18n, design-system drift |
 
-- use theme tokens or `currentColor` for colour, with no hardcoded hex outside fallbacks
-- respect `prefers-reduced-motion` and never flash more than 3 times a second (WCAG 2.3.1)
-- animate only `transform` and `opacity`
-- carry the right accessibility attributes: `aria-hidden="true"` when decorative, `role="img"` plus `<title>` when meaningful
-- stay small (target under 15 KB) and need no runtime dependency
+## Examples
 
-Bundled scripts are plain Node (`.mjs`). They have no dependencies, make no network calls and are short enough to read before you run them.
+Every illustration follows the project's own palette and switches to dark mode with it.
 
-## Roadmap
+| Loader | Empty state | Success |
+|:---:|:---:|:---:|
+| <img src="docs/assets/loader.svg" alt="Spinner and skeleton loader" width="260"> | <img src="docs/assets/empty-state.svg" alt="Empty state with an open box" width="260"> | <img src="docs/assets/success.svg" alt="Changes saved, with a tick drawing itself" width="260"> |
+| **Offline** | **Upload** | **Hero** |
+| <img src="docs/assets/offline.svg" alt="Offline, with a plug reaching for a socket" width="260"> | <img src="docs/assets/upload.svg" alt="A file uploading with a progress bar" width="260"> | <img src="docs/assets/hero.svg" alt="A web page assembling itself" width="260"> |
 
-- [x] **v0.0** Repo, marketplace manifest, README examples, icon
-- [x] **v0.1** Theme-true motion: `theme-extract` ✅, `svg-motion` (scout + draw + place), `design-lint`
-- [x] **v0.2** UX and accessibility: `ui-audit`, shared report format, Vue and Svelte recipes
-- [x] **v0.3** Performance: `perf-audit`, optional Lighthouse pass, motion libraries when present
-- [x] **v0.4** Security: `security-audit`
-- [x] **v0.5** Professional polish: `polish-audit`
-- [x] **v1.0** One report, safe fixes: `audit` orchestrator, fix mode, gallery, plugin directory
+The **[gallery](https://james-chirawat.github.io/svg-motion-kit/gallery/)** shows all 8 templates rendered with 5 different project themes.
 
-Details, checks and "done when" criteria for every version are in **[docs/ROADMAP.md](docs/ROADMAP.md)**.
+## How it works
 
-## Preview locally
+1. **Theme:** design tokens are read from your code, never guessed.
+2. **Review:** fast, deterministic scripts check the code. Claude then confirms each important finding in context before reporting it.
+3. **Report:** findings are numbered and prioritised by severity, area and effort, and saved to `.svg-motion/audit.md`.
+4. **Fix:** you choose what to fix. Each change is the smallest one that works, shown as a diff, then re-checked.
 
-```bash
-python3 -m http.server 8765 --directory docs
-```
+## Trust and safety
 
-Then open <http://127.0.0.1:8765/preview.html>.
+- **Read-only by default.** Code changes only after you ask, one diff at a time.
+- **No network and no dependencies.** The bundled scripts are plain Node.js and read only your project. Optional tools (`npm audit`, Lighthouse) run only if you agree.
+- **Secrets stay secret.** Detected keys are masked in every output. The fix guidance says to rotate a leaked key first.
+- **Honest limits.** These are code-level checks. They don't replace Lighthouse, `npm audit`, a penetration test, or a look in the browser, and every report says what it didn't cover.
 
-## Contributing
+## Learn more
 
-Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-Run the tests (Node 18 or later, nothing to install):
-
-```bash
-npm test
-```
+- [Changelog](CHANGELOG.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Contributing](CONTRIBUTING.md)
+- [How it is tested](docs/TESTING.md)
 
 ## License
 

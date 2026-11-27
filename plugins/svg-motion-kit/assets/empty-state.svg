@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" role="img" aria-labelledby="title">
+  <title id="title">Nothing here yet</title>
+  <!-- Theme: deep teal + coral on sand. -->
+  <style>
+    :root {
+      --bg: #F6F1E9; --border: #E6DDCF; --ink: #17302D; --muted: #A99F90;
+      --primary: #136F63; --soft: #DCEBE7; --soft2: #B9D8D1;
+      --accent: #E4572E; --pink: #E4572E; --amber: #D9A441;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F1A19; --border: #1F302E; --ink: #E7F0EE; --muted: #3E5552;
+        --primary: #4FB3A4; --soft: #163330; --soft2: #1F4742;
+        --accent: #FF7A52; --pink: #FF7A52; --amber: #E8B75A;
+      }
+    }
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .card    { fill: var(--bg); stroke: var(--border); stroke-width: 2; }
+    .shape   { stroke: var(--primary); stroke-width: 2; stroke-linejoin: round; }
+    .front   { fill: var(--soft); }
+    .inside  { fill: var(--soft2); }
+    .paper   { fill: var(--bg); }
+    .ink-p   { fill: var(--primary); }
+    .label   { fill: var(--soft2); }
+    .shadow  { fill: var(--muted); }
+    .caption { fill: var(--ink); font-size: 15px; font-weight: 600; }
+    .c-primary { fill: var(--primary); } .c-pink { fill: var(--pink); }
+    .c-accent  { fill: var(--accent); }  .c-amber { fill: var(--amber); }
+
+    .float   { animation: float 3s ease-in-out infinite alternate; }
+    .shadow  { transform-box: fill-box; transform-origin: center; opacity: .45; animation: shadow 3s ease-in-out infinite alternate; }
+    .peek    { animation: peek 4s ease-in-out infinite; }
+    .twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
+
+    @keyframes float   { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+    @keyframes shadow  { from { transform: scaleX(1); opacity: .45; } to { transform: scaleX(.8); opacity: .25; } }
+    @keyframes peek    { 0%, 15% { transform: translateY(34px); } 45%, 70% { transform: translateY(0); } 100% { transform: translateY(34px); } }
+    @keyframes twinkle { 0%, 100% { opacity: .2; transform: scale(.5); } 50% { opacity: 1; transform: scale(1); } }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <rect class="card" x="1" y="1" width="358" height="262" rx="20"/>
+
+  <ellipse class="shadow" cx="180" cy="214" rx="56" ry="7"/>
+
+  <g class="float">
+    <!-- back of the open box -->
+    <path class="shape inside" d="M130 120 L142 104 H218 L230 120 Z"/>
+    <!-- document peeking out -->
+    <g class="peek">
+      <rect class="shape paper" x="158" y="56" width="44" height="56" rx="6"/>
+      <rect class="ink-p" x="168" y="70" width="24" height="4" rx="2"/>
+      <rect class="ink-p" x="168" y="80" width="16" height="4" rx="2" opacity=".6"/>
+      <rect class="ink-p" x="168" y="90" width="20" height="4" rx="2" opacity=".6"/>
+    </g>
+    <!-- front + flaps -->
+    <rect class="shape front" x="130" y="120" width="100" height="72" rx="6"/>
+    <rect class="label" x="160" y="146" width="40" height="8" rx="4"/>
+    <path class="shape front" d="M130 120 L142 104 L118 88 L104 106 Z"/>
+    <path class="shape front" d="M230 120 L218 104 L242 88 L256 106 Z"/>
+  </g>
+
+  <!-- quiet geometric marks instead of sparkles -->
+  <g transform="translate(92 70)"><path class="twinkle" d="M-7 0 H7 M0 -7 V7" style="fill:none; stroke:var(--primary); stroke-width:3; stroke-linecap:round"/></g>
+  <g transform="translate(272 62)"><circle class="twinkle" r="6" style="fill:none; stroke:var(--accent); stroke-width:2.5; animation-delay:.6s"/></g>
+  <g transform="translate(290 152)"><circle class="c-amber twinkle" r="4" style="animation-delay:1.2s"/></g>
+  <g transform="translate(76 160)"><path class="twinkle" d="M-5 0 H5 M0 -5 V5" style="fill:none; stroke:var(--accent); stroke-width:2.5; stroke-linecap:round; animation-delay:1.8s"/></g>
+
+  <text class="caption" x="180" y="246" text-anchor="middle">Nothing here yet</text>
+</svg>

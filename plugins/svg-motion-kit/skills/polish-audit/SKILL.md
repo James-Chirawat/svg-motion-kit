@@ -39,6 +39,6 @@ Give the score and "Do these first". For each item, give file:line, why it matte
 | `polish.i18n.default-locale` | Pass the locale explicitly, e.g. `toLocaleDateString("th-TH", { dateStyle: "medium" })`, or the app's current locale. |
 | `polish.i18n.hardcoded-text` | Move the strings into the message files and use `t()`. Keep keys meaningful. |
 | `polish.tokens.*` | Replace hex values with the matching theme token. If none matches, ask before adding a token. |
-| `polish.code.*` | Run the project's lint setup (`npx next lint` for Next). Replace `any` with real types, starting with API data. |
+| `polish.code.*` | Run the project's lint setup (`npm run lint`, or the project's own `next lint` for Next). Replace `any` with real types, starting with API data. |
 
 Fix one item at a time and show each diff. Re-run the audit afterwards.

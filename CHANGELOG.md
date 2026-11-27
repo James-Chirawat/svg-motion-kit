@@ -5,6 +5,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Changed
+
+- README rewritten for the plugin directory, and a listing README added inside the plugin folder that says exactly what the plugin runs, reads and writes.
+- New website and gallery on GitHub Pages (`docs/index.html`, `docs/gallery/`).
+- Optional `npx` tools in the guidance are pinned to exact versions.
+- Internal files removed: the old preview page, release-note drafts, and the planning notes in the roadmap.
+
 ## [1.0.0] - 2026-11-27
 
 One report, safe fixes.
