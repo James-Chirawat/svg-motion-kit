@@ -5,7 +5,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Changed
+
+- New brand look, with no more indigo/violet "AI purple": paper, ink and vermilion with a drafting-table style (dot grid, bezier handles, pen tip). Redrawn `banner.svg` and plugin icon.
+- `loader.svg` is now navy + mint, and `empty-state.svg` is teal + coral with geometric marks instead of sparkles.
+- `hero-blob.svg` was replaced by `hero.svg`: a page that assembles itself, then a cursor clicks its button.
+- README explains what the workflow covers (theme, scout, look, draw, review, report and fix). Plugin name stays `svg-motion-kit`.
+
 ### Added
+
+- `docs/ROADMAP.md` and `docs/ROADMAP.th.md`: the full plan from v0.1 to v1.0.
 
 - Three more README examples in three non-purple themes: `success.svg` (forest), `offline.svg` (terracotta), `upload.svg` (ink + amber).
 - Plugin icon (`plugins/svg-motion-kit/.claude-plugin/icon.png`, 1024×1024, made from `docs/assets/icon.svg`). It was committed after the Phase 1 PR merged, so it lands here.

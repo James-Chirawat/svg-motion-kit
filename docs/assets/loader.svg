@@ -1,14 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 140" width="360" height="140" role="img" aria-labelledby="title">
   <title id="title">Loading content</title>
+  <!-- Theme: harbour navy + mint. -->
   <style>
     :root {
-      --bg: #F8FAFC; --border: #E2E8F0; --skel: #E2E8F0; --shine: #FFFFFF;
-      --primary: #6366F1; --accent: #06B6D4; --pink: #EC4899;
+      --bg: #F2F5F7; --border: #DCE3E8; --skel: #E1E8ED; --shine: #FFFFFF;
+      --primary: #2F6FA3; --accent: #3FA68C; --pink: #16324F;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0F172A; --border: #1E293B; --skel: #1E293B; --shine: #334155;
-        --primary: #818CF8; --accent: #22D3EE; --pink: #F472B6;
+        --bg: #0E1720; --border: #1E2C38; --skel: #1E2C38; --shine: #2B3D4D;
+        --primary: #6AA6D6; --accent: #7FD1BB; --pink: #E6EDF2;
       }
     }
     .card  { fill: var(--bg); stroke: var(--border); stroke-width: 2; }

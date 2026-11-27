@@ -88,8 +88,8 @@ Spots are ranked by **how often users hit them × how much the moment matters** 
 
 ### Also in v0.1
 
-- Re-theme the four original README examples and the icon away from indigo/violet (decision D2).
-- Decide the plugin name before anyone installs it (decision D1).
+- ✅ Re-theme the four original README examples and the icon away from indigo/violet (D2). The kit's own brand is now paper, ink and vermilion, and the blob hero was replaced.
+- ✅ Plugin name decided (D1): keep `svg-motion-kit`. The README states what the workflow covers.
 - Install the plugin from the marketplace the way users will, and test it on the four `examples/` projects and at least two real projects.
 - Eval suite (`claude plugin eval`) for triggering in English and Thai.
 
@@ -214,13 +214,13 @@ A first-time user can install the plugin, run one prompt in English or Thai, get
 
 ---
 
-## Open decisions
+## Decisions
 
-| ID | Decision | Recommendation |
+| ID | Decision | Outcome |
 |---|---|---|
-| D1 | **Plugin name.** `svg-motion-kit` undersells v0.3+. | Decide before v0.1 ships, because renaming after people install is painful. Either keep the name and stay focused on motion, or pick a broader name for the kit and keep `svg-motion` as one of its skills. |
-| D2 | **Re-theme the original examples and the icon** (indigo/violet, blobs, glass, sparkles). | Yes, before v0.1. The plugin directory keeps the first icon it receives. |
-| D3 | **Report location.** `.svg-motion/` or a neutral folder name. | Follows D1. |
+| D1 | **Plugin name** | **Keep `svg-motion-kit`.** The README's "What the workflow covers" section explains that the kit goes beyond SVG (theme, scout, look, draw, review, report and fix). |
+| D2 | **Re-theme the original examples and the icon** | **Done.** The brand is paper, ink and vermilion with a drafting-table look (dot grid, bezier handles). The loader and empty state each have their own palette. The blob hero was replaced by a page that assembles itself. No sparkles or glass. |
+| D3 | **Report location** | **`.svg-motion/`**, which follows from D1. `theme.json` today, `audit.md` and `audit.json` from v0.2. |
 
 ## Out of scope
 
