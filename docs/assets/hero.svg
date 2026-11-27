@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-labelledby="title">
+  <title id="title">A web page assembles itself and a cursor clicks its button</title>
+  <!-- Brand theme: paper, ink and vermilion. Blocks assemble once; the cursor click loops. -->
+  <style>
+    :root {
+      --paper: #F4EFE6; --sheet: #FBF8F2; --grid: #DDD4C3; --ink: #1B1A17; --muted: #B5AC9D;
+      --accent: #E2462B; --on-accent: #FBF8F2;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #15130F; --sheet: #1D1A15; --grid: #2E2A23; --ink: #EDE7DC; --muted: #5A5348;
+        --accent: #FF6A4D; --on-accent: #15130F;
+      }
+    }
+    .card   { fill: var(--paper); stroke: var(--grid); stroke-width: 2; }
+    .dots   { fill: var(--grid); }
+    .frame  { fill: var(--sheet); stroke: var(--ink); stroke-width: 2; }
+    .rule   { stroke: var(--ink); stroke-width: 2; }
+    .light  { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+    .ink    { fill: var(--ink); }
+    .muted  { fill: var(--muted); }
+    .tile   { fill: var(--grid); }
+    .mount  { fill: none; stroke: var(--sheet); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+    .btn    { fill: var(--accent); }
+    .btn-t  { fill: var(--on-accent); }
+    .ripple { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0; }
+    .cursor { fill: var(--ink); stroke: var(--sheet); stroke-width: 1.5; stroke-linejoin: round; }
+
+    /* Intro: blocks build the page once. Loop: cursor glides in, clicks, ripple, glides out. */
+    .build  { animation: build .5s cubic-bezier(.2, .8, .2, 1) both; }
+    .glide  { animation: glide 4s 2.2s cubic-bezier(.45, 0, .55, 1) infinite both; }
+    .press  { transform-box: fill-box; transform-origin: 0 0; animation: press 4s 2.2s ease-in-out infinite both; }
+    .ripple { transform-origin: 117px 173px; animation: ripple 4s 2.2s ease-out infinite both; }
+
+    @keyframes build  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes glide  { 0% { transform: translate(190px, 90px); opacity: 0; } 10% { opacity: 1; } 40%, 62% { transform: translate(0, 0); opacity: 1; } 92% { transform: translate(190px, 90px); opacity: 0; } 100% { transform: translate(190px, 90px); opacity: 0; } }
+    @keyframes press  { 0%, 44%, 54%, 100% { transform: scale(1); } 48% { transform: scale(.82); } }
+    @keyframes ripple { 0%, 47% { opacity: 0; transform: scale(.6); } 50% { opacity: .8; transform: scale(.6); } 76%, 100% { opacity: 0; transform: scale(1.9); } }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <defs>
+    <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle class="dots" cx="8" cy="8" r="1.1"/>
+    </pattern>
+  </defs>
+
+  <rect class="card" x="1" y="1" width="398" height="298" rx="20"/>
+  <rect x="16" y="16" width="368" height="268" rx="14" fill="url(#grid)"/>
+
+  <!-- the page -->
+  <rect class="frame" x="60" y="40" width="280" height="200" rx="12"/>
+  <line class="rule" x1="60" y1="64" x2="340" y2="64"/>
+  <circle class="light" cx="76" cy="52" r="4"/>
+  <circle class="light" cx="90" cy="52" r="4"/>
+  <circle class="light" cx="104" cy="52" r="4"/>
+
+  <rect class="ink build"   x="80"  y="80"  width="44"  height="6"  rx="3" style="animation-delay:.2s"/>
+  <rect class="muted build" x="268" y="80"  width="52"  height="6"  rx="3" style="animation-delay:.25s"/>
+  <rect class="ink build"   x="80"  y="102" width="136" height="14" rx="4" style="animation-delay:.45s"/>
+  <rect class="muted build" x="80"  y="126" width="128" height="6"  rx="3" style="animation-delay:.65s"/>
+  <rect class="muted build" x="80"  y="138" width="104" height="6"  rx="3" style="animation-delay:.72s"/>
+  <g class="build" style="animation-delay:.9s">
+    <rect class="tile" x="236" y="100" width="84" height="64" rx="8"/>
+    <path class="mount" d="M246 152 L266 128 L280 142 L292 130 L310 152"/>
+    <circle cx="300" cy="116" r="6" style="fill: var(--sheet)"/>
+  </g>
+  <g class="build" style="animation-delay:1.15s">
+    <rect class="btn" x="80" y="160" width="74" height="26" rx="13"/>
+    <rect class="btn-t" x="98" y="171" width="38" height="4" rx="2"/>
+  </g>
+  <rect class="muted build" x="80"  y="208" width="240" height="6" rx="3" style="animation-delay:1.3s"/>
+  <rect class="muted build" x="80"  y="220" width="180" height="6" rx="3" style="animation-delay:1.36s"/>
+
+  <circle class="ripple" cx="117" cy="173" r="16"/>
+
+  <!-- cursor: the outer transform is its resting spot on the button, so reduced motion still shows it there -->
+  <g transform="translate(122 176)">
+    <g class="glide"><path class="cursor press" d="M0 0 L0 22 L6 16.5 L10 26 L14 24 L10 14.5 L18 14.5 Z"/></g>
+  </g>
+</svg>

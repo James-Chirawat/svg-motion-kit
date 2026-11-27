@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="svg-motion-kit — themed, animated SVG for your frontend" width="840">
+  <img src="docs/assets/banner.svg" alt="svg-motion-kit — theme-true motion and frontend reviews for Claude Code" width="840">
 </p>
 
 <p align="center">
-  Claude skills that read your project's theme, review the UI/UX,<br>
-  and draw animated SVG that drops straight into your frontend.
+  Claude Code skills that read your project's theme, find where the UX needs help,<br>
+  draw animated SVG that fits, and review the frontend for UX, performance, security and polish.
 </p>
 
 <p align="center">
@@ -14,23 +14,37 @@
 > [!NOTE]
 > **Work in progress.** The skills are not ready to install yet. Watch or star the repo to follow v0.1.
 
-## Why
+## What the workflow covers
 
-Most design skills give advice. This one writes the asset:
+The name says SVG, but the kit follows the whole loop of making a frontend feel finished. Each step is its own skill: use one, or run them all.
 
-1. **Reads your theme from code**: Tailwind v3/v4, CSS variables, shadcn tokens, fonts, dark mode.
-2. **Draws SVG that uses those tokens**: `var(--primary)` and `currentColor`, never hardcoded hex. Dark mode comes for free.
-3. **Animates it the way your project already does**: plain CSS `@keyframes` by default. It uses framer-motion or GSAP only when they're already in `package.json`, and never installs anything without asking.
-4. **Places it as a component** for your framework, and shows a diff before writing.
+| Step | Skill | What happens | Status |
+|---|---|---|---|
+| **1. Theme** | `theme-extract` | Reads your real design tokens (Tailwind v3/v4, CSS variables, shadcn/ui, dark mode, radius, fonts, installed libraries) into `.svg-motion/theme.json`. | ✅ |
+| **2. Scout** | `svg-motion` | Scans the code for moments where users wait, get stuck or get no feedback (empty, loading, error, success, offline, upload), and ranks where motion helps most. | v0.1 |
+| **3. Look** | `design-lint` | Flags the generic AI-made look (purple gradients, glass, blobs, emoji icons) and proposes design directions grounded in your audience. | v0.1 |
+| **4. Draw** | `svg-motion` | Generates theme-true animated SVG and places it as a component for your framework, showing the diff first. | v0.1 |
+| **5. Review** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX and accessibility** (states, forms, mobile, contrast). **Performance** (WebP/AVIF images, Thai font subsets, data fetching, caching, bundle). **Security** (leaked secrets, XSS incl. unsafe SVG, headers). **Polish** (design-system use, i18n, meta/OG, 404/500, SEO). | v0.2–v0.5 |
+| **6. Report and fix** | `audit` | One prioritised report with file:line evidence. Fixes are applied one at a time, each shown as a diff. | v1.0 |
+
+Ground rules for every step:
+
+- **Read-only by default.** Nothing changes without a diff you approve.
+- **Evidence, not vibes.** Every finding points to a file and line. Deterministic checks are scripts; Claude only does the judgement calls.
+- **Honest limits.** Static analysis can't measure real load times or prove security. Reports say so and point to Lighthouse or a proper review.
+- **Your project's taste.** Colours, radius, fonts and motion libraries come from your code. Nothing new gets installed without asking.
+- **Zero-dependency scripts**, Node 18+, no network unless you agree. English and Thai.
+
+The full plan with every check is in [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Examples
 
+Every example uses its own palette, because the output should follow *your* project, not a default "AI purple". The banner, hero and icon use the kit's own theme: paper, ink and vermilion.
+
 | Loader | Empty state | Hero |
 |:---:|:---:|:---:|
-| <img src="docs/assets/loader.svg" alt="Spinner and skeleton loader" width="260"> | <img src="docs/assets/empty-state.svg" alt="Empty state with a floating open box" width="260"> | <img src="docs/assets/hero-blob.svg" alt="Gradient blobs around a floating UI card" width="260"> |
-| spinner + shimmer | float + peek | blob morph |
-
-**Same patterns, any theme.** These three use three different palettes to show that the output follows *your* project, not a default "AI purple":
+| <img src="docs/assets/loader.svg" alt="Spinner and skeleton loader" width="260"> | <img src="docs/assets/empty-state.svg" alt="Empty state with a floating open box" width="260"> | <img src="docs/assets/hero.svg" alt="A web page assembles itself and a cursor clicks its button" width="260"> |
+| navy + mint · spinner + shimmer | teal + coral · float + peek | paper + ink · build + click |
 
 | Success | Offline | Upload |
 |:---:|:---:|:---:|
@@ -44,8 +58,13 @@ Each example is a single self-contained SVG of 3–6 KB, with a built-in dark pa
 | Skill | Status | What it does |
 |---|---|---|
 | `theme-extract` | ✅ v0.1 (unreleased) | Reads the project's design tokens into `.svg-motion/theme.json` |
-| `svg-motion` | 🚧 v0.1 | Generates theme-aware animated SVG (line-draw, loaders, empty states, hero art) as components |
-| `ui-audit` | 🗓 v0.2 | UI/UX review (heuristics, WCAG contrast, states) and where motion would help |
+| `svg-motion` | 🚧 v0.1 | Finds where motion helps UX, then generates theme-aware animated SVG (loaders, empty/error/success states, banners) as components |
+| `design-lint` | 🚧 v0.1 | Flags the generic "AI-made" look (purple gradients, glass, blobs, emoji icons) and proposes grounded design directions |
+| `ui-audit` | 🗓 v0.2 | UX states, forms, mobile, microcopy, WCAG contrast and accessibility basics |
+| `perf-audit` | 🗓 v0.3 | Images (AVIF/WebP, sizing), fonts (incl. Thai subsets), data fetching, caching, bundle |
+| `security-audit` | 🗓 v0.4 | Leaked secrets, XSS sinks (incl. unsafe SVG), client-side auth, security headers |
+| `polish-audit` | 🗓 v0.5 | Design-system use, code health, i18n, meta/OG, 404/500 pages, SEO basics |
+| `audit` | 🗓 v1.0 | Runs everything, one prioritised report, safe fixes with diffs |
 
 ## Install (once v0.1 ships)
 
@@ -72,10 +91,15 @@ Bundled scripts are plain Node (`.mjs`). They have no dependencies, make no netw
 
 ## Roadmap
 
-- [x] **v0.0** Repo, marketplace manifest, README examples
-- [ ] **v0.1** `theme-extract` and `svg-motion` for React/Next + Tailwind and plain HTML
-- [ ] **v0.2** `ui-audit`
-- [ ] **v0.3** Vue and Svelte, framer-motion and GSAP when present, render-and-review loop, GitHub Pages gallery
+- [x] **v0.0** Repo, marketplace manifest, README examples, icon
+- [ ] **v0.1** Theme-true motion: `theme-extract` ✅, `svg-motion` (scout + draw + place), `design-lint`
+- [ ] **v0.2** UX and accessibility: `ui-audit`, shared report format, Vue and Svelte recipes
+- [ ] **v0.3** Performance: `perf-audit`, optional Lighthouse pass, motion libraries when present
+- [ ] **v0.4** Security: `security-audit`
+- [ ] **v0.5** Professional polish: `polish-audit`
+- [ ] **v1.0** One report, safe fixes: `audit` orchestrator, fix mode, gallery, plugin directory
+
+Details, checks and "done when" criteria for every version are in **[docs/ROADMAP.md](docs/ROADMAP.md)**.
 
 ## Preview locally
 
