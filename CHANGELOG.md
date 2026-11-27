@@ -5,6 +5,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-27
+
+UX and accessibility.
+
+### Added
+
+- `ui-audit` skill. `ui-audit.mjs` checks:
+  - loading, empty and error coverage for every component that fetches data, including Next `loading.tsx` and `error.tsx`
+  - form labels, icon-button names, image alt, clickable divs, removed focus outlines, positive tabIndex, `<html lang>`
+  - tap targets, hover-only actions, `alert()` feedback, vague error copy (Thai and English)
+  - reduced-motion handling, and WCAG AA contrast of the real theme tokens in light and dark
+
+  Findings carry fix playbooks that hand off to `svg-motion`.
+- Shared audit library (`plugins/svg-motion-kit/shared/audit-core.mjs`): the shared finding format, 0–100 area scores, grouped Markdown and JSON reports in `.svg-motion/`, and a monorepo-aware project walker that skips tests, fixtures and mockups.
+- `svg-motion` exports Vue (`<script setup>`) and Svelte (`:global` CSS, `class` prop) components with `--target vue|svelte` or a `.vue`/`.svelte` output path.
+- `examples/ux-gaps/` fixture.
+
 ## [0.1.0] - 2026-11-27
 
 First release: `theme-extract`, `svg-motion` and `design-lint`.
@@ -47,5 +64,6 @@ First release: `theme-extract`, `svg-motion` and `design-lint`.
 - `docs/preview.html` for viewing the examples locally.
 - README in English and Thai.
 
-[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.2.0...HEAD
 [0.1.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.1.0
+[0.2.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.2.0
