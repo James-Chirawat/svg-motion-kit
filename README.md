@@ -12,7 +12,7 @@
 </p>
 
 > [!NOTE]
-> **Work in progress.** The skills are not ready to install yet. Watch or star the repo to follow v0.1.
+> **v0.1.0** ships `theme-extract`, `svg-motion` and `design-lint`. The UX, performance, security and polish audits are on the [roadmap](docs/ROADMAP.md).
 
 ## What the workflow covers
 
@@ -21,9 +21,9 @@ The name says SVG, but the kit follows the whole loop of making a frontend feel 
 | Step | Skill | What happens | Status |
 |---|---|---|---|
 | **1. Theme** | `theme-extract` | Reads your real design tokens (Tailwind v3/v4, CSS variables, shadcn/ui, dark mode, radius, fonts, installed libraries) into `.svg-motion/theme.json`. | ✅ |
-| **2. Scout** | `svg-motion` | Scans the code for moments where users wait, get stuck or get no feedback (empty, loading, error, success, offline, upload), and ranks where motion helps most. | v0.1 |
-| **3. Look** | `design-lint` | Flags the generic AI-made look (purple gradients, glass, blobs, emoji icons) and proposes design directions grounded in your audience. | v0.1 |
-| **4. Draw** | `svg-motion` | Generates theme-true animated SVG and places it as a component for your framework, showing the diff first. | v0.1 |
+| **2. Scout** | `svg-motion` | Scans the code for moments where users wait, get stuck or get no feedback (empty, loading, error, success, offline, upload), and ranks where motion helps most. | ✅ v0.1 |
+| **3. Look** | `design-lint` | Flags the generic AI-made look (purple gradients, glass, blobs, emoji icons) and proposes design directions grounded in your audience. | ✅ v0.1 |
+| **4. Draw** | `svg-motion` | Generates theme-true animated SVG and places it as a component for your framework, showing the diff first. | ✅ v0.1 |
 | **5. Review** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX and accessibility** (states, forms, mobile, contrast). **Performance** (WebP/AVIF images, Thai font subsets, data fetching, caching, bundle). **Security** (leaked secrets, XSS incl. unsafe SVG, headers). **Polish** (design-system use, i18n, meta/OG, 404/500, SEO). | v0.2–v0.5 |
 | **6. Report and fix** | `audit` | One prioritised report with file:line evidence. Fixes are applied one at a time, each shown as a diff. | v1.0 |
 
@@ -57,16 +57,16 @@ Each example is a single self-contained SVG of 3–6 KB, with a built-in dark pa
 
 | Skill | Status | What it does |
 |---|---|---|
-| `theme-extract` | ✅ v0.1 (unreleased) | Reads the project's design tokens into `.svg-motion/theme.json` |
-| `svg-motion` | 🚧 v0.1 | Finds where motion helps UX, then generates theme-aware animated SVG (loaders, empty/error/success states, banners) as components |
-| `design-lint` | 🚧 v0.1 | Flags the generic "AI-made" look (purple gradients, glass, blobs, emoji icons) and proposes grounded design directions |
+| `theme-extract` | ✅ v0.1 | Reads the project's design tokens into `.svg-motion/theme.json` |
+| `svg-motion` | ✅ v0.1 | Finds where motion helps UX, then generates theme-aware animated SVG (loaders, empty/error/success states, banners) as components |
+| `design-lint` | ✅ v0.1 | Flags the generic "AI-made" look (purple gradients, glass, blobs, emoji icons) and proposes grounded design directions |
 | `ui-audit` | 🗓 v0.2 | UX states, forms, mobile, microcopy, WCAG contrast and accessibility basics |
 | `perf-audit` | 🗓 v0.3 | Images (AVIF/WebP, sizing), fonts (incl. Thai subsets), data fetching, caching, bundle |
 | `security-audit` | 🗓 v0.4 | Leaked secrets, XSS sinks (incl. unsafe SVG), client-side auth, security headers |
 | `polish-audit` | 🗓 v0.5 | Design-system use, code health, i18n, meta/OG, 404/500 pages, SEO basics |
 | `audit` | 🗓 v1.0 | Runs everything, one prioritised report, safe fixes with diffs |
 
-## Install (once v0.1 ships)
+## Install
 
 In Claude Code:
 
@@ -92,7 +92,7 @@ Bundled scripts are plain Node (`.mjs`). They have no dependencies, make no netw
 ## Roadmap
 
 - [x] **v0.0** Repo, marketplace manifest, README examples, icon
-- [ ] **v0.1** Theme-true motion: `theme-extract` ✅, `svg-motion` (scout + draw + place), `design-lint`
+- [x] **v0.1** Theme-true motion: `theme-extract` ✅, `svg-motion` (scout + draw + place), `design-lint`
 - [ ] **v0.2** UX and accessibility: `ui-audit`, shared report format, Vue and Svelte recipes
 - [ ] **v0.3** Performance: `perf-audit`, optional Lighthouse pass, motion libraries when present
 - [ ] **v0.4** Security: `security-audit`

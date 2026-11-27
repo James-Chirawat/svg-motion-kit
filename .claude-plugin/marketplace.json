@@ -5,15 +5,15 @@
     "url": "https://github.com/James-Chirawat"
   },
   "metadata": {
-    "description": "Claude skills that read your project's theme and draw animated SVG that fits your frontend.",
-    "version": "0.0.1"
+    "description": "Theme-true motion and frontend reviews for Claude Code.",
+    "version": "0.1.0"
   },
   "plugins": [
     {
       "name": "svg-motion-kit",
       "source": "./plugins/svg-motion-kit",
-      "description": "Extract your project's design tokens, then generate theme-aware animated SVG (loaders, empty states, hero art, line-draw banners) as ready-to-use components.",
-      "version": "0.0.1",
+      "description": "Read your project's real theme, find where the UX needs motion, add theme-true animated SVG as components, and flag the generic AI look with grounded design directions.",
+      "version": "0.1.0",
       "category": "design",
       "keywords": ["svg", "animation", "motion", "design-tokens", "ui", "ux", "frontend", "tailwind", "react"]
     }

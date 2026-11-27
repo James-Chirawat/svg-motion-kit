@@ -5,6 +5,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-27
+
+First release: `theme-extract`, `svg-motion` and `design-lint`.
+
 ### Changed
 
 - New brand look, with no more indigo/violet "AI purple": paper, ink and vermilion with a drafting-table style (dot grid, bezier handles, pen tip). Redrawn `banner.svg` and plugin icon.
@@ -42,3 +46,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Four animated example SVGs in `docs/assets/`: banner (line-draw), loader (spinner and shimmer), empty state (float and peek), hero (blob morph).
 - `docs/preview.html` for viewing the examples locally.
 - README in English and Thai.
+
+[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.1.0
