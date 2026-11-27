@@ -12,7 +12,7 @@
 </p>
 
 > [!NOTE]
-> **v0.1.0** ships `theme-extract`, `svg-motion` and `design-lint`. The UX, performance, security and polish audits are on the [roadmap](docs/ROADMAP.md).
+> **v1.0.0**: all eight skills are in. `audit` runs the whole review in one go: security, UX and accessibility, performance, design and polish. See every template in several themes in the [gallery](docs/gallery/index.html).
 
 ## What the workflow covers
 
@@ -25,7 +25,7 @@ The name says SVG, but the kit follows the whole loop of making a frontend feel 
 | **3. Look** | `design-lint` | Flags the generic AI-made look (purple gradients, glass, blobs, emoji icons) and proposes design directions grounded in your audience. | ✅ v0.1 |
 | **4. Draw** | `svg-motion` | Generates theme-true animated SVG and places it as a component for your framework, showing the diff first. | ✅ v0.1 |
 | **5. Review** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX and accessibility** (states, forms, mobile, contrast). **Performance** (WebP/AVIF images, Thai font subsets, data fetching, caching, bundle). **Security** (leaked secrets, XSS incl. unsafe SVG, headers). **Polish** (design-system use, i18n, meta/OG, 404/500, SEO). | ✅ v0.2–v0.5 |
-| **6. Report and fix** | `audit` | One prioritised report with file:line evidence. Fixes are applied one at a time, each shown as a diff. | v1.0 |
+| **6. Report and fix** | `audit` | One prioritised report with file:line evidence. Fixes are applied one at a time, each shown as a diff. | ✅ v1.0 |
 
 Ground rules for every step:
 
@@ -64,7 +64,7 @@ Each example is a single self-contained SVG of 3–6 KB, with a built-in dark pa
 | `perf-audit` | ✅ v0.3 | Images (AVIF/WebP, sizing), fonts (incl. Thai subsets), data fetching, caching, bundle |
 | `security-audit` | ✅ v0.4 | Leaked secrets, XSS sinks (incl. unsafe SVG), client-side auth, security headers |
 | `polish-audit` | ✅ v0.5 | Design-system use, code health, i18n, meta/OG, 404/500 pages, SEO basics |
-| `audit` | 🗓 v1.0 | Runs everything, one prioritised report, safe fixes with diffs |
+| `audit` | ✅ v1.0 | Runs everything, one prioritised report, safe fixes with diffs |
 
 ## Install
 
@@ -75,7 +75,17 @@ In Claude Code:
 /plugin install svg-motion-kit@svg-motion-kit
 ```
 
-Then ask in your own words, for example *"add an animated empty state to the orders page"* or *"ทำ loader ให้เข้าธีมหน่อย"*.
+Then ask in your own words, in English or Thai:
+
+| Ask | Skill |
+|---|---|
+| *"audit my site before launch, what should I fix first?"* · *"ตรวจเว็บทั้งหมดก่อนขึ้น production"* | `audit` (then *"fix F2 and F5"*) |
+| *"add an animated empty state to the orders page"* · *"ทำ loader ให้เข้าธีมหน่อย"* | `svg-motion` |
+| *"why does our landing page look AI-generated?"* | `design-lint` |
+| *"check for leaked keys before I make the repo public"* | `security-audit` |
+| *"why is the site slow on phones?"* · *"เว็บช้า"* | `perf-audit` |
+| *"accessibility check"* · *"ตรวจ UX"* | `ui-audit` |
+| *"is this production-ready? meta tags, 404…"* | `polish-audit` |
 
 ## Principles
 
@@ -97,7 +107,7 @@ Bundled scripts are plain Node (`.mjs`). They have no dependencies, make no netw
 - [x] **v0.3** Performance: `perf-audit`, optional Lighthouse pass, motion libraries when present
 - [x] **v0.4** Security: `security-audit`
 - [x] **v0.5** Professional polish: `polish-audit`
-- [ ] **v1.0** One report, safe fixes: `audit` orchestrator, fix mode, gallery, plugin directory
+- [x] **v1.0** One report, safe fixes: `audit` orchestrator, fix mode, gallery, plugin directory
 
 Details, checks and "done when" criteria for every version are in **[docs/ROADMAP.md](docs/ROADMAP.md)**.
 

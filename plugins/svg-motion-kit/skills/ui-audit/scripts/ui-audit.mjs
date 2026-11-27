@@ -13,7 +13,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { walkFiles, readText, finding, scoreArea, runCli, UI_EXT, STYLE_EXT } from '../../../shared/audit-core.mjs';
+import { walkFiles, readText, finding, scoreArea, runCli, UI_EXT, STYLE_EXT, NON_APP } from '../../../shared/audit-core.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const { extractTheme, parseColor } = await import(pathToFileURL(path.join(HERE, '..', '..', 'theme-extract', 'scripts', 'extract-tokens.mjs')).href);
@@ -126,7 +126,7 @@ const lineOf = (text, i) => text.slice(0, i).split('\n').length;
 
 export function uiAudit(rootDir) {
   const root = path.resolve(rootDir);
-  const files = walkFiles(root, { include: (rel, ext) => UI_EXT.has(ext) || STYLE_EXT.has(ext) || ext === '.ts' || ext === '.js' });
+  const files = walkFiles(root, { include: (rel, ext) => !NON_APP.test(rel) && ( UI_EXT.has(ext) || STYLE_EXT.has(ext) || ext === '.ts' || ext === '.js' ) });
   const findings = [];
   let theme = null;
   try { theme = extractTheme(root); } catch { /* fine */ }
@@ -213,11 +213,12 @@ export function uiAudit(rootDir) {
       if ((VAGUE_ERROR.test(l) || VAGUE_ERROR_CALL.test(l)) && !NEXT_STEP.test(lines.slice(Math.max(0, i - 3), i + 4).join(' '))) {
         findings.push(finding({ id: 'ux.copy.vague-error', area: 'ux', severity: 'low', effort: 'S', title: 'Error message without a next step', file, line: n, evidence: l, why: 'Users need to know what happened and what to do; "Error" alone ends the journey.', fix: 'Say what failed in plain words and offer one action: retry, go back, or contact.' }));
       }
-      // html lang
-      if (/<html\b(?![^>]*\blang\s*=)/.test(l)) {
-        findings.push(finding({ id: 'a11y.html-lang', area: 'a11y', severity: 'medium', effort: 'S', title: '<html> has no lang attribute', file, line: n, evidence: l, why: 'Screen readers pick the wrong voice; Thai pages read with an English voice are unintelligible (WCAG 3.1.1).', fix: 'Add lang="th" (or the page language).' }));
-      }
     });
+
+    // html lang (attributes may span lines)
+    for (const t of tagBlocks(text, 'html')) {
+      if (!/\blang\s*=/.test(t.attrs)) findings.push(finding({ id: 'a11y.html-lang', area: 'a11y', severity: 'medium', effort: 'S', title: '<html> has no lang attribute', file, line: lineOf(text, t.index), evidence: text.slice(t.index, Math.min(t.end, t.index + 100)), why: 'Screen readers pick the wrong voice; Thai pages read with an English voice are unintelligible (WCAG 3.1.1).', fix: 'Add lang="th" (or the page language).' }));
+    }
 
     // submit with no visible feedback
     if (/onSubmit|action=\{|@submit|on:submit/.test(text) && /alert\(/.test(text) && !/toast|setStatus|setSuccess|isSuccess|aria-live|role=["']status/.test(text)) {

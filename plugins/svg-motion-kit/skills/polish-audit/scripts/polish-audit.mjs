@@ -13,7 +13,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { walkFiles, readText, finding, scoreArea, runCli, projectPackage, UI_EXT, STYLE_EXT } from '../../../shared/audit-core.mjs';
+import { walkFiles, readText, finding, scoreArea, runCli, projectPackage, UI_EXT, STYLE_EXT, NON_APP } from '../../../shared/audit-core.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const { extractTheme } = await import(pathToFileURL(path.join(HERE, '..', '..', 'theme-extract', 'scripts', 'extract-tokens.mjs')).href);
@@ -35,7 +35,7 @@ export function polishAudit(rootDir) {
   try { theme = extractTheme(root); } catch { /* fine */ }
   const hasTheme = theme && theme.confidence !== 'low';
 
-  const files = walkFiles(root, { include: (rel, ext) => UI_EXT.has(ext) || STYLE_EXT.has(ext) || ['.ts', '.js', '.mjs'].includes(ext) });
+  const files = walkFiles(root, { include: (rel, ext) => !NON_APP.test(rel) && ( UI_EXT.has(ext) || STYLE_EXT.has(ext) || ['.ts', '.js', '.mjs'].includes(ext) ) });
   let anyCount = 0, anyFile = null, ignoreCount = 0, ignoreFile = null, logCount = 0, logFile = null, arbitrarySpacing = 0, spacingFile = null;
   const hasButtonComponent = files.some((f) => /(^|\/)components\/ui\/button\.(t|j)sx?$|(^|\/)Button\.(t|j)sx|(^|\/)button\.vue$/i.test(f));
   let rawButtons = 0, rawButtonFile = null;

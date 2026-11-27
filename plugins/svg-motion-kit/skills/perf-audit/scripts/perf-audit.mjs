@@ -13,7 +13,7 @@
 
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { walkFiles, readText, fileSize, finding, scoreArea, runCli, projectPackage, UI_EXT, STYLE_EXT } from '../../../shared/audit-core.mjs';
+import { walkFiles, readText, fileSize, finding, scoreArea, runCli, projectPackage, UI_EXT, STYLE_EXT, NON_APP } from '../../../shared/audit-core.mjs';
 
 const RASTER = new Set(['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tif', '.tiff']);
 const IMAGE = new Set([...RASTER, '.webp', '.avif', '.svg']);
@@ -46,7 +46,7 @@ export function perfAudit(rootDir) {
   }
 
   // ---------------------------------------------------------------- code
-  const files = walkFiles(root, { include: (rel, ext) => UI_EXT.has(ext) || STYLE_EXT.has(ext) || ['.ts', '.js', '.mjs'].includes(ext) });
+  const files = walkFiles(root, { include: (rel, ext) => !NON_APP.test(rel) && ( UI_EXT.has(ext) || STYLE_EXT.has(ext) || ['.ts', '.js', '.mjs'].includes(ext) ) });
   let dynamicMarkers = 0, dynamicFile = null, fontFamilies = new Set();
 
   for (const file of files) {
@@ -153,7 +153,10 @@ export function perfAudit(rootDir) {
       if (/\.forEach\s*\(\s*async\b/.test(l)) add({ id: 'perf.fetch.foreach-async', severity: 'medium', effort: 'S', title: 'async callback in forEach', file, line: n, evidence: l, why: 'forEach does not wait: requests fire unbounded and errors are lost.', fix: 'Use for…of with await, or Promise.all(items.map(async …)).' });
       // effect fetching
       if (/useEffect\s*\(/.test(l)) {
-        const body = lines.slice(i, i + 12).join('\n');
+        // the whole effect: up to its dependency array `}, [...])` (bounded), not a fixed window
+        let end = i;
+        while (end < Math.min(lines.length - 1, i + 60) && !/^\s*\}\s*,\s*\[[^\]]*\]\s*\)/.test(lines[end])) end++;
+        const body = lines.slice(i, end + 1).join('\n');
         if (/\bfetch\s*\(|axios\./.test(body)) {
           if (!usesDataLib) add({ id: 'perf.fetch.effect', severity: 'low', effort: 'M', title: 'Data fetched in useEffect without a cache', file, line: n, evidence: lines.slice(i, i + 3).join(' ').trim(), why: 'Every mount refetches, requests are not deduplicated, and nothing renders until JavaScript loads.', fix: isNext ? 'Fetch in a Server Component, or use SWR / TanStack Query on the client.' : 'Use SWR or TanStack Query (caching, dedup, retries).' });
           if (!/AbortController|signal|ignore\s*=\s*true|let\s+(cancelled|canceled|active|mounted)\b/.test(body)) add({ id: 'perf.fetch.no-abort', severity: 'low', effort: 'S', title: 'Effect fetch without cancellation', file, line: n, evidence: lines[i].trim(), why: 'Fast navigation leaves stale requests running and can set state from an old response.', fix: 'Pass an AbortController signal and abort it in the effect cleanup.' });

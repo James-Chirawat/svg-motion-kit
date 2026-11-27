@@ -70,3 +70,23 @@ Each case has a `tool_used: Skill` trigger check plus an LLM grader that scores 
 Triggering was correct in all four cases, in Thai and English, including the should-not-fire case.
 
 **Known gap:** the eval workspace is empty, so the design-lint and theme-token graders can't tell the plugin's grounded answer from a good generic one (Δ 0). The next step is to scaffold an example project into each case's workspace and grade on file:line evidence and real token values. Until then, the live runs in section 2 are the stronger evidence for those two skills.
+
+### Results from 2026-11-27 (v1.0 candidate)
+
+**Live run: full audit in Thai.** The prompt was "ตรวจเว็บทั้งหมดก่อนขึ้น production … แล้วแก้ข้อแรก", run on a copy of `examples/ux-gaps`. Claude loaded `audit`, ran all five areas and opened every high and medium finding to confirm it (none dropped). It answered in Thai with F-numbers and file:line. It chose to fix F8, the missing error state, rather than the contrast finding, explaining that changing colours is a brand decision. It showed the diff, re-ran the area, and the score went from 72 to 76. 17 turns, $0.61.
+
+**Found by that run, and fixed:** `perf-audit` only looked at the first 12 lines of a `useEffect`, so a longer effect hid its fetch. It now reads the effect up to its dependency array, and a regression test covers it.
+
+**Eval, 7 cases, `--runs 1`, $1.25:**
+
+| Case | With | Without | Δ |
+|---|---|---|---|
+| en-security | 1.00 | 0.00 | **+1.00** |
+| th-full-audit | 1.00 | 1.00 | 0.00 |
+| en-perf | 1.00 | 1.00 | 0.00 |
+| en-design-lint | 1.00 | 1.00 | 0.00 |
+| en-theme-tokens | 1.00 | 1.00 | 0.00 |
+| th-empty-state | 1.00 | 1.00 | 0.00 (it was +1.00 in the first run; one run per case is noisy) |
+| negative-python | 1.00 | 1.00 | 0.00 (no skill fired, which is correct) |
+
+The skill fired in 6 of 6 trigger cases, and in none of the should-not-fire cases. The gap noted earlier still stands: the eval workspace is empty, so the graders can't reward file-level evidence. Scaffolding example projects into the cases is the next step for the evals.

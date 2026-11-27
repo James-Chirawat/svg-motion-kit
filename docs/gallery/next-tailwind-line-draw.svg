@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" width="360" height="200" class="smk-line-draw-nexttailwi" role="img" aria-labelledby="smk-title-nexttailwi">
+  <title id="smk-title-nexttailwi">A line chart that draws itself</title>
+  <style>
+    .smk-line-draw-nexttailwi {
+      --c-bg: #ffffff; --c-fg: #0a0a0a; --c-line: #e5e5e5;
+      --c-primary: #7f22fe; --c-accent: #009689;
+      --c-area: color-mix(in srgb, var(--c-primary) 10%, var(--c-bg));
+    }
+    @media (prefers-color-scheme: dark) { .smk-line-draw-nexttailwi { --c-bg: #0a0a0a; --c-fg: #fafafa; --c-line: #ffffff1a; --c-primary: #8e51ff; --c-accent: #00bc7d; } }
+    .smk-line-draw-nexttailwi .card  { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
+    .smk-line-draw-nexttailwi .grid  { fill: none; stroke: var(--c-line); stroke-width: 1.5; stroke-dasharray: 2 6; }
+    .smk-line-draw-nexttailwi .base  { fill: none; stroke: var(--c-line); stroke-width: 2; stroke-linecap: round; }
+    .smk-line-draw-nexttailwi .area  { fill: var(--c-area); }
+    .smk-line-draw-nexttailwi .line  { fill: none; stroke: var(--c-primary); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .smk-line-draw-nexttailwi .point { fill: var(--c-bg); stroke: var(--c-primary); stroke-width: 2.5; }
+    .smk-line-draw-nexttailwi .bead  { fill: none; stroke: var(--c-accent); stroke-width: 6; stroke-linecap: round; stroke-dasharray: .03 .97; opacity: 0; }
+    .smk-line-draw-nexttailwi .draw  { stroke-dasharray: 1; stroke-dashoffset: 0; animation: smk-line-draw-draw 1.8s linear both; }
+    .smk-line-draw-nexttailwi .pop   { transform-box: fill-box; transform-origin: center; animation: smk-line-draw-pop .45s cubic-bezier(.34, 1.56, .64, 1) both; }
+    .smk-line-draw-nexttailwi .fade  { animation: smk-line-draw-fade .8s ease-out both; }
+    .smk-line-draw-nexttailwi .bead  { animation: smk-line-draw-show .4s 2.4s both, smk-line-draw-travel 2.8s 2.4s linear infinite; }
+    @keyframes smk-line-draw-draw   { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes smk-line-draw-pop    { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+    @keyframes smk-line-draw-fade   { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes smk-line-draw-show   { to { opacity: 1; } }
+    @keyframes smk-line-draw-travel { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1; } }
+    @media (prefers-reduced-motion: reduce) { .smk-line-draw-nexttailwi * { animation: none !important; } }
+  </style>
+  <rect class="card" x="1" y="1" width="358" height="198" rx="15"/>
+  <path class="grid" d="M32 60 H328 M32 100 H328 M32 140 H328"/>
+  <path class="base" d="M32 168 H328"/>
+  <path class="area fade" d="M36 150 C80 150 92 96 136 100 S196 140 232 112 S292 50 324 58 L324 168 L36 168 Z" style="animation-delay:1.8s"/>
+  <path class="line draw" pathLength="1" d="M36 150 C80 150 92 96 136 100 S196 140 232 112 S292 50 324 58" style="animation-delay:.2s"/>
+  <path class="bead" pathLength="1" d="M36 150 C80 150 92 96 136 100 S196 140 232 112 S292 50 324 58"/>
+  <circle class="point pop" cx="136" cy="100" r="5" style="animation-delay:.8s"/>
+  <circle class="point pop" cx="232" cy="112" r="5" style="animation-delay:1.4s"/>
+  <circle class="point pop" cx="324" cy="58" r="5" style="animation-delay:2s"/>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 140" width="360" height="140" class="smk-upload-nexttailwi" role="img" aria-labelledby="smk-title-nexttailwi">
+  <title id="smk-title-nexttailwi">Uploading report-q3.pdf</title>
+  <style>
+    .smk-upload-nexttailwi {
+      --c-bg: #ffffff; --c-fg: #0a0a0a; --c-muted: #737373;
+      --c-line: #e5e5e5; --c-accent: #009689;
+      --c-soft: color-mix(in srgb, var(--c-fg) 8%, var(--c-bg));
+      --c-paper: color-mix(in srgb, var(--c-fg) 2%, var(--c-bg));
+    }
+    @media (prefers-color-scheme: dark) { .smk-upload-nexttailwi { --c-bg: #0a0a0a; --c-fg: #fafafa; --c-muted: #a1a1a1; --c-line: #ffffff1a; --c-accent: #00bc7d; } }
+    .smk-upload-nexttailwi text { font-family: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .smk-upload-nexttailwi .card  { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
+    .smk-upload-nexttailwi .doc   { fill: var(--c-paper); stroke: var(--c-fg); stroke-width: 2.5; stroke-linejoin: round; }
+    .smk-upload-nexttailwi .fold  { fill: var(--c-soft); stroke: var(--c-fg); stroke-width: 2.5; stroke-linejoin: round; }
+    .smk-upload-nexttailwi .lines { fill: var(--c-muted); opacity: .5; }
+    .smk-upload-nexttailwi .badge { fill: var(--c-accent); }
+    .smk-upload-nexttailwi .arrow { fill: none; stroke: var(--c-bg); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; animation: smk-upload-lift 1.1s ease-in-out infinite; }
+    .smk-upload-nexttailwi .name  { fill: var(--c-fg); font-size: 14px; font-weight: 650; }
+    .smk-upload-nexttailwi .meta  { fill: var(--c-muted); font-size: 12px; }
+    .smk-upload-nexttailwi .track { fill: var(--c-soft); }
+    .smk-upload-nexttailwi .bar   { fill: var(--c-accent); transform-box: fill-box; transform-origin: left center; animation: smk-upload-fill 3.2s cubic-bezier(.4, 0, .2, 1) infinite; }
+    .smk-upload-nexttailwi .done  { fill: var(--c-fg); transform-box: fill-box; transform-origin: center; animation: smk-upload-done 3.2s ease-out infinite; }
+    .smk-upload-nexttailwi .check { fill: none; stroke: var(--c-bg); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    @keyframes smk-upload-fill { 0% { transform: scaleX(0); opacity: 1; } 65%, 90% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+    @keyframes smk-upload-done { 0%, 66% { transform: scale(0); opacity: 0; } 74%, 90% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+    @keyframes smk-upload-lift { 0% { transform: translateY(3px); opacity: 0; } 30%, 70% { opacity: 1; } 100% { transform: translateY(-4px); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .smk-upload-nexttailwi * { animation: none !important; } .smk-upload-nexttailwi .bar { transform: scaleX(.6); } .smk-upload-nexttailwi .done { opacity: 0; } }
+  </style>
+  <rect class="card" x="1" y="1" width="358" height="138" rx="15"/>
+  <path class="doc" d="M40 36 H70 L84 50 V102 Q84 106 80 106 H40 Q36 106 36 102 V40 Q36 36 40 36 Z"/>
+  <path class="fold" d="M70 36 V46 Q70 50 74 50 H84 Z"/>
+  <rect class="lines" x="44" y="60" width="28" height="4" rx="2"/>
+  <rect class="lines" x="44" y="70" width="20" height="4" rx="2"/>
+  <rect class="lines" x="44" y="80" width="24" height="4" rx="2"/>
+  <circle class="badge" cx="84" cy="100" r="15"/>
+  <path class="arrow" d="M84 107 V93 M78 99 L84 93 L90 99"/>
+  <text class="name" x="120" y="62">report-q3.pdf</text>
+  <text class="meta" x="120" y="80">Uploading…</text>
+  <rect class="track" x="120" y="92" width="190" height="8" rx="4"/>
+  <rect class="bar" x="120" y="92" width="190" height="8" rx="4"/>
+  <g class="done"><circle cx="328" cy="96" r="11"/><path class="check" d="M323 96 L327 100 L334 92"/></g>
+</svg>

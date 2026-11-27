@@ -5,6 +5,29 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-27
+
+One report, safe fixes.
+
+### Added
+
+- `audit` skill. `audit.mjs` runs security, UX and accessibility, performance, design (100 minus genericness) and polish, then merges them into `.svg-motion/audit.md` and `audit.json`:
+  - weighted overall score (security 30, UX 25, performance 20, design 15, polish 10)
+  - a numbered finding for every issue (F1…), so fixes can be requested by number
+  - "Do these first" ranked by severity, area and effort
+  - motion opportunities from the svg-motion scout
+  - `--only` / `--skip` to choose areas
+
+  **Fix mode** (`SKILL.md`, `references/playbooks.md`): one finding at a time, shown as a diff, re-checked after each fix, stops on failure. It never rotates keys, rewrites history or adds dependencies without a separate yes.
+- Gallery: `npm run gallery` renders the 8 templates × 5 themes (40 validated SVGs) into `docs/gallery/`, ready for GitHub Pages.
+- Evals for `audit` (Thai), `security-audit` and `perf-audit`. The suite now has 7 cases, and every trigger fired correctly.
+
+### Fixed
+
+- `perf-audit` reads the whole `useEffect` (found by a live run).
+- `ui-audit` reads `<html lang>` across lines.
+- UX, perf and polish skip tooling folders (`scripts/`, `bin/`, `tools/`, `migrations/`, `seeds/`).
+
 ## [0.5.0] - 2026-11-27
 
 Professional polish.
@@ -114,9 +137,10 @@ First release: `theme-extract`, `svg-motion` and `design-lint`.
 - `docs/preview.html` for viewing the examples locally.
 - README in English and Thai.
 
-[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v1.0.0...HEAD
 [0.1.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.1.0
 [0.2.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.2.0
 [0.3.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.3.0
 [0.4.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.4.0
 [0.5.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.5.0
+[1.0.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v1.0.0

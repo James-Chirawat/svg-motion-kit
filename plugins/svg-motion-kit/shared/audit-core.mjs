@@ -16,6 +16,8 @@ export const IGNORE_DIRS = new Set([
   '__pycache__', 'target', 'Pods', 'DerivedData', '.idea', '.vscode',
 ]);
 export const SKIP_FILE = /(\.test\.|\.spec\.|\.stories\.|\.d\.ts$|\.min\.(js|css)$|\.dc\.html$|(^|\/)(tests?|__tests__|e2e|cypress|playwright|__mocks__|__fixtures__|fixtures|design-mockups|mockups?|prototypes?|sandbox|generated|__generated__|\.prisma)\/)/;
+/** Folders that hold tooling, not the shipped app. UX/perf/polish skip them; security still scans them. */
+export const NON_APP = /(^|\/)(scripts?|bin|tools|migrations|seeds?|prisma\/seed|cli)\//;
 export const UI_EXT = new Set(['.tsx', '.jsx', '.vue', '.svelte', '.astro', '.html']);
 export const CODE_EXT = new Set([...UI_EXT, '.ts', '.js', '.mjs', '.cjs']);
 export const STYLE_EXT = new Set(['.css', '.scss', '.sass', '.less', '.pcss']);

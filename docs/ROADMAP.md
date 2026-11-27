@@ -11,7 +11,7 @@ svg-motion-kit grows from one job (theme-true animated SVG) into a frontend revi
 | [v0.3](#v03--performance) | Performance | `perf-audit` | ✅ released 2026-11-27 |
 | [v0.4](#v04--security) | Security | `security-audit` | ✅ released 2026-11-27 |
 | [v0.5](#v05--professional-polish) | Professional polish | `polish-audit` | ✅ released 2026-11-27 |
-| [v1.0](#v10--one-report-safe-fixes) | One report, safe fixes | `audit` (orchestrator) | planned |
+| [v1.0](#v10--one-report-safe-fixes) | One report, safe fixes | `audit` (orchestrator) | ✅ released 2026-11-27 |
 
 ---
 

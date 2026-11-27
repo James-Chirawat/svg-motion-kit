@@ -60,3 +60,14 @@ test('clean examples have no high-severity performance findings', () => {
     assert.deepEqual(perfAudit(path.join(repo, 'examples', e)).findings.filter((f) => f.severity === 'high'), [], e);
   }
 });
+
+test('a long useEffect is still read to its end (regression from a live run)', () => {
+  const dir = fs.mkdtempSync(path.join(repo, 'tests', '.tmp-'));
+  try {
+    fs.writeFileSync(path.join(dir, 'package.json'), '{"dependencies":{"react":"19.0.0"}}');
+    const filler = Array.from({ length: 15 }, (_, i) => `    const v${i} = ${i};`).join('\n');
+    fs.writeFileSync(path.join(dir, 'List.tsx'), `import { useEffect } from "react";\nexport function L() {\n  useEffect(() => {\n${filler}\n    fetch("/api/x").then((r) => r.json());\n  }, []);\n  return null;\n}\n`);
+    const ids = perfAudit(dir).findings.map((f) => f.id);
+    assert.ok(ids.includes('perf.fetch.effect') && ids.includes('perf.fetch.no-abort'), ids.join(','));
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
