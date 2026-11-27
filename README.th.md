@@ -62,7 +62,7 @@
 | `design-lint` | ✅ v0.1 | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) และเสนอทิศทางดีไซน์ที่มีเหตุผลรองรับ |
 | `ui-audit` | ✅ v0.2 | สถานะของหน้า (UX states), ฟอร์ม, มือถือ, microcopy, contrast ตาม WCAG และ accessibility พื้นฐาน |
 | `perf-audit` | ✅ v0.3 | รูปภาพ (AVIF/WebP, ขนาด), ฟอนต์ (รวมถึงการ subset ฟอนต์ไทย), การดึงข้อมูล, cache และ bundle |
-| `security-audit` | 🗓 v0.4 | secret รั่ว, จุดเสี่ยง XSS (รวมถึง SVG ที่ไม่ปลอดภัย), auth ฝั่ง client และ security header |
+| `security-audit` | ✅ v0.4 | secret รั่ว, จุดเสี่ยง XSS (รวมถึง SVG ที่ไม่ปลอดภัย), auth ฝั่ง client และ security header |
 | `polish-audit` | 🗓 v0.5 | การใช้ design system, สุขภาพโค้ด, i18n, meta/OG, หน้า 404/500 และ SEO พื้นฐาน |
 | `audit` | 🗓 v1.0 | รันทุก audit แล้วรวมเป็นรายงานเดียวเรียงตามความสำคัญ และแก้ไขอย่างปลอดภัยพร้อม diff |
 
@@ -95,7 +95,7 @@ script ที่แถมมาเป็น Node ล้วน (`.mjs`) ไม่
 - [x] **v0.1** Motion ที่ตรงธีม: `theme-extract` ✅, `svg-motion` (scout + วาด + วางลงโปรเจกต์), `design-lint`
 - [x] **v0.2** UX และ accessibility: `ui-audit`, รูปแบบรายงานกลาง และสูตรสำหรับ Vue และ Svelte
 - [x] **v0.3** Performance: `perf-audit`, ตรวจด้วย Lighthouse (ไม่บังคับ) และใช้ library motion เมื่อโปรเจกต์มีอยู่แล้ว
-- [ ] **v0.4** Security: `security-audit`
+- [x] **v0.4** Security: `security-audit`
 - [ ] **v0.5** ความเป็นมืออาชีพ: `polish-audit`
 - [ ] **v1.0** รายงานเดียว แก้ไขได้ปลอดภัย: ตัวรวม `audit`, โหมดแก้ไข, หน้า gallery และส่งเข้า plugin directory
 

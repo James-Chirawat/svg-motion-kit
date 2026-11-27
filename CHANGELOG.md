@@ -5,6 +5,21 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-27
+
+Security.
+
+### Added
+
+- `security-audit` skill. `security-audit.mjs` is a code-level checklist with masked evidence. It checks:
+  - **secrets:** AWS, Stripe, GitHub, Slack, OpenAI, Anthropic, Google, PEM keys and JWTs (a Supabase `service_role` JWT is high); committed `.env` files (via `git ls-files`); `.env` files that git doesn't ignore; secret-named `NEXT_PUBLIC_`/`VITE_`/`PUBLIC_` variables
+  - **XSS sinks:** including uploaded SVG rendered as markup and JSON-LD without escaping `<`
+  - **auth:** tokens in localStorage, client-only route guards, mutating Next routes and server actions without an auth check (recognising project auth helpers and middleware), unverified webhooks, public write endpoints without rate limiting
+  - **other:** open redirects, security headers, public source maps, a missing lockfile
+
+  `SKILL.md` covers secret handling: never echo values, and rotate before removing.
+- `examples/leaky/` fixture. It contains no realistic secrets; the tests assemble fake ones at runtime.
+
 ## [0.3.0] - 2026-11-27
 
 Performance.
@@ -85,7 +100,8 @@ First release: `theme-extract`, `svg-motion` and `design-lint`.
 - `docs/preview.html` for viewing the examples locally.
 - README in English and Thai.
 
-[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.4.0...HEAD
 [0.1.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.1.0
 [0.2.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.2.0
 [0.3.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.3.0
+[0.4.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.4.0
