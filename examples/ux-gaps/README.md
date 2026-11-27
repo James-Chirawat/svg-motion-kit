@@ -1,0 +1,1 @@
+Deliberately flawed fixture for `ui-audit`: missing loading/error/empty states, unlabeled fields, an icon-only button that only appears on hover, a clickable div, removed focus outline, image without alt, alert() feedback, a vague "Error", no `lang`, low-contrast muted text and primary-button text, and an animation without reduced-motion handling.

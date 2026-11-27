@@ -75,7 +75,11 @@ Use `--js` for JavaScript projects. Then edit the spot the scout found:
 - inline mode: paste the SVG where it belongs
 - standalone mode: save it under the site's assets and use `<img src="…" alt="…">`, or `alt=""` when decorative
 
-**Vue / Svelte / Astro (until v0.2 adds recipes):** inline the SVG markup in the template. Vue strips `<style>` from templates, so move the SVG's `<style>` content into the component's non-scoped `<style>` block. The classes are already unique.
+**Vue and Svelte:** use the same script with `--out …/OrdersEmpty.vue` or `--out …/OrdersEmpty.svelte`. The target follows the extension, or you can pass `--target vue|svelte`.
+- Vue gets `<script setup>` props (`title`, `decorative`, `idSuffix`) and a non-scoped `<style>`. The classes are already unique, and `class` merges onto the `<svg>`.
+- Svelte gets `export let` props, a `class` prop, and `:global()` CSS, so Svelte's scoping leaves the animations intact.
+
+**Astro:** paste the inline SVG into the `.astro` file. Its `<style>` already only matches this illustration.
 
 Show the diff and ask before writing. Never install packages, never edit the theme, and add at most one animated illustration per view.
 

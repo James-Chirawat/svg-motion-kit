@@ -7,7 +7,7 @@ svg-motion-kit เริ่มจากงานเดียว คือทำ 
 | เวอร์ชัน | ธีม | skill ใหม่ | สถานะ |
 |---|---|---|---|
 | [v0.1](#v01--motion-ที่ตรงธีม) | Motion ที่ตรงธีม | `theme-extract` ✅, `svg-motion` ✅, `design-lint` ✅ | ✅ ออกแล้ว 2026-11-27 |
-| [v0.2](#v02--ux-และ-accessibility) | UX และ accessibility | `ui-audit` | วางแผนไว้ |
+| [v0.2](#v02--ux-และ-accessibility) | UX และ accessibility | `ui-audit` | ✅ ออกแล้ว 2026-11-27 |
 | [v0.3](#v03--performance) | Performance | `perf-audit` | วางแผนไว้ |
 | [v0.4](#v04--security) | Security | `security-audit` | วางแผนไว้ |
 | [v0.5](#v05--ความเป็นมืออาชีพ) | ความเป็นมืออาชีพ | `polish-audit` | วางแผนไว้ |
