@@ -31,7 +31,10 @@ for (const [key, label, ex] of themes) {
     if (errors.length) throw new Error(`${key}/${t.name}: ${JSON.stringify(errors)}`);
     const file = `${key}-${t.name}.svg`;
     fs.writeFileSync(path.join(out, file), svg);
-    rows += `<figure><img src="${file}" alt="${t.name} template, ${label}" loading="lazy"><figcaption>${t.name}</figcaption></figure>`;
+    // First section loads immediately (it is on screen); the rest lazy-load. width/height reserve space, so nothing jumps.
+    const [, , vw, vh] = (svg.match(/viewBox="([^"]+)"/) || [, '0 0 360 264'])[1].split(/\s+/);
+    const eager = key === themes[0][0];
+    rows += `<figure><img src="${file}" alt="${t.name} template, ${label}" width="${vw}" height="${vh}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"${eager ? ' fetchpriority="high"' : ''}><figcaption>${t.name}</figcaption></figure>`;
     count++;
   }
   rows += '</div></section>';
