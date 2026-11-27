@@ -1,0 +1,10 @@
+{
+  "name": "svg-motion-kit-dev",
+  "private": true,
+  "description": "Development scripts for the svg-motion-kit Claude Code plugin. Not needed to use the plugin.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test"
+  }
+}

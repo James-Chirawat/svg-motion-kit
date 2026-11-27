@@ -36,7 +36,7 @@ skill ด้านดีไซน์ส่วนใหญ่แค่ให้�
 
 | Skill | สถานะ | หน้าที่ |
 |---|---|---|
-| `theme-extract` | 🚧 v0.1 | อ่าน design token ของโปรเจกต์ แล้วบันทึกเป็น `.svg-motion/theme.json` |
+| `theme-extract` | ✅ v0.1 (ยังไม่ออกเวอร์ชัน) | อ่าน design token ของโปรเจกต์ แล้วบันทึกเป็น `.svg-motion/theme.json` |
 | `svg-motion` | 🚧 v0.1 | สร้าง SVG เคลื่อนไหวที่เข้ากับธีม (เส้นวาดตัวเอง, loader, empty state, ภาพ hero) ออกมาเป็น component |
 | `ui-audit` | 🗓 v0.2 | วิเคราะห์ UI/UX (หลักการใช้งาน, contrast ตาม WCAG, สถานะต่าง ๆ ของหน้า) และแนะนำจุดที่ควรใส่ motion |
 
@@ -81,6 +81,12 @@ python3 -m http.server 8765 --directory docs
 ## ร่วมพัฒนา
 
 ยินดีรับทั้ง issue และ pull request ดูรายละเอียดได้ที่ [CONTRIBUTING.md](CONTRIBUTING.md)
+
+รันชุดทดสอบด้วยคำสั่งนี้ (ใช้ Node 18 ขึ้นไป ไม่ต้องติดตั้งอะไรเพิ่ม):
+
+```bash
+npm test
+```
 
 ## License
 

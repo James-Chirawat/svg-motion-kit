@@ -29,6 +29,14 @@ examples/                           sample projects used to test the skills
 - Plain Node (`.mjs`), runs on Node 18 or later, on macOS, Linux and Windows.
 - No dependencies, no network calls, no writes outside the paths the skill states.
 
+## Tests
+
+```bash
+npm test
+```
+
+This uses Node's built-in test runner, so there is nothing to install. Tests live in `tests/` and use the projects in `examples/` as fixtures. When you fix a bug found on a real project, add a small regression test that builds its own fixture with the `fixture()` helper.
+
 ## Workflow
 
 1. Branch from `main` (`feat/…`, `fix/…`, `docs/…`).

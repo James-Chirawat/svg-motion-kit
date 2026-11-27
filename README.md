@@ -36,7 +36,7 @@ Each example is a single self-contained SVG of 3–6 KB, with a built-in dark pa
 
 | Skill | Status | What it does |
 |---|---|---|
-| `theme-extract` | 🚧 v0.1 | Reads the project's design tokens into `.svg-motion/theme.json` |
+| `theme-extract` | ✅ v0.1 (unreleased) | Reads the project's design tokens into `.svg-motion/theme.json` |
 | `svg-motion` | 🚧 v0.1 | Generates theme-aware animated SVG (line-draw, loaders, empty states, hero art) as components |
 | `ui-audit` | 🗓 v0.2 | UI/UX review (heuristics, WCAG contrast, states) and where motion would help |
 
@@ -81,6 +81,12 @@ Then open <http://127.0.0.1:8765/preview.html>.
 ## Contributing
 
 Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Run the tests (Node 18 or later, nothing to install):
+
+```bash
+npm test
+```
 
 ## License
 
