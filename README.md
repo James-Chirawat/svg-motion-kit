@@ -30,6 +30,13 @@ Most design skills give advice. This one writes the asset:
 | <img src="docs/assets/loader.svg" alt="Spinner and skeleton loader" width="260"> | <img src="docs/assets/empty-state.svg" alt="Empty state with a floating open box" width="260"> | <img src="docs/assets/hero-blob.svg" alt="Gradient blobs around a floating UI card" width="260"> |
 | spinner + shimmer | float + peek | blob morph |
 
+**Same patterns, any theme.** These three use three different palettes to show that the output follows *your* project, not a default "AI purple":
+
+| Success | Offline | Upload |
+|:---:|:---:|:---:|
+| <img src="docs/assets/success.svg" alt="Changes saved: a tick draws inside a circle" width="260"> | <img src="docs/assets/offline.svg" alt="You're offline: a plug keeps reaching for a socket" width="260"> | <img src="docs/assets/upload.svg" alt="A file uploading with a progress bar" width="260"> |
+| forest · tick draw + pulse | terracotta · reach + retry | ink + amber · progress + done |
+
 Each example is a single self-contained SVG of 3–6 KB, with a built-in dark palette and `prefers-reduced-motion` support.
 
 ## Skills
