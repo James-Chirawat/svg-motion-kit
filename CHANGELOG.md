@@ -5,6 +5,20 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-27
+
+Professional polish.
+
+### Added
+
+- `polish-audit` skill. `polish-audit.mjs` checks:
+  - **design-system drift:** hardcoded colours and arbitrary spacing next to a real theme, hand-styled buttons beside a Button component
+  - **code health:** `any`, suppressions, `console.log`, lint setup
+  - **i18n:** hardcoded Thai or English text when an i18n library is installed (Unicode-aware, so Thai isn't treated as punctuation), and dates formatted with the default locale (Buddhist versus Gregorian years, hydration mismatches)
+  - **meta and pages:** Next metadata (also in `[locale]` and route-group layouts), Open Graph image, favicon, per-page titles, HTML head essentials, custom 404 and error pages, robots and sitemap
+  - **headings:** heading order
+- `examples/rough-edges/` fixture.
+
 ## [0.4.0] - 2026-11-27
 
 Security.
@@ -100,8 +114,9 @@ First release: `theme-extract`, `svg-motion` and `design-lint`.
 - `docs/preview.html` for viewing the examples locally.
 - README in English and Thai.
 
-[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.5.0...HEAD
 [0.1.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.1.0
 [0.2.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.2.0
 [0.3.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.3.0
 [0.4.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.4.0
+[0.5.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.5.0

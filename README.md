@@ -24,7 +24,7 @@ The name says SVG, but the kit follows the whole loop of making a frontend feel 
 | **2. Scout** | `svg-motion` | Scans the code for moments where users wait, get stuck or get no feedback (empty, loading, error, success, offline, upload), and ranks where motion helps most. | ✅ v0.1 |
 | **3. Look** | `design-lint` | Flags the generic AI-made look (purple gradients, glass, blobs, emoji icons) and proposes design directions grounded in your audience. | ✅ v0.1 |
 | **4. Draw** | `svg-motion` | Generates theme-true animated SVG and places it as a component for your framework, showing the diff first. | ✅ v0.1 |
-| **5. Review** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX and accessibility** (states, forms, mobile, contrast). **Performance** (WebP/AVIF images, Thai font subsets, data fetching, caching, bundle). **Security** (leaked secrets, XSS incl. unsafe SVG, headers). **Polish** (design-system use, i18n, meta/OG, 404/500, SEO). | v0.2–v0.5 |
+| **5. Review** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX and accessibility** (states, forms, mobile, contrast). **Performance** (WebP/AVIF images, Thai font subsets, data fetching, caching, bundle). **Security** (leaked secrets, XSS incl. unsafe SVG, headers). **Polish** (design-system use, i18n, meta/OG, 404/500, SEO). | ✅ v0.2–v0.5 |
 | **6. Report and fix** | `audit` | One prioritised report with file:line evidence. Fixes are applied one at a time, each shown as a diff. | v1.0 |
 
 Ground rules for every step:
@@ -63,7 +63,7 @@ Each example is a single self-contained SVG of 3–6 KB, with a built-in dark pa
 | `ui-audit` | ✅ v0.2 | UX states, forms, mobile, microcopy, WCAG contrast and accessibility basics |
 | `perf-audit` | ✅ v0.3 | Images (AVIF/WebP, sizing), fonts (incl. Thai subsets), data fetching, caching, bundle |
 | `security-audit` | ✅ v0.4 | Leaked secrets, XSS sinks (incl. unsafe SVG), client-side auth, security headers |
-| `polish-audit` | 🗓 v0.5 | Design-system use, code health, i18n, meta/OG, 404/500 pages, SEO basics |
+| `polish-audit` | ✅ v0.5 | Design-system use, code health, i18n, meta/OG, 404/500 pages, SEO basics |
 | `audit` | 🗓 v1.0 | Runs everything, one prioritised report, safe fixes with diffs |
 
 ## Install
@@ -96,7 +96,7 @@ Bundled scripts are plain Node (`.mjs`). They have no dependencies, make no netw
 - [x] **v0.2** UX and accessibility: `ui-audit`, shared report format, Vue and Svelte recipes
 - [x] **v0.3** Performance: `perf-audit`, optional Lighthouse pass, motion libraries when present
 - [x] **v0.4** Security: `security-audit`
-- [ ] **v0.5** Professional polish: `polish-audit`
+- [x] **v0.5** Professional polish: `polish-audit`
 - [ ] **v1.0** One report, safe fixes: `audit` orchestrator, fix mode, gallery, plugin directory
 
 Details, checks and "done when" criteria for every version are in **[docs/ROADMAP.md](docs/ROADMAP.md)**.
