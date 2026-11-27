@@ -35,7 +35,7 @@ Before reporting, open the file for each high or medium finding:
 - If the user agrees, and there is a running dev or preview URL, run Lighthouse and add the measured LCP, CLS, INP and total bytes:
 
   ```bash
-  npx lighthouse <url> --only-categories=performance --output=json --quiet
+  npx --yes lighthouse@12.0.0 <url> --only-categories=performance --output=json --quiet
   ```
 
   Always ask first, because it downloads Lighthouse and loads the site.

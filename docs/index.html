@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>svg-motion-kit — theme-true motion and frontend reviews for Claude Code</title>
+<meta name="description" content="A Claude Code plugin that reads your project's real theme, adds animated SVG that fits, and reviews security, accessibility, performance, design and polish with file:line evidence.">
+<meta property="og:title" content="svg-motion-kit">
+<meta property="og:description" content="Theme-true motion and frontend reviews for Claude Code.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --paper: #F4EFE6; --sheet: #FBF8F2; --ink: #1B1A17; --muted: #5F584D; --line: #DDD4C3; --accent: #C2361C;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #15130F; --sheet: #1D1A15; --ink: #EDE7DC; --muted: #A39B8E; --line: #2E2A23; --accent: #FF7A5C; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: inherit; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; }
+  .brand img { width: 28px; height: 28px; border-radius: 6px; }
+  nav { display: flex; gap: 20px; font-size: 15px; }
+  .hero { padding: 48px 0 24px; }
+  .hero img { width: 100%; height: auto; display: block; }
+  h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; letter-spacing: -0.5px; margin: 32px 0 12px; max-width: 22ch; }
+  .lead { color: var(--muted); max-width: 62ch; margin: 0 0 24px; }
+  .install { background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; max-width: 640px; }
+  .install pre { margin: 0; font: 14px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-x: auto; }
+  .install button { flex: none; font: 600 13px/1 system-ui; padding: 8px 12px; border: 1px solid var(--ink); border-radius: 6px; background: transparent; color: var(--ink); cursor: pointer; }
+  .note { font-size: 14px; color: var(--muted); margin-top: 8px; }
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 22px; margin: 0 0 20px; }
+  .asks { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .asks div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .asks q { font-style: italic; }
+  .asks span { color: var(--muted); }
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); column-gap: 40px; }
+  .skills dt { font: 600 15px ui-monospace, monospace; margin-top: 16px; }
+  .skills dt::before { content: ""; display: inline-block; width: 8px; height: 8px; background: var(--accent); margin-right: 8px; vertical-align: middle; }
+  .skills dd { margin: 4px 0 0 16px; color: var(--muted); font-size: 15px; }
+  .examples { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .examples img { width: 100%; height: auto; display: block; }
+  .cta { display: inline-block; margin-top: 20px; font-weight: 600; padding: 10px 16px; background: var(--ink); color: var(--paper); border-radius: 8px; text-decoration: none; }
+  .trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .trust h3 { font-size: 16px; margin: 0 0 6px; }
+  .trust p { margin: 0; color: var(--muted); font-size: 15px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 640px) { .asks div { grid-template-columns: 1fr; gap: 4px; } nav { gap: 14px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="assets/icon.svg" alt="">svg-motion-kit</a>
+    <nav aria-label="Main">
+      <a href="gallery/">Gallery</a>
+      <a href="https://github.com/James-Chirawat/svg-motion-kit">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img src="assets/banner.svg" alt="A bezier curve drawing itself, next to the svg-motion-kit title and its workflow: theme, scout, draw, audit">
+    <h1>Finish your frontend with Claude Code.</h1>
+    <p class="lead">svg-motion-kit reads your project's real theme, finds where the UX needs help, adds animated SVG that matches your design, and reviews security, accessibility, performance, design and polish. Every finding has <code>file:line</code> evidence, and fixes are applied one reviewed diff at a time. It works in English and Thai.</p>
+    <div class="install">
+      <pre id="cmd">/plugin marketplace add James-Chirawat/svg-motion-kit
+/plugin install svg-motion-kit@svg-motion-kit</pre>
+      <button type="button" id="copy" aria-label="Copy install commands">Copy</button>
+    </div>
+    <p class="note">Requires Claude Code and Node.js 18 or later. The bundled scripts have no dependencies and make no network requests.</p>
+  </div>
+
+  <section aria-labelledby="ask">
+    <h2 id="ask">What you can ask</h2>
+    <div class="asks">
+      <div><q>Audit my site before launch. What should I fix first?</q><span>One prioritised report with numbered findings, then “fix F2 and F5”, one diff at a time.</span></div>
+      <div><q>Add an animated empty state to the orders page.</q><span>A theme-true illustration, placed as a React, Vue or Svelte component.</span></div>
+      <div><q>Why does our landing page look AI-generated?</q><span>The clichés, found with evidence, plus three grounded design directions.</span></div>
+      <div><q lang="th">ตรวจเว็บทั้งหมดก่อนขึ้น production</q><span>The same audit, answered in Thai.</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="skills">
+    <h2 id="skills">Eight skills</h2>
+    <dl class="skills">
+      <div><dt>audit</dt><dd>Every review in one report: weighted score, “do these first”, fix by number.</dd></div>
+      <div><dt>svg-motion</dt><dd>Finds empty, loading, error, success, offline and upload moments, and draws them in your theme.</dd></div>
+      <div><dt>theme-extract</dt><dd>Reads Tailwind v3/v4, CSS variables, shadcn/ui, dark mode, radius and fonts.</dd></div>
+      <div><dt>design-lint</dt><dd>Scores how generic the UI looks, and proposes alternatives grounded in your audience.</dd></div>
+      <div><dt>ui-audit</dt><dd>Missing states, labels, focus, tap targets, and WCAG contrast from your theme.</dd></div>
+      <div><dt>perf-audit</dt><dd>Images, Thai fonts, request waterfalls, N+1 calls, caching, bundles.</dd></div>
+      <div><dt>security-audit</dt><dd>Masked secret scan, <code>.env</code> hygiene, XSS, unauthenticated routes, headers.</dd></div>
+      <div><dt>polish-audit</dt><dd>Metadata, Open Graph, favicon, 404 and error pages, robots, sitemap, i18n.</dd></div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="examples">
+    <h2 id="examples">Illustrations that follow your theme</h2>
+    <div class="examples">
+      <img src="assets/success.svg" alt="Changes saved: a tick draws itself inside a circle">
+      <img src="assets/offline.svg" alt="You're offline: a plug keeps reaching for a socket">
+      <img src="assets/empty-state.svg" alt="Nothing here yet: a document peeks out of an open box">
+    </div>
+    <a class="cta" href="gallery/">See all 8 templates in 5 themes →</a>
+  </section>
+
+  <section aria-labelledby="trust">
+    <h2 id="trust">Built to be trusted</h2>
+    <div class="trust">
+      <div><h3>Read-only by default</h3><p>Nothing changes until you choose a fix, and you see every diff first.</p></div>
+      <div><h3>Evidence, not vibes</h3><p>Deterministic checks find issues, and Claude confirms each one in your code before reporting.</p></div>
+      <div><h3>Secrets stay secret</h3><p>Detected keys are always masked. Optional network tools run only with your consent.</p></div>
+      <div><h3>Honest limits</h3><p>Every report says what code-level checks can't see: real Core Web Vitals, CVEs, pentests.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">MIT licensed · <a href="https://github.com/James-Chirawat/svg-motion-kit">Source</a> · <a href="https://github.com/James-Chirawat/svg-motion-kit/blob/main/CHANGELOG.md">Changelog</a> · <a href="https://github.com/James-Chirawat/svg-motion-kit/issues">Issues</a></div>
+</footer>
+
+<script>
+  document.getElementById('copy').addEventListener('click', async (e) => {
+    try { await navigator.clipboard.writeText(document.getElementById('cmd').textContent); e.target.textContent = 'Copied'; setTimeout(() => (e.target.textContent = 'Copy'), 1500); } catch { e.target.textContent = 'Select & copy'; }
+  });
+</script>
+</body>
+</html>

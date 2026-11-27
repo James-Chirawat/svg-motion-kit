@@ -46,7 +46,7 @@ h1{font-size:28px;margin:0 0 4px}p{color:var(--muted);margin:0 0 24px}h2{font-si
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}figure{margin:0}img{width:100%;height:auto;display:block}
 figcaption{font:12px ui-monospace,monospace;color:var(--muted);margin-top:4px}a{color:inherit}</style></head><body><main>
 <h1>svg-motion-kit gallery</h1>
-<p>${templates.length} templates × ${themes.length} themes, rendered by <code>render-template.mjs</code> from each example project's real theme. Same templates, different projects. <a href="https://github.com/James-Chirawat/svg-motion-kit">GitHub</a></p>
+<p>${templates.length} templates × ${themes.length} themes, rendered by <code>render-template.mjs</code> from each example project's real theme. Same templates, different projects. <a href="../">Home</a> · <a href="https://github.com/James-Chirawat/svg-motion-kit">GitHub</a></p>
 ${rows}
 </main></body></html>
 `);

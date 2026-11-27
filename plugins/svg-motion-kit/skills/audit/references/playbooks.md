@@ -19,7 +19,7 @@ Every playbook ends the same way: show the diff, apply it after approval, re-run
 |---|---|
 | `promise-all` | `const [a, b] = await Promise.all([getA(), getB()])`. Keep each call's error handling and types. |
 | `next-image` | `<Image src width height alt />` (or `fill` + `sizes`). Add `priority` only to the LCP image. Allow remote hosts in `next.config` `images.remotePatterns`, and ask first. |
-| perf.image.format | If the project has sharp or a script, use it. Otherwise give the exact commands (e.g. `npx @squoosh/cli --avif '{}' file.png`) and let the user run them. Never add dependencies silently. |
+| perf.image.format | If the project has sharp or a script, use it. Otherwise give the exact commands (e.g. `npx --yes @squoosh/cli@0.7.3 --avif '{}' file.png`) and let the user run them. Never add dependencies silently. |
 | perf.font.* | Use `next/font/google` with `subsets: ["thai", "latin"]`, only the weights in use, and `display: "swap"`. Remove the CDN `<link>`. |
 | perf.bundle.dynamic-import | `const Chart = dynamic(() => import("./Chart"), { ssr: false, loading: () => <Loader /> })`. |
 | perf.bundle.client-layout | Move interactive pieces into small `"use client"` components and keep the layout on the server. |
