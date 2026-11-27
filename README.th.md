@@ -24,7 +24,7 @@
 | **2. สำรวจ** | `svg-motion` | สแกนโค้ดหาจังหวะที่ผู้ใช้ต้องรอ ติดขัด หรือไม่ได้รับ feedback (empty, loading, error, success, offline, upload) แล้วจัดอันดับว่าใส่ motion ตรงไหนได้ประโยชน์ที่สุด | ✅ v0.1 |
 | **3. ดูหน้าตา** | `design-lint` | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) แล้วเสนอทิศทางดีไซน์ที่อิงกลุ่มผู้ใช้จริง | ✅ v0.1 |
 | **4. วาด** | `svg-motion` | สร้าง SVG เคลื่อนไหวที่ตรงธีม แล้ววางเป็น component ตาม framework ของโปรเจกต์ โดยแสดง diff ก่อน | ✅ v0.1 |
-| **5. ตรวจ** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX และ accessibility:** สถานะของหน้า, ฟอร์ม, มือถือ, contrast<br>**Performance:** รูป WebP/AVIF, subset ฟอนต์ไทย, การดึงข้อมูล, cache, bundle<br>**Security:** secret รั่ว, XSS รวมถึง SVG ที่ไม่ปลอดภัย, header<br>**ความเรียบร้อย:** การใช้ design system, i18n, meta/OG, หน้า 404/500, SEO | v0.2–v0.5 |
+| **5. ตรวจ** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX และ accessibility:** สถานะของหน้า, ฟอร์ม, มือถือ, contrast<br>**Performance:** รูป WebP/AVIF, subset ฟอนต์ไทย, การดึงข้อมูล, cache, bundle<br>**Security:** secret รั่ว, XSS รวมถึง SVG ที่ไม่ปลอดภัย, header<br>**ความเรียบร้อย:** การใช้ design system, i18n, meta/OG, หน้า 404/500, SEO | ✅ v0.2–v0.5 |
 | **6. รายงานและแก้** | `audit` | รายงานเดียวเรียงตามความสำคัญ ทุกข้ออ้างอิงไฟล์และบรรทัด และแก้ทีละข้อพร้อมแสดง diff | v1.0 |
 
 กติกาที่ใช้กับทุกขั้น:
@@ -63,7 +63,7 @@
 | `ui-audit` | ✅ v0.2 | สถานะของหน้า (UX states), ฟอร์ม, มือถือ, microcopy, contrast ตาม WCAG และ accessibility พื้นฐาน |
 | `perf-audit` | ✅ v0.3 | รูปภาพ (AVIF/WebP, ขนาด), ฟอนต์ (รวมถึงการ subset ฟอนต์ไทย), การดึงข้อมูล, cache และ bundle |
 | `security-audit` | ✅ v0.4 | secret รั่ว, จุดเสี่ยง XSS (รวมถึง SVG ที่ไม่ปลอดภัย), auth ฝั่ง client และ security header |
-| `polish-audit` | 🗓 v0.5 | การใช้ design system, สุขภาพโค้ด, i18n, meta/OG, หน้า 404/500 และ SEO พื้นฐาน |
+| `polish-audit` | ✅ v0.5 | การใช้ design system, สุขภาพโค้ด, i18n, meta/OG, หน้า 404/500 และ SEO พื้นฐาน |
 | `audit` | 🗓 v1.0 | รันทุก audit แล้วรวมเป็นรายงานเดียวเรียงตามความสำคัญ และแก้ไขอย่างปลอดภัยพร้อม diff |
 
 ## การติดตั้ง
@@ -96,7 +96,7 @@ script ที่แถมมาเป็น Node ล้วน (`.mjs`) ไม่
 - [x] **v0.2** UX และ accessibility: `ui-audit`, รูปแบบรายงานกลาง และสูตรสำหรับ Vue และ Svelte
 - [x] **v0.3** Performance: `perf-audit`, ตรวจด้วย Lighthouse (ไม่บังคับ) และใช้ library motion เมื่อโปรเจกต์มีอยู่แล้ว
 - [x] **v0.4** Security: `security-audit`
-- [ ] **v0.5** ความเป็นมืออาชีพ: `polish-audit`
+- [x] **v0.5** ความเป็นมืออาชีพ: `polish-audit`
 - [ ] **v1.0** รายงานเดียว แก้ไขได้ปลอดภัย: ตัวรวม `audit`, โหมดแก้ไข, หน้า gallery และส่งเข้า plugin directory
 
 รายละเอียด สิ่งที่ตรวจ และเกณฑ์ "เสร็จเมื่อ" ของทุกเวอร์ชันอยู่ใน **[docs/ROADMAP.th.md](docs/ROADMAP.th.md)**
