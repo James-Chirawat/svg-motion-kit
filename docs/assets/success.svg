@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" role="img" aria-labelledby="title">
+  <title id="title">Changes saved</title>
+  <!-- Theme: forest on paper. A tick draws itself once, then a quiet ring pulse confirms the state. -->
+  <style>
+    :root {
+      --bg: #F4F1EA; --border: #E4DED2; --ink: #1F2A24; --muted: #6B746E;
+      --primary: #1F6F4A; --soft: #DCE8DF; --gold: #B8922A;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121814; --border: #223027; --ink: #E8EFE9; --muted: #93A199;
+        --primary: #4FB286; --soft: #1C2E24; --gold: #D9B84A;
+      }
+    }
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .card  { fill: var(--bg); stroke: var(--border); stroke-width: 2; }
+    .disc  { fill: var(--soft); }
+    .ring  { fill: none; stroke: var(--primary); stroke-width: 6; stroke-linecap: round; }
+    .tick  { fill: none; stroke: var(--primary); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+    .pulse { fill: none; stroke: var(--primary); stroke-width: 2; opacity: 0; }
+    .ray   { stroke: var(--gold); stroke-width: 4; stroke-linecap: round; }
+    .title { fill: var(--ink); font-size: 16px; font-weight: 650; }
+    .sub   { fill: var(--muted); font-size: 13px; }
+
+    .draw  { stroke-dasharray: 1; stroke-dashoffset: 0; animation: draw .7s cubic-bezier(.65, 0, .35, 1) both; }
+    .grow  { transform-origin: 180px 108px; animation: grow .5s cubic-bezier(.34, 1.56, .64, 1) both; }
+    .burst { transform-origin: 180px 108px; opacity: 0; animation: burst .7s 1.05s ease-out both; }
+    .pulse { transform-origin: 180px 108px; animation: pulse 2.6s 1.6s ease-out infinite; }
+    .rise  { animation: rise .6s ease-out both; }
+
+    @keyframes draw  { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes grow  { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes burst { 0% { opacity: 0; transform: scale(.85); } 30% { opacity: 1; } 100% { opacity: 0; transform: scale(1.15); } }
+    @keyframes pulse { 0% { opacity: .5; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.45); } }
+    @keyframes rise  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .burst { opacity: 0; } }
+  </style>
+
+  <rect class="card" x="1" y="1" width="358" height="262" rx="20"/>
+
+  <circle class="pulse" cx="180" cy="108" r="52"/>
+  <circle class="disc grow" cx="180" cy="108" r="52"/>
+  <circle class="ring draw" cx="180" cy="108" r="52" pathLength="1" transform="rotate(-90 180 108)" style="animation-delay:.15s"/>
+  <path class="tick draw" pathLength="1" d="M157 109 L173 125 L204 92" style="animation-delay:.7s"/>
+
+  <!-- one-off burst of short rays, no confetti -->
+  <g class="burst">
+    <line class="ray" x1="180" y1="38" x2="180" y2="26"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(45 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(90 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(135 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(180 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(225 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(270 180 108)"/>
+    <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(315 180 108)"/>
+  </g>
+
+  <text class="title rise" x="180" y="208" text-anchor="middle" style="animation-delay:1s">Changes saved</text>
+  <text class="sub rise" x="180" y="230" text-anchor="middle" style="animation-delay:1.15s">Synced just now</text>
+</svg>
