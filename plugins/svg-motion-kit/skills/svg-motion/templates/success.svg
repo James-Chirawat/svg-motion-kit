@@ -1,5 +1,5 @@
 <!-- smk: success feedback after save/submit. A tick draws itself once, short rays burst, then a quiet ring pulse. Roles: primary, accent, background, foreground, mutedForeground, border. Texts: title, subtitle. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" class="__S__" role="img" aria-labelledby="smk-title-__U__">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" data-smk-notext-viewbox="0 0 360 180" class="__S__" role="img" aria-labelledby="smk-title-__U__">
   <title id="smk-title-__U__">{{text:title|Changes saved}}</title>
   <style>
     .__S__ {
@@ -43,6 +43,6 @@
     <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(270 180 108)"/>
     <line class="ray" x1="180" y1="38" x2="180" y2="26" transform="rotate(315 180 108)"/>
   </g>
-  <text class="title rise" x="180" y="208" text-anchor="middle" style="animation-delay:1s">{{text:title|Changes saved}}</text>
-  <text class="sub rise" x="180" y="230" text-anchor="middle" style="animation-delay:1.15s">{{text:subtitle|Synced just now}}</text>
+  <text data-smk-text class="title rise" x="180" y="208" text-anchor="middle" style="animation-delay:1s">{{text:title|Changes saved}}</text>
+  <text data-smk-text class="sub rise" x="180" y="230" text-anchor="middle" style="animation-delay:1.15s">{{text:subtitle|Synced just now}}</text>
 </svg>

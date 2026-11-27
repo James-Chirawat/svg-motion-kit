@@ -1,5 +1,5 @@
 <!-- smk: offline / connection lost. A plug keeps reaching for a socket but never connects; three dots show it is retrying. Roles: primary, background, foreground, mutedForeground, border. Texts: title, subtitle. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" class="__S__" role="img" aria-labelledby="smk-title-__U__">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" data-smk-notext-viewbox="0 0 360 176" class="__S__" role="img" aria-labelledby="smk-title-__U__">
   <title id="smk-title-__U__">{{text:title|You're offline}}</title>
   <style>
     .__S__ {
@@ -41,9 +41,9 @@
     <rect class="hole" x="206" y="116" width="10" height="6" rx="3"/>
   </g>
   <path class="spark" d="M183 98 L189 108 L184 110 L191 122"/>
-  <text class="title" x="180" y="200" text-anchor="middle">{{text:title|You're offline}}</text>
-  <text class="sub" x="180" y="222" text-anchor="middle">{{text:subtitle|We'll reconnect automatically}}</text>
-  <circle class="dot" cx="168" cy="242" r="3.5"/>
-  <circle class="dot" cx="180" cy="242" r="3.5" style="animation-delay:.15s"/>
-  <circle class="dot" cx="192" cy="242" r="3.5" style="animation-delay:.3s"/>
+  <text data-smk-text class="title" x="180" y="200" text-anchor="middle">{{text:title|You're offline}}</text>
+  <text data-smk-text class="sub" x="180" y="222" text-anchor="middle">{{text:subtitle|We'll reconnect automatically}}</text>
+  <circle data-smk-text class="dot" cx="168" cy="242" r="3.5"/>
+  <circle data-smk-text class="dot" cx="180" cy="242" r="3.5" style="animation-delay:.15s"/>
+  <circle data-smk-text class="dot" cx="192" cy="242" r="3.5" style="animation-delay:.3s"/>
 </svg>

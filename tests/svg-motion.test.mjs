@@ -142,3 +142,70 @@ test('README example SVGs pass standalone validation', () => {
     assert.deepEqual(validateSvg(fs.readFileSync(path.join(dir, f), 'utf8'), { mode: 'standalone' }).errors, [], f);
   }
 });
+
+// ---------------------------------------------------------------- PR 2: scout, no-text, to-component
+
+import { scout } from '../plugins/svg-motion-kit/skills/svg-motion/scripts/scout.mjs';
+import { svgToReact } from '../plugins/svg-motion-kit/skills/svg-motion/scripts/to-component.mjs';
+
+test('scout finds the planted moments in next-tailwind, ranked', () => {
+  const { spots } = scout(path.join(repo, 'examples/next-tailwind'));
+  const kinds = spots.map((s) => `${s.kind}@${s.file ?? 'app'}`);
+  assert.equal(spots[0].kind, 'error', 'errors rank first');
+  for (const k of ['error@app/error.tsx', 'empty@app/page.tsx', 'success@app/settings/page.tsx', 'upload@app/settings/page.tsx', 'offline@app']) {
+    assert.ok(kinds.includes(k), `missing ${k} in ${kinds.join(', ')}`);
+  }
+  const empty = spots.find((s) => s.kind === 'empty');
+  assert.equal(empty.template, 'empty-state');
+  assert.equal(empty.plainText, true);
+  assert.ok(!kinds.some((k) => k.startsWith('success@app/error.tsx')), 'route files only report their own moment');
+});
+
+test('scout: loading in vite, hero in plain html, nothing invented for no-theme', () => {
+  assert.equal(scout(path.join(repo, 'examples/vite-tailwind3')).spots[0].kind, 'loading');
+  assert.equal(scout(path.join(repo, 'examples/plain-html')).spots[0].kind, 'hero');
+  assert.deepEqual(scout(path.join(repo, 'examples/no-theme')).spots, []);
+});
+
+test('scout: an already illustrated spot ranks below a plain-text one', () => {
+  const dir = fs.mkdtempSync(path.join(repo, 'tests', '.tmp-'));
+  try {
+    fs.writeFileSync(path.join(dir, 'A.tsx'), 'export const A = ({ items }) => items.length === 0 ? <p>No items yet</p> : null;\n');
+    fs.writeFileSync(path.join(dir, 'B.tsx'), 'export const B = ({ items }) => items.length === 0 ? (<div><svg viewBox="0 0 1 1"/><p>No items yet</p></div>) : null;\n');
+    const { spots } = scout(dir);
+    const a = spots.find((s) => s.file === 'A.tsx'), b = spots.find((s) => s.file === 'B.tsx');
+    assert.ok(a && b && a.score > b.score, JSON.stringify(spots));
+    assert.equal(b.illustrated, true);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('render --no-text removes words and crops, and still validates', () => {
+  for (const name of ['success', 'error', 'offline', 'empty-state']) {
+    const { svg } = renderTemplate(tpl(name), themeOf('next-tailwind'), { name, id: 'ab12cd', noText: true });
+    assert.ok(!/<text\b/.test(svg), `${name} still has text`);
+    assert.ok(!/data-smk/.test(svg));
+    assert.match(svg, /viewBox="0 0 360 (1|2)\d\d"/);
+    assert.deepEqual(validateSvg(svg).errors, [], name);
+  }
+});
+
+test('to-component produces JSX: camelCase attrs, scoped ids, title/decorative props', () => {
+  const { svg } = renderTemplate(tpl('loader'), themeOf('next-tailwind'), { name: 'loader', id: 'ab12cd' });
+  const tsx = svgToReact(svg, { name: 'OrdersLoader' });
+  assert.match(tsx, /export function OrdersLoader\(\{ title = "Loading content", decorative = false, idSuffix = "ab12cd", className, \.\.\.props \}: OrdersLoaderProps\)/);
+  assert.match(tsx, /className=\{\["smk-loader-ab12cd", className\]/);
+  assert.match(tsx, /id=\{`smk-shine-\$\{idSuffix\}`\}/);
+  assert.match(tsx, /clipPath=\{`url\(#smk-skeleton-\$\{idSuffix\}\)`\}/);
+  assert.match(tsx, /strokeWidth|stopColor|<stop className="s-edge"/);
+  assert.match(tsx, /<style>\{`[\s\S]*@keyframes smk-loader-spin[\s\S]*`\}<\/style>/);
+  assert.ok(!/\sclass=|\sstroke-width=|\sclip-path=|\sxlink:href=/.test(tsx), 'no raw SVG attribute names left');
+  const jsx = svgToReact(svg, { name: 'OrdersLoader', ts: false });
+  assert.ok(!/OrdersLoaderProps|import type/.test(jsx));
+});
+
+test('to-component: inline style strings become objects and braces in text are escaped', () => {
+  const svg = '<svg viewBox="0 0 10 10" class="smk-x-ab12cd" role="img" aria-labelledby="t-ab12cd"><title id="t-ab12cd">Hi</title><text style="animation-delay:.2s; --c-x: red">a {b}</text></svg>';
+  const tsx = svgToReact(svg, { name: 'X' });
+  assert.match(tsx, /style=\{\{ animationDelay: "\.2s", '--c-x': "red" \}\}/);
+  assert.match(tsx, /a \{"\{"\}b\{"\}"\}/);
+});

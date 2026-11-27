@@ -14,6 +14,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- `svg-motion` skill (`SKILL.md`): theme → scout → render → validate → place as a component with a diff → check.
+  - `scout.mjs` finds empty, loading, error, not-found, success, upload, offline and hero moments, notes whether each is plain text or already illustrated, and ranks them. Supports Thai and English copy.
+  - `to-component.mjs` turns a rendered SVG into a React component (TSX or JSX) with `title`, `decorative`, `idSuffix` and `className` props. It needs no hooks and works in Server Components. Checked against TypeScript strict and React 19 server rendering.
+  - `render-template.mjs --no-text` keeps the words in the page and ships only the picture.
+  - The examples now have planted spots: `app/error.tsx` and `app/settings/page.tsx` (upload plus an `alert` on save).
 - `svg-motion` building blocks:
   - `validate-svg.mjs`, a quality and safety gate with an `inline` and a `standalone` mode. It checks for hardcoded colours, reduced-motion support, layout-triggering animation, accessibility, scripts and external references, duplicate ids, page-leaking selectors, and size.
   - Eight theme-driven templates: loader, empty-state, error, success, offline, upload, line-draw, hero.
