@@ -10,6 +10,7 @@
 //               so the SVG follows the theme and dark mode. Use this inside components.
 //   standalone  colours are literal, with a prefers-color-scheme dark block. Use for <img>/README.
 //   --bare      drop the template's background card (elements marked data-smk-card)
+//   --no-text   drop the template's visible text (data-smk-text) and crop; keep the words in the page instead
 //
 // Template syntax (see ../references/templates.md):
 //   {{primary|accent|#E2462B~#FF6A4D}}  first theme role that exists, else light~dark fallback
@@ -73,7 +74,7 @@ function darkWrapper(theme, mode, body, scope) {
  * Render a template. Returns { svg, name, scope, used, missing } where `used` maps each custom
  * property to the theme role (or fallback) that filled it.
  */
-export function renderTemplate(templateText, theme, { name = 'svg', mode = 'inline', id, texts = {}, bare = false } = {}) {
+export function renderTemplate(templateText, theme, { name = 'svg', mode = 'inline', id, texts = {}, bare = false, noText = false } = {}) {
   const uid = (id || crypto.randomBytes(3).toString('hex')).replace(/[^a-z0-9]/gi, '').toLowerCase();
   const scope = `smk-${name}-${uid}`;
   const used = {};
@@ -107,7 +108,17 @@ export function renderTemplate(templateText, theme, { name = 'svg', mode = 'inli
     .replace(/__U__/g, uid);
 
   if (bare) svg = svg.replace(/\s*<[^>]*\bdata-smk-card\b[^>]*\/>/g, '');
-  svg = svg.replace(/\s*data-smk-card(="[^"]*")?/g, '');
+  if (noText) {
+    // Keep the words in the page (translatable, selectable, readable) and ship only the picture.
+    svg = svg.replace(/\s*<(text|g)\b[^>]*\bdata-smk-text\b[^>]*[^/]>[\s\S]*?<\/\1>/g, '').replace(/\s*<[^>]*\bdata-smk-text\b[^>]*\/>/g, '');
+    const crop = svg.match(/\bdata-smk-notext-viewbox="([\d.\s]+)"/);
+    if (crop) {
+      const [, , w, h] = crop[1].trim().split(/\s+/);
+      svg = svg.replace(/viewBox="[^"]*"/, `viewBox="${crop[1].trim()}"`).replace(/(<svg\b[^>]*?)\swidth="[^"]*"/, `$1 width="${w}"`).replace(/(<svg\b[^>]*?)\sheight="[^"]*"/, `$1 height="${h}"`);
+      svg = svg.replace(/(<rect[^>]*\bdata-smk-card\b[^>]*?)\sheight="[^"]*"/, `$1 height="${Number(h) - 2}"`);
+    }
+  }
+  svg = svg.replace(/\s*data-smk-[\w-]+(="[^"]*")?/g, '');
 
   const leftover = svg.match(/\{\{[^}]*\}\}/);
   if (leftover) throw new Error(`Unfilled placeholder ${leftover[0]} in template ${name}`);
@@ -143,7 +154,7 @@ async function main(argv) {
   args.forEach((a, i) => { if (a === '--text') { const [k, ...v] = args[i + 1].split('='); texts[k] = v.join('='); } });
   const theme = await loadTheme(args);
   const { name, text } = resolveTemplate(positional[0]);
-  const res = renderTemplate(text, theme, { name, mode: get('--mode') || 'inline', id: get('--id'), texts, bare: args.includes('--bare') });
+  const res = renderTemplate(text, theme, { name, mode: get('--mode') || 'inline', id: get('--id'), texts, bare: args.includes('--bare'), noText: args.includes('--no-text') });
   const out = get('--out');
   if (out) {
     fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });

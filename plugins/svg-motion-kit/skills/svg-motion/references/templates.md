@@ -30,6 +30,8 @@ node scripts/validate-svg.mjs components/illustrations/order-placed.svg
 
 `--bare` removes the template's background card (`data-smk-card`), for when the SVG sits inside an existing card.
 
+`--no-text` removes the template's visible words (`data-smk-text`) and crops to the picture (`data-smk-notext-viewbox` on the root). Use it in components, where the page keeps the real text.
+
 ## Writing a template
 
 ```svg

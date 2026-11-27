@@ -1,5 +1,5 @@
 <!-- smk: error state when loading or saving fails. A dashed connection breaks, an alert mark draws and gives one small shake. Roles: destructive, primary, background, foreground, mutedForeground, border. Texts: title, subtitle, action. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" class="__S__" role="img" aria-labelledby="smk-title-__U__">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" data-smk-notext-viewbox="0 0 360 180" class="__S__" role="img" aria-labelledby="smk-title-__U__">
   <title id="smk-title-__U__">{{text:title|Something went wrong}}</title>
   <style>
     .__S__ {
@@ -39,9 +39,9 @@
     <path class="mark draw" pathLength="1" d="M180 78 V106" style="animation-delay:.8s"/>
     <circle class="dot rise" cx="180" cy="121" r="4.5" style="animation-delay:1.1s"/>
   </g>
-  <text class="title rise" x="180" y="176" text-anchor="middle" style="animation-delay:.9s">{{text:title|Something went wrong}}</text>
-  <text class="sub rise" x="180" y="198" text-anchor="middle" style="animation-delay:1s">{{text:subtitle|We couldn't load this. Check your connection.}}</text>
-  <g class="rise" style="animation-delay:1.2s">
+  <text data-smk-text class="title rise" x="180" y="176" text-anchor="middle" style="animation-delay:.9s">{{text:title|Something went wrong}}</text>
+  <text data-smk-text class="sub rise" x="180" y="198" text-anchor="middle" style="animation-delay:1s">{{text:subtitle|We couldn't load this. Check your connection.}}</text>
+  <g data-smk-text class="rise" style="animation-delay:1.2s">
     <rect class="btn" x="138" y="212" width="84" height="30" rx="15"/>
     <text class="btn-t" x="180" y="231" text-anchor="middle">{{text:action|Try again}}</text>
   </g>
