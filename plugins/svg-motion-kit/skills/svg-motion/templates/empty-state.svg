@@ -1,0 +1,54 @@
+<!-- smk: empty list or no results. An open box floats, a document peeks out, quiet geometric marks twinkle. Roles: primary, accent, background, foreground, border. Texts: title. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" class="__S__" role="img" aria-labelledby="smk-title-__U__">
+  <title id="smk-title-__U__">{{text:title|Nothing here yet}}</title>
+  <style>
+    .__S__ {
+      --c-bg: {{background|#F6F1E9~#0F1A19}}; --c-fg: {{foreground|#17302D~#E7F0EE}}; --c-line: {{border|#E6DDCF~#1F302E}};
+      --c-primary: {{primary|#136F63~#4FB3A4}}; --c-accent: {{accent|primary|#E4572E~#FF7A52}};
+      --c-soft: color-mix(in srgb, var(--c-primary) 14%, var(--c-bg));
+      --c-soft2: color-mix(in srgb, var(--c-primary) 28%, var(--c-bg));
+      --c-shadow: color-mix(in srgb, var(--c-fg) 35%, var(--c-bg));
+    }
+    {{dark}}
+    .__S__ text { font-family: {{font}}; }
+    .__S__ .card    { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
+    .__S__ .shape   { stroke: var(--c-primary); stroke-width: 2; stroke-linejoin: round; }
+    .__S__ .front   { fill: var(--c-soft); }
+    .__S__ .inside  { fill: var(--c-soft2); }
+    .__S__ .paper   { fill: var(--c-bg); }
+    .__S__ .ink     { fill: var(--c-primary); }
+    .__S__ .label   { fill: var(--c-soft2); }
+    .__S__ .mark    { fill: none; stroke: var(--c-primary); stroke-width: 3; stroke-linecap: round; }
+    .__S__ .mark-a  { fill: none; stroke: var(--c-accent); stroke-width: 2.5; stroke-linecap: round; }
+    .__S__ .caption { fill: var(--c-fg); font-size: 15px; font-weight: 600; }
+    .__S__ .float   { animation: __K__-float 3s ease-in-out infinite alternate; }
+    .__S__ .shadow  { fill: var(--c-shadow); transform-box: fill-box; transform-origin: center; opacity: .45; animation: __K__-shadow 3s ease-in-out infinite alternate; }
+    .__S__ .peek    { animation: __K__-peek 4s ease-in-out infinite; }
+    .__S__ .twinkle { transform-box: fill-box; transform-origin: center; animation: __K__-twinkle 2.4s ease-in-out infinite; }
+    @keyframes __K__-float   { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+    @keyframes __K__-shadow  { from { transform: scaleX(1); opacity: .45; } to { transform: scaleX(.8); opacity: .25; } }
+    @keyframes __K__-peek    { 0%, 15% { transform: translateY(34px); } 45%, 70% { transform: translateY(0); } 100% { transform: translateY(34px); } }
+    @keyframes __K__-twinkle { 0%, 100% { opacity: .2; transform: scale(.5); } 50% { opacity: 1; transform: scale(1); } }
+    @media (prefers-reduced-motion: reduce) { .__S__ * { animation: none !important; } }
+  </style>
+  <rect class="card" data-smk-card x="1" y="1" width="358" height="262" rx="{{radius|20}}"/>
+  <ellipse class="shadow" cx="180" cy="214" rx="56" ry="7"/>
+  <g class="float">
+    <path class="shape inside" d="M130 120 L142 104 H218 L230 120 Z"/>
+    <g class="peek">
+      <rect class="shape paper" x="158" y="56" width="44" height="56" rx="6"/>
+      <rect class="ink" x="168" y="70" width="24" height="4" rx="2"/>
+      <rect class="ink" x="168" y="80" width="16" height="4" rx="2" opacity=".6"/>
+      <rect class="ink" x="168" y="90" width="20" height="4" rx="2" opacity=".6"/>
+    </g>
+    <rect class="shape front" x="130" y="120" width="100" height="72" rx="6"/>
+    <rect class="label" x="160" y="146" width="40" height="8" rx="4"/>
+    <path class="shape front" d="M130 120 L142 104 L118 88 L104 106 Z"/>
+    <path class="shape front" d="M230 120 L218 104 L242 88 L256 106 Z"/>
+  </g>
+  <g transform="translate(92 70)"><path class="mark twinkle" d="M-7 0 H7 M0 -7 V7"/></g>
+  <g transform="translate(272 62)"><circle class="mark-a twinkle" r="6" style="animation-delay:.6s"/></g>
+  <g transform="translate(290 152)"><circle class="mark twinkle" r="3" style="animation-delay:1.2s"/></g>
+  <g transform="translate(76 160)"><path class="mark-a twinkle" d="M-5 0 H5 M0 -5 V5" style="animation-delay:1.8s"/></g>
+  <text class="caption" x="180" y="246" text-anchor="middle">{{text:title|Nothing here yet}}</text>
+</svg>
