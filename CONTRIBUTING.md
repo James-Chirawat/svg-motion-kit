@@ -37,6 +37,10 @@ npm test
 
 This uses Node's built-in test runner, so there is nothing to install. Before a release, also do the live run and the eval suite described in [docs/TESTING.md](docs/TESTING.md). Tests live in `tests/` and use the projects in `examples/` as fixtures. When you fix a bug found on a real project, add a small regression test that builds its own fixture with the `fixture()` helper.
 
+## Gallery
+
+`npm run gallery` renders every template with every example theme into `docs/gallery/`. The script fails if any render does not validate. To publish it, enable GitHub Pages from the `/docs` folder.
+
 ## Workflow
 
 1. Branch from `main` (`feat/…`, `fix/…`, `docs/…`).

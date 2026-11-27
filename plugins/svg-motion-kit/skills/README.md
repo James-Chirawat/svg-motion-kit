@@ -11,6 +11,6 @@ Each folder here is one skill (`<name>/SKILL.md` plus optional `scripts/`, `refe
 | `perf-audit` | v0.3 | Images, fonts, data fetching, caching, bundle |
 | `security-audit` | v0.4 | Secrets, XSS sinks, client-side auth, headers |
 | `polish-audit` | v0.5 | Design-system use, code health, i18n, meta, edge pages, SEO basics |
-| `audit` | Planned (v1.0) | Orchestrates all audits into one report with safe fixes |
+| `audit` | v1.0 | Orchestrates all audits into one report with safe fixes |
 
 See [docs/ROADMAP.md](../../../docs/ROADMAP.md) for the checks and acceptance criteria of each skill.

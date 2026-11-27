@@ -1,7 +1,7 @@
 {
   "name": "svg-motion-kit",
-  "version": "0.5.0",
-  "description": "Read your project's real theme, find where the UX needs motion, add theme-true animated SVG as components, and flag the generic AI look with grounded design directions.",
+  "version": "1.0.0",
+  "description": "Theme-true animated SVG plus a full frontend review: security, UX and accessibility, performance, design and polish, with file:line evidence, one prioritised report, and fixes applied one diff at a time. Works in English and Thai.",
   "icon": ".claude-plugin/icon.png",
   "author": {
     "name": "James-Chirawat",
@@ -17,6 +17,15 @@
     "design-tokens",
     "ui",
     "ux",
-    "frontend"
+    "accessibility",
+    "a11y",
+    "performance",
+    "security",
+    "audit",
+    "frontend",
+    "tailwind",
+    "react",
+    "nextjs",
+    "thai"
   ]
 }

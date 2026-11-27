@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" class="smk-hero-vitetailwi" role="img" aria-labelledby="smk-title-vitetailwi">
+  <title id="smk-title-vitetailwi">A page assembles itself and a cursor clicks its button</title>
+  <style>
+    .smk-hero-vitetailwi {
+      --c-bg: #ffffff; --c-fg: #020817; --c-line: #e2e8f0;
+      --c-primary: #2563eb; --c-on: #f8fafc;
+      --c-sheet: color-mix(in srgb, var(--c-bg) 70%, white);
+      --c-muted: color-mix(in srgb, var(--c-fg) 28%, var(--c-bg));
+      --c-tile: color-mix(in srgb, var(--c-fg) 12%, var(--c-bg));
+    }
+    @media (prefers-color-scheme: dark) { .smk-hero-vitetailwi { --c-bg: #020817; --c-fg: #f8fafc; --c-line: #1e293b; --c-primary: #3b82f6; --c-on: #0f172a; } }
+    .smk-hero-vitetailwi .card   { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
+    .smk-hero-vitetailwi .dots   { fill: var(--c-line); }
+    .smk-hero-vitetailwi .frame  { fill: var(--c-sheet); stroke: var(--c-fg); stroke-width: 2; }
+    .smk-hero-vitetailwi .rule   { stroke: var(--c-fg); stroke-width: 2; }
+    .smk-hero-vitetailwi .light  { fill: none; stroke: var(--c-fg); stroke-width: 1.5; }
+    .smk-hero-vitetailwi .ink    { fill: var(--c-fg); }
+    .smk-hero-vitetailwi .muted  { fill: var(--c-muted); }
+    .smk-hero-vitetailwi .tile   { fill: var(--c-tile); }
+    .smk-hero-vitetailwi .mount  { fill: none; stroke: var(--c-sheet); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+    .smk-hero-vitetailwi .sun    { fill: var(--c-sheet); }
+    .smk-hero-vitetailwi .btn    { fill: var(--c-primary); }
+    .smk-hero-vitetailwi .btn-t  { fill: var(--c-on); }
+    .smk-hero-vitetailwi .ripple { fill: none; stroke: var(--c-primary); stroke-width: 2; opacity: 0; transform-origin: 117px 173px; animation: smk-hero-ripple 4s 2.2s ease-out infinite both; }
+    .smk-hero-vitetailwi .cursor { fill: var(--c-fg); stroke: var(--c-sheet); stroke-width: 1.5; stroke-linejoin: round; }
+    .smk-hero-vitetailwi .build  { animation: smk-hero-build .5s cubic-bezier(.2, .8, .2, 1) both; }
+    .smk-hero-vitetailwi .glide  { animation: smk-hero-glide 4s 2.2s cubic-bezier(.45, 0, .55, 1) infinite both; }
+    .smk-hero-vitetailwi .press  { transform-box: fill-box; transform-origin: 0 0; animation: smk-hero-press 4s 2.2s ease-in-out infinite both; }
+    @keyframes smk-hero-build  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes smk-hero-glide  { 0% { transform: translate(190px, 90px); opacity: 0; } 10% { opacity: 1; } 40%, 62% { transform: translate(0, 0); opacity: 1; } 92%, 100% { transform: translate(190px, 90px); opacity: 0; } }
+    @keyframes smk-hero-press  { 0%, 44%, 54%, 100% { transform: scale(1); } 48% { transform: scale(.82); } }
+    @keyframes smk-hero-ripple { 0%, 47% { opacity: 0; transform: scale(.6); } 50% { opacity: .8; transform: scale(.6); } 76%, 100% { opacity: 0; transform: scale(1.9); } }
+    @media (prefers-reduced-motion: reduce) { .smk-hero-vitetailwi * { animation: none !important; } }
+  </style>
+  <defs>
+    <pattern id="smk-grid-vitetailwi" width="16" height="16" patternUnits="userSpaceOnUse"><circle class="dots" cx="8" cy="8" r="1.1"/></pattern>
+  </defs>
+  <rect class="card" x="1" y="1" width="398" height="298" rx="12"/>
+  <rect x="16" y="16" width="368" height="268" rx="14" fill="url(#smk-grid-vitetailwi)"/>
+  <rect class="frame" x="60" y="40" width="280" height="200" rx="12"/>
+  <line class="rule" x1="60" y1="64" x2="340" y2="64"/>
+  <circle class="light" cx="76" cy="52" r="4"/><circle class="light" cx="90" cy="52" r="4"/><circle class="light" cx="104" cy="52" r="4"/>
+  <rect class="ink build" x="80" y="80" width="44" height="6" rx="3" style="animation-delay:.2s"/>
+  <rect class="muted build" x="268" y="80" width="52" height="6" rx="3" style="animation-delay:.25s"/>
+  <rect class="ink build" x="80" y="102" width="136" height="14" rx="4" style="animation-delay:.45s"/>
+  <rect class="muted build" x="80" y="126" width="128" height="6" rx="3" style="animation-delay:.65s"/>
+  <rect class="muted build" x="80" y="138" width="104" height="6" rx="3" style="animation-delay:.72s"/>
+  <g class="build" style="animation-delay:.9s">
+    <rect class="tile" x="236" y="100" width="84" height="64" rx="8"/>
+    <path class="mount" d="M246 152 L266 128 L280 142 L292 130 L310 152"/>
+    <circle class="sun" cx="300" cy="116" r="6"/>
+  </g>
+  <g class="build" style="animation-delay:1.15s">
+    <rect class="btn" x="80" y="160" width="74" height="26" rx="13"/>
+    <rect class="btn-t" x="98" y="171" width="38" height="4" rx="2"/>
+  </g>
+  <rect class="muted build" x="80" y="208" width="240" height="6" rx="3" style="animation-delay:1.3s"/>
+  <rect class="muted build" x="80" y="220" width="180" height="6" rx="3" style="animation-delay:1.36s"/>
+  <circle class="ripple" cx="117" cy="173" r="16"/>
+  <g transform="translate(122 176)"><g class="glide"><path class="cursor press" d="M0 0 L0 22 L6 16.5 L10 26 L14 24 L10 14.5 L18 14.5 Z"/></g></g>
+</svg>

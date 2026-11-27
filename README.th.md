@@ -12,7 +12,7 @@
 </p>
 
 > [!NOTE]
-> **v0.1.0** มี `theme-extract`, `svg-motion` และ `design-lint` ให้ใช้งานแล้ว ส่วน audit ด้าน UX, performance, security และความเรียบร้อย อยู่ใน [roadmap](docs/ROADMAP.th.md)
+> **v1.0.0** มีครบทั้ง 8 skill แล้ว ใช้ `audit` ตรวจทั้งหมดได้ในครั้งเดียว ทั้ง security, UX และ accessibility, performance, ดีไซน์ และความเรียบร้อย ดูทุก template ในหลายธีมได้ที่ [gallery](docs/gallery/index.html)
 
 ## ขั้นตอนการทำงานครอบคลุมอะไรบ้าง
 
@@ -25,7 +25,7 @@
 | **3. ดูหน้าตา** | `design-lint` | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) แล้วเสนอทิศทางดีไซน์ที่อิงกลุ่มผู้ใช้จริง | ✅ v0.1 |
 | **4. วาด** | `svg-motion` | สร้าง SVG เคลื่อนไหวที่ตรงธีม แล้ววางเป็น component ตาม framework ของโปรเจกต์ โดยแสดง diff ก่อน | ✅ v0.1 |
 | **5. ตรวจ** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX และ accessibility:** สถานะของหน้า, ฟอร์ม, มือถือ, contrast<br>**Performance:** รูป WebP/AVIF, subset ฟอนต์ไทย, การดึงข้อมูล, cache, bundle<br>**Security:** secret รั่ว, XSS รวมถึง SVG ที่ไม่ปลอดภัย, header<br>**ความเรียบร้อย:** การใช้ design system, i18n, meta/OG, หน้า 404/500, SEO | ✅ v0.2–v0.5 |
-| **6. รายงานและแก้** | `audit` | รายงานเดียวเรียงตามความสำคัญ ทุกข้ออ้างอิงไฟล์และบรรทัด และแก้ทีละข้อพร้อมแสดง diff | v1.0 |
+| **6. รายงานและแก้** | `audit` | รายงานเดียวเรียงตามความสำคัญ ทุกข้ออ้างอิงไฟล์และบรรทัด และแก้ทีละข้อพร้อมแสดง diff | ✅ v1.0 |
 
 กติกาที่ใช้กับทุกขั้น:
 
@@ -64,7 +64,7 @@
 | `perf-audit` | ✅ v0.3 | รูปภาพ (AVIF/WebP, ขนาด), ฟอนต์ (รวมถึงการ subset ฟอนต์ไทย), การดึงข้อมูล, cache และ bundle |
 | `security-audit` | ✅ v0.4 | secret รั่ว, จุดเสี่ยง XSS (รวมถึง SVG ที่ไม่ปลอดภัย), auth ฝั่ง client และ security header |
 | `polish-audit` | ✅ v0.5 | การใช้ design system, สุขภาพโค้ด, i18n, meta/OG, หน้า 404/500 และ SEO พื้นฐาน |
-| `audit` | 🗓 v1.0 | รันทุก audit แล้วรวมเป็นรายงานเดียวเรียงตามความสำคัญ และแก้ไขอย่างปลอดภัยพร้อม diff |
+| `audit` | ✅ v1.0 | รันทุก audit แล้วรวมเป็นรายงานเดียวเรียงตามความสำคัญ และแก้ไขอย่างปลอดภัยพร้อม diff |
 
 ## การติดตั้ง
 
@@ -75,7 +75,17 @@
 /plugin install svg-motion-kit@svg-motion-kit
 ```
 
-จากนั้นสั่งงานเป็นภาษาธรรมดาได้เลย เช่น *"ทำ loader ให้เข้าธีมหน่อย"* หรือ *"ใส่ภาพ empty state เคลื่อนไหวในหน้ารายการสั่งซื้อ"*
+จากนั้นสั่งงานเป็นภาษาธรรมดาได้เลย จะพิมพ์ไทยหรืออังกฤษก็ได้:
+
+| พิมพ์ว่า | Skill ที่ทำงาน |
+|---|---|
+| *"ตรวจเว็บทั้งหมดก่อนขึ้น production แล้วบอกว่าควรแก้อะไรก่อน"* | `audit` (จากนั้นสั่ง *"แก้ F2 กับ F5"*) |
+| *"ทำ loader ให้เข้าธีมหน่อย"* · *"ใส่ภาพ empty state ในหน้ารายการสั่งซื้อ"* | `svg-motion` |
+| *"ทำไมเว็บดูเหมือน AI ทำ"* | `design-lint` |
+| *"มี key หลุดไหม ก่อนเปิด repo เป็น public"* | `security-audit` |
+| *"เว็บช้าบนมือถือ"* | `perf-audit` |
+| *"ตรวจ UX / accessibility"* | `ui-audit` |
+| *"พร้อมขึ้น production ไหม meta tag, หน้า 404"* | `polish-audit` |
 
 ## หลักการ
 
@@ -97,7 +107,7 @@ script ที่แถมมาเป็น Node ล้วน (`.mjs`) ไม่
 - [x] **v0.3** Performance: `perf-audit`, ตรวจด้วย Lighthouse (ไม่บังคับ) และใช้ library motion เมื่อโปรเจกต์มีอยู่แล้ว
 - [x] **v0.4** Security: `security-audit`
 - [x] **v0.5** ความเป็นมืออาชีพ: `polish-audit`
-- [ ] **v1.0** รายงานเดียว แก้ไขได้ปลอดภัย: ตัวรวม `audit`, โหมดแก้ไข, หน้า gallery และส่งเข้า plugin directory
+- [x] **v1.0** รายงานเดียว แก้ไขได้ปลอดภัย: ตัวรวม `audit`, โหมดแก้ไข, หน้า gallery และส่งเข้า plugin directory
 
 รายละเอียด สิ่งที่ตรวจ และเกณฑ์ "เสร็จเมื่อ" ของทุกเวอร์ชันอยู่ใน **[docs/ROADMAP.th.md](docs/ROADMAP.th.md)**
 
