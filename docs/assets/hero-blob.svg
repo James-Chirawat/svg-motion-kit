@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-labelledby="title">
+  <title id="title">Gradient blobs around a floating UI card</title>
+  <style>
+    :root {
+      --bg: #F8FAFC; --border: #E2E8F0; --muted: #CBD5E1;
+      --primary: #6366F1; --accent: #06B6D4; --pink: #EC4899;
+      --glass: rgba(255, 255, 255, .82); --glass-edge: rgba(255, 255, 255, .95);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F172A; --border: #1E293B; --muted: #475569;
+        --primary: #818CF8; --accent: #22D3EE; --pink: #F472B6;
+        --glass: rgba(15, 23, 42, .72); --glass-edge: rgba(148, 163, 184, .35);
+      }
+    }
+    .card  { fill: var(--bg); stroke: var(--border); stroke-width: 2; }
+    .ring  { fill: none; stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 4 6; }
+    .s-primary { stop-color: var(--primary); } .s-pink { stop-color: var(--pink); } .s-accent { stop-color: var(--accent); }
+    .glass { fill: var(--glass); stroke: var(--glass-edge); stroke-width: 1.5; }
+    .ui-p  { fill: var(--primary); }
+    .ui-m  { fill: var(--muted); }
+    .d-accent { fill: var(--accent); } .d-pink { fill: var(--pink); } .d-primary { fill: var(--primary); }
+
+    /* Two irregular blobs, each rotating and squashing at its own speed, read as one shape that morphs. */
+    .spin    { transform-origin: 200px 150px; animation: spin 22s linear infinite; }
+    .spin-r  { transform-origin: 200px 150px; animation: spin 30s linear infinite reverse; }
+    .wobble  { transform-origin: 200px 150px; animation: wobble 6s ease-in-out infinite; }
+    .wobble2 { transform-origin: 200px 150px; animation: wobble 8s ease-in-out infinite reverse; }
+    .orbit   { transform-origin: 200px 150px; animation: spin 14s linear infinite; }
+    .float   { animation: float 3.5s ease-in-out infinite alternate; }
+
+    @keyframes spin   { to { transform: rotate(360deg); } }
+    @keyframes wobble { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.07, .93); } }
+    @keyframes float  { from { transform: translateY(3px); } to { transform: translateY(-5px); } }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop class="s-primary" offset="0"/>
+      <stop class="s-pink" offset="1"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="1" y1="0" x2="0" y2="1">
+      <stop class="s-accent" offset="0"/>
+      <stop class="s-primary" offset="1"/>
+    </linearGradient>
+  </defs>
+
+  <rect class="card" x="1" y="1" width="398" height="298" rx="20"/>
+
+  <circle class="ring" cx="200" cy="150" r="118"/>
+
+  <g class="spin-r"><path class="wobble2" fill="url(#g2)" opacity=".75"
+     d="M190 70 C240 52 296 92 290 146 C284 196 252 230 204 236 C150 242 106 206 110 152 C114 108 146 84 190 70 Z"/></g>
+  <g class="spin"><path class="wobble" fill="url(#g1)" opacity=".85"
+     d="M206 60 C258 66 292 104 286 152 C280 204 244 240 196 236 C144 232 108 196 114 146 C120 96 156 54 206 60 Z"/></g>
+
+  <g class="orbit">
+    <circle class="d-accent"  cx="200" cy="32"  r="6"/>
+    <circle class="d-pink"    cx="318" cy="150" r="4"/>
+    <circle class="d-primary" cx="116" cy="233" r="5"/>
+  </g>
+
+  <!-- Floating UI card -->
+  <g class="float">
+    <rect class="glass" x="140" y="105" width="120" height="90" rx="14"/>
+    <circle class="ui-p" cx="162" cy="127" r="9"/>
+    <rect class="ui-m" x="178" y="120" width="62" height="6" rx="3"/>
+    <rect class="ui-m" x="178" y="131" width="40" height="6" rx="3"/>
+    <rect class="ui-m" x="153" y="148" width="94" height="6" rx="3"/>
+    <rect class="ui-p" x="153" y="166" width="56" height="16" rx="8"/>
+  </g>
+</svg>

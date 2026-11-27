@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Node (example projects)
+node_modules/
+.next/
+dist/
+build/
+
+# Local Claude settings
+.claude/settings.local.json
+
+# Env
+.env
+.env.*
+!.env.example

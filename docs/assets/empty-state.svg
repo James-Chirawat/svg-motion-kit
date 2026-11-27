@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 264" width="360" height="264" role="img" aria-labelledby="title">
+  <title id="title">Nothing here yet</title>
+  <style>
+    :root {
+      --bg: #F8FAFC; --border: #E2E8F0; --ink: #0F172A; --muted: #94A3B8;
+      --primary: #6366F1; --soft: #E0E7FF; --soft2: #C7D2FE;
+      --accent: #06B6D4; --pink: #EC4899; --amber: #F59E0B;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F172A; --border: #1E293B; --ink: #F1F5F9; --muted: #475569;
+        --primary: #818CF8; --soft: #1E1B4B; --soft2: #312E81;
+        --accent: #22D3EE; --pink: #F472B6; --amber: #FBBF24;
+      }
+    }
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .card    { fill: var(--bg); stroke: var(--border); stroke-width: 2; }
+    .shape   { stroke: var(--primary); stroke-width: 2; stroke-linejoin: round; }
+    .front   { fill: var(--soft); }
+    .inside  { fill: var(--soft2); }
+    .paper   { fill: var(--bg); }
+    .ink-p   { fill: var(--primary); }
+    .label   { fill: var(--soft2); }
+    .shadow  { fill: var(--muted); }
+    .caption { fill: var(--ink); font-size: 15px; font-weight: 600; }
+    .c-primary { fill: var(--primary); } .c-pink { fill: var(--pink); }
+    .c-accent  { fill: var(--accent); }  .c-amber { fill: var(--amber); }
+
+    .float   { animation: float 3s ease-in-out infinite alternate; }
+    .shadow  { transform-box: fill-box; transform-origin: center; opacity: .45; animation: shadow 3s ease-in-out infinite alternate; }
+    .peek    { animation: peek 4s ease-in-out infinite; }
+    .twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
+
+    @keyframes float   { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+    @keyframes shadow  { from { transform: scaleX(1); opacity: .45; } to { transform: scaleX(.8); opacity: .25; } }
+    @keyframes peek    { 0%, 15% { transform: translateY(34px); } 45%, 70% { transform: translateY(0); } 100% { transform: translateY(34px); } }
+    @keyframes twinkle { 0%, 100% { opacity: .2; transform: scale(.5); } 50% { opacity: 1; transform: scale(1); } }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <rect class="card" x="1" y="1" width="358" height="262" rx="20"/>
+
+  <ellipse class="shadow" cx="180" cy="214" rx="56" ry="7"/>
+
+  <g class="float">
+    <!-- back of the open box -->
+    <path class="shape inside" d="M130 120 L142 104 H218 L230 120 Z"/>
+    <!-- document peeking out -->
+    <g class="peek">
+      <rect class="shape paper" x="158" y="56" width="44" height="56" rx="6"/>
+      <rect class="ink-p" x="168" y="70" width="24" height="4" rx="2"/>
+      <rect class="ink-p" x="168" y="80" width="16" height="4" rx="2" opacity=".6"/>
+      <rect class="ink-p" x="168" y="90" width="20" height="4" rx="2" opacity=".6"/>
+    </g>
+    <!-- front + flaps -->
+    <rect class="shape front" x="130" y="120" width="100" height="72" rx="6"/>
+    <rect class="label" x="160" y="146" width="40" height="8" rx="4"/>
+    <path class="shape front" d="M130 120 L142 104 L118 88 L104 106 Z"/>
+    <path class="shape front" d="M230 120 L218 104 L242 88 L256 106 Z"/>
+  </g>
+
+  <!-- sparkles -->
+  <g transform="translate(92 70)"><path class="c-primary twinkle" d="M0 -10 C1.2 -2.5 2.5 -1.2 10 0 C2.5 1.2 1.2 2.5 0 10 C-1.2 2.5 -2.5 1.2 -10 0 C-2.5 -1.2 -1.2 -2.5 0 -10 Z"/></g>
+  <g transform="translate(272 62) scale(.7)"><path class="c-pink twinkle" style="animation-delay:.6s" d="M0 -10 C1.2 -2.5 2.5 -1.2 10 0 C2.5 1.2 1.2 2.5 0 10 C-1.2 2.5 -2.5 1.2 -10 0 C-2.5 -1.2 -1.2 -2.5 0 -10 Z"/></g>
+  <g transform="translate(290 152) scale(.8)"><path class="c-accent twinkle" style="animation-delay:1.2s" d="M0 -10 C1.2 -2.5 2.5 -1.2 10 0 C2.5 1.2 1.2 2.5 0 10 C-1.2 2.5 -2.5 1.2 -10 0 C-2.5 -1.2 -1.2 -2.5 0 -10 Z"/></g>
+  <g transform="translate(76 160) scale(.55)"><path class="c-amber twinkle" style="animation-delay:1.8s" d="M0 -10 C1.2 -2.5 2.5 -1.2 10 0 C2.5 1.2 1.2 2.5 0 10 C-1.2 2.5 -2.5 1.2 -10 0 C-2.5 -1.2 -1.2 -2.5 0 -10 Z"/></g>
+
+  <text class="caption" x="180" y="246" text-anchor="middle">Nothing here yet</text>
+</svg>

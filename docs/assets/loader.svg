@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 140" width="360" height="140" role="img" aria-labelledby="title">
+  <title id="title">Loading content</title>
+  <style>
+    :root {
+      --bg: #F8FAFC; --border: #E2E8F0; --skel: #E2E8F0; --shine: #FFFFFF;
+      --primary: #6366F1; --accent: #06B6D4; --pink: #EC4899;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F172A; --border: #1E293B; --skel: #1E293B; --shine: #334155;
+        --primary: #818CF8; --accent: #22D3EE; --pink: #F472B6;
+      }
+    }
+    .card  { fill: var(--bg); stroke: var(--border); stroke-width: 2; }
+    .track { fill: none; stroke: var(--skel); stroke-width: 7; }
+    .arc   { fill: none; stroke: var(--primary); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 90 124; }
+    .arc2  { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 40 86; }
+    .dot   { fill: var(--pink); }
+    .skel  { fill: var(--skel); }
+    .s-edge { stop-color: var(--shine); stop-opacity: 0; }
+    .s-mid  { stop-color: var(--shine); stop-opacity: .9; }
+
+    /* Spinner: rotate the group, stretch/shrink the dash on the arc itself. */
+    .spin    { transform-origin: 70px 70px; animation: spin 1.4s linear infinite; }
+    .spin-r  { transform-origin: 70px 70px; animation: spin 2.2s linear infinite reverse; }
+    .arc     { animation: dash 1.4s ease-in-out infinite; }
+    .dot     { transform-origin: 70px 70px; animation: pulse 1.4s ease-in-out infinite; }
+    .shimmer { animation: shimmer 1.6s ease-in-out infinite; }
+
+    @keyframes spin    { to { transform: rotate(360deg); } }
+    @keyframes dash    { 0% { stroke-dasharray: 1 213; stroke-dashoffset: 0; } 50% { stroke-dasharray: 140 74; stroke-dashoffset: -30; } 100% { stroke-dasharray: 1 213; stroke-dashoffset: -213; } }
+    @keyframes pulse   { 0%, 100% { transform: scale(1); } 50% { transform: scale(.55); } }
+    @keyframes shimmer { from { transform: translateX(40px); } to { transform: translateX(340px); } }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <defs>
+    <linearGradient id="shine" x1="0" x2="1" y1="0" y2="0">
+      <stop class="s-edge" offset="0"/>
+      <stop class="s-mid"  offset=".5"/>
+      <stop class="s-edge" offset="1"/>
+    </linearGradient>
+    <clipPath id="skeleton">
+      <circle cx="148" cy="42" r="16"/>
+      <rect x="174" y="32"  width="120" height="9" rx="4.5"/>
+      <rect x="174" y="48"  width="80"  height="9" rx="4.5"/>
+      <rect x="132" y="74"  width="196" height="9" rx="4.5"/>
+      <rect x="132" y="90"  width="170" height="9" rx="4.5"/>
+      <rect x="132" y="106" width="120" height="9" rx="4.5"/>
+    </clipPath>
+  </defs>
+
+  <rect class="card" x="1" y="1" width="358" height="138" rx="20"/>
+
+  <!-- Spinner -->
+  <circle class="track" cx="70" cy="70" r="34"/>
+  <g class="spin"><circle class="arc" cx="70" cy="70" r="34"/></g>
+  <g class="spin-r"><circle class="arc2" cx="70" cy="70" r="20"/></g>
+  <circle class="dot" cx="70" cy="70" r="6"/>
+
+  <!-- Skeleton with shimmer -->
+  <g clip-path="url(#skeleton)">
+    <rect class="skel" x="120" y="20" width="220" height="100"/>
+    <rect class="shimmer" x="0" y="20" width="80" height="100" fill="url(#shine)"/>
+  </g>
+</svg>

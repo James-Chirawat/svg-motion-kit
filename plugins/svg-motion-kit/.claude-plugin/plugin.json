@@ -1,0 +1,13 @@
+{
+  "name": "svg-motion-kit",
+  "version": "0.0.1",
+  "description": "Extract your project's design tokens, then generate theme-aware animated SVG (loaders, empty states, hero art, line-draw banners) as ready-to-use components.",
+  "author": {
+    "name": "James-Chirawat",
+    "url": "https://github.com/James-Chirawat"
+  },
+  "homepage": "https://github.com/James-Chirawat/svg-motion-kit",
+  "repository": "https://github.com/James-Chirawat/svg-motion-kit",
+  "license": "MIT",
+  "keywords": ["svg", "animation", "motion", "design-tokens", "ui", "ux", "frontend"]
+}

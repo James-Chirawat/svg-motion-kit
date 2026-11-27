@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SVG Motion Preview</title>
+<style>
+  :root { --bg: #FFFFFF; --ink: #1F2328; --muted: #59636E; --line: #D1D9E0; color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0D1117; --ink: #F0F6FC; --muted: #9198A1; --line: #3D444D; } }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 -apple-system, "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 880px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 24px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  p { color: var(--muted); }
+  img { max-width: 100%; height: auto; display: block; }
+  .hero { margin: 24px 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; align-items: start; }
+  figure { margin: 0; }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+</style>
+</head>
+<body>
+<main>
+  <h1>svg-motion-kit — README preview</h1>
+  <p>Each SVG is loaded with <code>&lt;img&gt;</code>, the same way GitHub renders images in a README. Switch your OS between light and dark mode to see the built-in dark palette.</p>
+  <figure class="hero"><img src="assets/banner.svg" alt="svg-motion-kit — themed, animated SVG for your frontend"><figcaption>banner.svg · line-draw</figcaption></figure>
+  <div class="grid">
+    <figure><img src="assets/loader.svg" alt="Spinner and skeleton loader"><figcaption>loader.svg · spinner + shimmer</figcaption></figure>
+    <figure><img src="assets/empty-state.svg" alt="Empty state: floating open box"><figcaption>empty-state.svg · float + peek</figcaption></figure>
+    <figure><img src="assets/hero-blob.svg" alt="Gradient blobs around a floating UI card"><figcaption>hero-blob.svg · blob morph</figcaption></figure>
+  </div>
+</main>
+</body>
+</html>

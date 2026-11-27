@@ -1,0 +1,21 @@
+{
+  "name": "svg-motion-kit",
+  "owner": {
+    "name": "James-Chirawat",
+    "url": "https://github.com/James-Chirawat"
+  },
+  "metadata": {
+    "description": "Claude skills that read your project's theme and draw animated SVG that fits your frontend.",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "svg-motion-kit",
+      "source": "./plugins/svg-motion-kit",
+      "description": "Extract your project's design tokens, then generate theme-aware animated SVG (loaders, empty states, hero art, line-draw banners) as ready-to-use components.",
+      "version": "0.0.1",
+      "category": "design",
+      "keywords": ["svg", "animation", "motion", "design-tokens", "ui", "ux", "frontend", "tailwind", "react"]
+    }
+  ]
+}
