@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- svg-motion-kit icon: an "S" drawn as a motion path, with the pen tip and a sparkle.
+       Source for plugins/svg-motion-kit/.claude-plugin/icon.png (render at 1024x1024). -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".55"/>
+      <stop offset=".45" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- full-bleed so any mask the directory applies (rounded square or circle) still works -->
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+
+  <!-- the S: point-symmetric around the centre, fading in from its start like a path being drawn -->
+  <path d="M680 330 C640 250 560 222 500 222 C400 222 340 280 340 360 C340 450 420 480 512 512 C604 544 684 574 684 664 C684 744 624 802 524 802 C464 802 384 774 344 694"
+        fill="none" stroke="url(#stroke)" stroke-width="96" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- pen tip at the end of the stroke -->
+  <circle cx="344" cy="694" r="74" fill="#22D3EE"/>
+  <circle cx="344" cy="694" r="74" fill="none" stroke="#FFFFFF" stroke-width="20"/>
+
+  <!-- sparkle -->
+  <path transform="translate(778 252) scale(9)" fill="#F9A8D4"
+        d="M0 -10 C1.2 -2.5 2.5 -1.2 10 0 C2.5 1.2 1.2 2.5 0 10 C-1.2 2.5 -2.5 1.2 -10 0 C-2.5 -1.2 -1.2 -2.5 0 -10 Z"/>
+</svg>

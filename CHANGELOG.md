@@ -14,6 +14,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   - Finds the app's `package.json` in a sub-folder (monorepos).
 - Example projects in `examples/`: Next + Tailwind v4, Vite + Tailwind v3, plain HTML, and a project with no theme.
 - Test suite (`npm test`, Node's built-in runner).
+- Plugin icon (`plugins/svg-motion-kit/.claude-plugin/icon.png`, 1024×1024, made from `docs/assets/icon.svg`).
 - Repository skeleton: Claude Code marketplace (`.claude-plugin/marketplace.json`) and plugin manifest (`plugins/svg-motion-kit`).
 - Four animated example SVGs in `docs/assets/`: banner (line-draw), loader (spinner and shimmer), empty state (float and peek), hero (blob morph).
 - `docs/preview.html` for viewing the examples locally.
