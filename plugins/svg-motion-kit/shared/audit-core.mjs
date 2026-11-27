@@ -15,7 +15,7 @@ export const IGNORE_DIRS = new Set([
   '.turbo', '.vercel', '.netlify', 'vendor', '.svg-motion', '.cache', 'storybook-static', 'env', 'venv', '.venv',
   '__pycache__', 'target', 'Pods', 'DerivedData', '.idea', '.vscode',
 ]);
-export const SKIP_FILE = /(\.test\.|\.spec\.|\.stories\.|\.d\.ts$|\.min\.(js|css)$|\.dc\.html$|(^|\/)(tests?|__tests__|e2e|cypress|playwright|__mocks__|__fixtures__|fixtures|design-mockups|mockups?|prototypes?|sandbox)\/)/;
+export const SKIP_FILE = /(\.test\.|\.spec\.|\.stories\.|\.d\.ts$|\.min\.(js|css)$|\.dc\.html$|(^|\/)(tests?|__tests__|e2e|cypress|playwright|__mocks__|__fixtures__|fixtures|design-mockups|mockups?|prototypes?|sandbox|generated|__generated__|\.prisma)\/)/;
 export const UI_EXT = new Set(['.tsx', '.jsx', '.vue', '.svelte', '.astro', '.html']);
 export const CODE_EXT = new Set([...UI_EXT, '.ts', '.js', '.mjs', '.cjs']);
 export const STYLE_EXT = new Set(['.css', '.scss', '.sass', '.less', '.pcss']);
@@ -47,7 +47,10 @@ export function readText(root, rel, maxBytes = 512 * 1024) {
   try {
     const full = path.join(root, rel);
     if (fs.statSync(full).size > maxBytes) return null;
-    return fs.readFileSync(full, 'utf8');
+    const text = fs.readFileSync(full, 'utf8');
+    // Minified or bundled output (very long lines) is not source anyone edits.
+    if (/\.(m?js|cjs|css)$/.test(rel) && text.length > 20000 && text.length / (text.split('\n').length || 1) > 400) return null;
+    return text;
   } catch { return null; }
 }
 
@@ -101,13 +104,13 @@ export function sortFindings(list) {
  * so one systemic issue doesn't zero the score but many different problems do.
  */
 export function scoreArea(findings) {
-  const weight = { high: 15, medium: 6, low: 2 };
+  const weight = { high: 12, medium: 5, low: 2 };
   const byId = new Map();
   for (const f of findings) byId.set(f.id, [...(byId.get(f.id) || []), f]);
   let penalty = 0;
   for (const list of byId.values()) {
-    const w = weight[list[0].severity];
-    penalty += w + Math.min(list.length - 1, 5) * Math.ceil(w / 5);
+    // a widespread issue costs a bit more than a one-off, but is still one thing to fix
+    penalty += weight[list[0].severity] + Math.min(list.length - 1, 3);
   }
   return Math.max(0, 100 - penalty);
 }

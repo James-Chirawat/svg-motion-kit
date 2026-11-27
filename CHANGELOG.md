@@ -5,6 +5,27 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-27
+
+Performance.
+
+### Added
+
+- `perf-audit` skill. `perf-audit.mjs` checks:
+  - **images:** AVIF/WebP candidates by size, oversized files, next/image, dimensions (CLS), LCP priority, lazy loading
+  - **fonts:** next/font, font-display, Thai fonts in too many weights or missing the `thai` subset (33 Thai families recognised), family count
+  - **data fetching:** waterfalls (skips dependent and guarded awaits), N+1 loops, async forEach, effect fetching without cache or abort, caching turned off everywhere
+  - **bundle:** moment, lodash, barrel icons, 28 heavy chart/map/editor/PDF/3D libraries imported up front, `"use client"` layouts, jQuery
+  - **other:** index keys, render-blocking third-party scripts, layout-property animations, SVG and Lottie weight
+
+  It always lists what needs a real measurement, and runs Lighthouse only with consent.
+- `svg-motion`: `preview.mjs` builds a review page using the project's real theme variables (light, the project's own dark switch, reduced motion). `SKILL.md` adds a render-and-review step and guidance for framer-motion and GSAP.
+- `examples/slow-next/` fixture.
+
+### Changed
+
+- Shared scoring is gentler on repeats: high 12, medium 5, low 2, plus 1 per repeat (up to 3). Generated code (`generated/`, `.prisma/`) and minified bundles are skipped.
+
 ## [0.2.0] - 2026-11-27
 
 UX and accessibility.
@@ -64,6 +85,7 @@ First release: `theme-extract`, `svg-motion` and `design-lint`.
 - `docs/preview.html` for viewing the examples locally.
 - README in English and Thai.
 
-[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/James-Chirawat/svg-motion-kit/compare/v0.3.0...HEAD
 [0.1.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.1.0
 [0.2.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.2.0
+[0.3.0]: https://github.com/James-Chirawat/svg-motion-kit/releases/tag/v0.3.0

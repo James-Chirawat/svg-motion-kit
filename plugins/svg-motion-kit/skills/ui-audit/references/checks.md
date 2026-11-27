@@ -21,4 +21,4 @@
 
 Skipped paths: tests, stories, fixtures, `design-mockups/`, `mockups/`, `prototypes/`, `*.dc.html`, build output and dependencies.
 
-**Score:** start at 100. Each distinct check costs high 15, medium 6 and low 2, and each repeat costs a little more (up to 5 repeats).
+**Score:** start at 100. Each distinct check costs high 12, medium 5 and low 2, and each repeat costs 1 more (up to 3).
