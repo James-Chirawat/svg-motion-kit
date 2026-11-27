@@ -12,7 +12,7 @@
 </p>
 
 > [!NOTE]
-> **อยู่ระหว่างพัฒนา** ตอนนี้ยังติดตั้งใช้งานไม่ได้ กด Watch หรือ Star ไว้เพื่อติดตามเวอร์ชัน v0.1 ได้ครับ
+> **v0.1.0** มี `theme-extract`, `svg-motion` และ `design-lint` ให้ใช้งานแล้ว ส่วน audit ด้าน UX, performance, security และความเรียบร้อย อยู่ใน [roadmap](docs/ROADMAP.th.md)
 
 ## ขั้นตอนการทำงานครอบคลุมอะไรบ้าง
 
@@ -21,9 +21,9 @@
 | ขั้น | Skill | ทำอะไร | สถานะ |
 |---|---|---|---|
 | **1. ธีม** | `theme-extract` | อ่าน design token จริงของโปรเจกต์ (Tailwind v3/v4, CSS variables, shadcn/ui, dark mode, radius, ฟอนต์ และ library ที่ติดตั้งไว้) แล้วบันทึกลง `.svg-motion/theme.json` | ✅ |
-| **2. สำรวจ** | `svg-motion` | สแกนโค้ดหาจังหวะที่ผู้ใช้ต้องรอ ติดขัด หรือไม่ได้รับ feedback (empty, loading, error, success, offline, upload) แล้วจัดอันดับว่าใส่ motion ตรงไหนได้ประโยชน์ที่สุด | v0.1 |
-| **3. ดูหน้าตา** | `design-lint` | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) แล้วเสนอทิศทางดีไซน์ที่อิงกลุ่มผู้ใช้จริง | v0.1 |
-| **4. วาด** | `svg-motion` | สร้าง SVG เคลื่อนไหวที่ตรงธีม แล้ววางเป็น component ตาม framework ของโปรเจกต์ โดยแสดง diff ก่อน | v0.1 |
+| **2. สำรวจ** | `svg-motion` | สแกนโค้ดหาจังหวะที่ผู้ใช้ต้องรอ ติดขัด หรือไม่ได้รับ feedback (empty, loading, error, success, offline, upload) แล้วจัดอันดับว่าใส่ motion ตรงไหนได้ประโยชน์ที่สุด | ✅ v0.1 |
+| **3. ดูหน้าตา** | `design-lint` | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) แล้วเสนอทิศทางดีไซน์ที่อิงกลุ่มผู้ใช้จริง | ✅ v0.1 |
+| **4. วาด** | `svg-motion` | สร้าง SVG เคลื่อนไหวที่ตรงธีม แล้ววางเป็น component ตาม framework ของโปรเจกต์ โดยแสดง diff ก่อน | ✅ v0.1 |
 | **5. ตรวจ** | `ui-audit` · `perf-audit` · `security-audit` · `polish-audit` | **UX และ accessibility:** สถานะของหน้า, ฟอร์ม, มือถือ, contrast<br>**Performance:** รูป WebP/AVIF, subset ฟอนต์ไทย, การดึงข้อมูล, cache, bundle<br>**Security:** secret รั่ว, XSS รวมถึง SVG ที่ไม่ปลอดภัย, header<br>**ความเรียบร้อย:** การใช้ design system, i18n, meta/OG, หน้า 404/500, SEO | v0.2–v0.5 |
 | **6. รายงานและแก้** | `audit` | รายงานเดียวเรียงตามความสำคัญ ทุกข้ออ้างอิงไฟล์และบรรทัด และแก้ทีละข้อพร้อมแสดง diff | v1.0 |
 
@@ -57,16 +57,16 @@
 
 | Skill | สถานะ | หน้าที่ |
 |---|---|---|
-| `theme-extract` | ✅ v0.1 (ยังไม่ออกเวอร์ชัน) | อ่าน design token ของโปรเจกต์ แล้วบันทึกเป็น `.svg-motion/theme.json` |
-| `svg-motion` | 🚧 v0.1 | หาจุดที่ motion ช่วยให้ UX ดีขึ้น แล้วสร้าง SVG เคลื่อนไหวที่เข้ากับธีม (loader, empty/error/success state, banner) ออกมาเป็น component |
-| `design-lint` | 🚧 v0.1 | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) และเสนอทิศทางดีไซน์ที่มีเหตุผลรองรับ |
+| `theme-extract` | ✅ v0.1 | อ่าน design token ของโปรเจกต์ แล้วบันทึกเป็น `.svg-motion/theme.json` |
+| `svg-motion` | ✅ v0.1 | หาจุดที่ motion ช่วยให้ UX ดีขึ้น แล้วสร้าง SVG เคลื่อนไหวที่เข้ากับธีม (loader, empty/error/success state, banner) ออกมาเป็น component |
+| `design-lint` | ✅ v0.1 | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) และเสนอทิศทางดีไซน์ที่มีเหตุผลรองรับ |
 | `ui-audit` | 🗓 v0.2 | สถานะของหน้า (UX states), ฟอร์ม, มือถือ, microcopy, contrast ตาม WCAG และ accessibility พื้นฐาน |
 | `perf-audit` | 🗓 v0.3 | รูปภาพ (AVIF/WebP, ขนาด), ฟอนต์ (รวมถึงการ subset ฟอนต์ไทย), การดึงข้อมูล, cache และ bundle |
 | `security-audit` | 🗓 v0.4 | secret รั่ว, จุดเสี่ยง XSS (รวมถึง SVG ที่ไม่ปลอดภัย), auth ฝั่ง client และ security header |
 | `polish-audit` | 🗓 v0.5 | การใช้ design system, สุขภาพโค้ด, i18n, meta/OG, หน้า 404/500 และ SEO พื้นฐาน |
 | `audit` | 🗓 v1.0 | รันทุก audit แล้วรวมเป็นรายงานเดียวเรียงตามความสำคัญ และแก้ไขอย่างปลอดภัยพร้อม diff |
 
-## การติดตั้ง (เมื่อออก v0.1 แล้ว)
+## การติดตั้ง
 
 พิมพ์ใน Claude Code:
 
@@ -92,7 +92,7 @@ script ที่แถมมาเป็น Node ล้วน (`.mjs`) ไม่
 ## Roadmap
 
 - [x] **v0.0** วางโครง repo, ไฟล์ marketplace, ตัวอย่างใน README และไอคอน
-- [ ] **v0.1** Motion ที่ตรงธีม: `theme-extract` ✅, `svg-motion` (scout + วาด + วางลงโปรเจกต์), `design-lint`
+- [x] **v0.1** Motion ที่ตรงธีม: `theme-extract` ✅, `svg-motion` (scout + วาด + วางลงโปรเจกต์), `design-lint`
 - [ ] **v0.2** UX และ accessibility: `ui-audit`, รูปแบบรายงานกลาง และสูตรสำหรับ Vue และ Svelte
 - [ ] **v0.3** Performance: `perf-audit`, ตรวจด้วย Lighthouse (ไม่บังคับ) และใช้ library motion เมื่อโปรเจกต์มีอยู่แล้ว
 - [ ] **v0.4** Security: `security-audit`
