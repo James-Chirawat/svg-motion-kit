@@ -14,6 +14,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- `design-lint` skill: `lint-design.mjs` flags the generic AI look across 12 rules (purple gradients, gradient text, glow, glassmorphism, blob orbs, sparkles, emoji icons, stock AI copy, identical card grids, announcement pills, an indigo/violet brand colour, one generic font). It gives file:line evidence and a 0–100 genericness score. `SKILL.md` then proposes three directions grounded in the audience, with palettes mapped to existing variables and Thai-capable font pairings. New `examples/generic-ai/` fixture.
 - `svg-motion` skill (`SKILL.md`): theme → scout → render → validate → place as a component with a diff → check.
   - `scout.mjs` finds empty, loading, error, not-found, success, upload, offline and hero moments, notes whether each is plain text or already illustrated, and ranks them. Supports Thai and English copy.
   - `to-component.mjs` turns a rendered SVG into a React component (TSX or JSX) with `title`, `decorative`, `idSuffix` and `className` props. It needs no hooks and works in Server Components. Checked against TypeScript strict and React 19 server rendering.
