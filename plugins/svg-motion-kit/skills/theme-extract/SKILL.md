@@ -7,6 +7,8 @@ description: Read a frontend project's real theme (Tailwind v3/v4 config and @th
 
 Turn the project's existing theme into one small file, `.svg-motion/theme.json`, that other skills (such as `svg-motion`) read instead of guessing colours.
 
+**Language:** reply in the language the user wrote in, Thai or English. Keep file names, code and CLI output as they are.
+
 ## Steps
 
 1. **Find the project root**, the folder with the app's `package.json` or main stylesheet. In a monorepo, use the app's folder, not the repo root.

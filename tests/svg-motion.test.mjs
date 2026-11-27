@@ -209,3 +209,22 @@ test('to-component: inline style strings become objects and braces in text are e
   assert.match(tsx, /style=\{\{ animationDelay: "\.2s", '--c-x': "red" \}\}/);
   assert.match(tsx, /a \{"\{"\}b\{"\}"\}/);
 });
+
+test('scout is idempotent: a spot with a generated illustration component is not suggested again', () => {
+  const dir = fs.mkdtempSync(path.join(repo, 'tests', '.tmp-'));
+  try {
+    fs.writeFileSync(path.join(dir, 'page.tsx'), [
+      'import { OrdersEmpty } from "@/components/illustrations/OrdersEmpty";',
+      'export default function P({ orders }) {',
+      '  return orders.length === 0 ? (',
+      '    <div className="text-center">',
+      '      <OrdersEmpty decorative className="mx-auto w-56" />',
+      '      No orders yet',
+      '    </div>',
+      '  ) : null;',
+      '}',
+    ].join('\n'));
+    const spot = scout(dir).spots.find((s) => s.kind === 'empty');
+    assert.ok(!spot || spot.illustrated, JSON.stringify(spot));
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});

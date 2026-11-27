@@ -14,6 +14,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- Real-use testing (`docs/TESTING.md`): live headless runs with `--plugin-dir` on copies of the examples, and an eval suite in `plugins/svg-motion-kit/evals/` with four cases (Thai, English, and one where nothing should fire). Fixes found this way: the scout now recognises its own generated components (re-runs are idempotent), and every skill replies in the user's language.
 - `design-lint` skill: `lint-design.mjs` flags the generic AI look across 12 rules (purple gradients, gradient text, glow, glassmorphism, blob orbs, sparkles, emoji icons, stock AI copy, identical card grids, announcement pills, an indigo/violet brand colour, one generic font). It gives file:line evidence and a 0–100 genericness score. `SKILL.md` then proposes three directions grounded in the audience, with palettes mapped to existing variables and Thai-capable font pairings. New `examples/generic-ai/` fixture.
 - `svg-motion` skill (`SKILL.md`): theme → scout → render → validate → place as a component with a diff → check.
   - `scout.mjs` finds empty, loading, error, not-found, success, upload, offline and hero moments, notes whether each is plain text or already illustrated, and ranks them. Supports Thai and English copy.

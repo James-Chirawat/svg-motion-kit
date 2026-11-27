@@ -9,6 +9,8 @@ Add animated SVG that looks like it belongs to *this* project, in the places whe
 
 All scripts are in `scripts/` inside this skill's base directory. They are plain Node 18+, read-only unless you pass `--out`, and make no network calls.
 
+**Language:** reply in the language the user wrote in, Thai or English. Keep file names, code and CLI output as they are.
+
 ## Workflow
 
 ### 1. Theme

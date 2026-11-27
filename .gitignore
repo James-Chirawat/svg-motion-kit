@@ -21,3 +21,6 @@ tests/.tmp-*/
 .env
 .env.*
 !.env.example
+
+# Eval run output
+plugins/svg-motion-kit/evals/results/
