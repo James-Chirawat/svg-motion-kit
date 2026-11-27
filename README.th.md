@@ -44,8 +44,13 @@ skill ด้านดีไซน์ส่วนใหญ่แค่ให้�
 | Skill | สถานะ | หน้าที่ |
 |---|---|---|
 | `theme-extract` | ✅ v0.1 (ยังไม่ออกเวอร์ชัน) | อ่าน design token ของโปรเจกต์ แล้วบันทึกเป็น `.svg-motion/theme.json` |
-| `svg-motion` | 🚧 v0.1 | สร้าง SVG เคลื่อนไหวที่เข้ากับธีม (เส้นวาดตัวเอง, loader, empty state, ภาพ hero) ออกมาเป็น component |
-| `ui-audit` | 🗓 v0.2 | วิเคราะห์ UI/UX (หลักการใช้งาน, contrast ตาม WCAG, สถานะต่าง ๆ ของหน้า) และแนะนำจุดที่ควรใส่ motion |
+| `svg-motion` | 🚧 v0.1 | หาจุดที่ motion ช่วยให้ UX ดีขึ้น แล้วสร้าง SVG เคลื่อนไหวที่เข้ากับธีม (loader, empty/error/success state, banner) ออกมาเป็น component |
+| `design-lint` | 🚧 v0.1 | ชี้จุดที่ทำให้เว็บดูเหมือน AI สร้าง (ไล่สีม่วง, กระจก, ก้อน blob, emoji แทนไอคอน) และเสนอทิศทางดีไซน์ที่มีเหตุผลรองรับ |
+| `ui-audit` | 🗓 v0.2 | สถานะของหน้า (UX states), ฟอร์ม, มือถือ, microcopy, contrast ตาม WCAG และ accessibility พื้นฐาน |
+| `perf-audit` | 🗓 v0.3 | รูปภาพ (AVIF/WebP, ขนาด), ฟอนต์ (รวมถึงการ subset ฟอนต์ไทย), การดึงข้อมูล, cache และ bundle |
+| `security-audit` | 🗓 v0.4 | secret รั่ว, จุดเสี่ยง XSS (รวมถึง SVG ที่ไม่ปลอดภัย), auth ฝั่ง client และ security header |
+| `polish-audit` | 🗓 v0.5 | การใช้ design system, สุขภาพโค้ด, i18n, meta/OG, หน้า 404/500 และ SEO พื้นฐาน |
+| `audit` | 🗓 v1.0 | รันทุก audit แล้วรวมเป็นรายงานเดียวเรียงตามความสำคัญ และแก้ไขอย่างปลอดภัยพร้อม diff |
 
 ## การติดตั้ง (เมื่อออก v0.1 แล้ว)
 
@@ -72,10 +77,15 @@ script ที่แถมมาเป็น Node ล้วน (`.mjs`) ไม่
 
 ## Roadmap
 
-- [x] **v0.0** วางโครง repo, ไฟล์ marketplace และตัวอย่างใน README
-- [ ] **v0.1** `theme-extract` และ `svg-motion` สำหรับ React/Next + Tailwind และ HTML ธรรมดา
-- [ ] **v0.2** `ui-audit`
-- [ ] **v0.3** รองรับ Vue และ Svelte, ใช้ framer-motion หรือ GSAP เมื่อโปรเจกต์มีอยู่แล้ว, ให้ AI render แล้วตรวจงานตัวเอง และทำหน้า gallery บน GitHub Pages
+- [x] **v0.0** วางโครง repo, ไฟล์ marketplace, ตัวอย่างใน README และไอคอน
+- [ ] **v0.1** Motion ที่ตรงธีม: `theme-extract` ✅, `svg-motion` (scout + วาด + วางลงโปรเจกต์), `design-lint`
+- [ ] **v0.2** UX และ accessibility: `ui-audit`, รูปแบบรายงานกลาง และสูตรสำหรับ Vue และ Svelte
+- [ ] **v0.3** Performance: `perf-audit`, ตรวจด้วย Lighthouse (ไม่บังคับ) และใช้ library motion เมื่อโปรเจกต์มีอยู่แล้ว
+- [ ] **v0.4** Security: `security-audit`
+- [ ] **v0.5** ความเป็นมืออาชีพ: `polish-audit`
+- [ ] **v1.0** รายงานเดียว แก้ไขได้ปลอดภัย: ตัวรวม `audit`, โหมดแก้ไข, หน้า gallery และส่งเข้า plugin directory
+
+รายละเอียด สิ่งที่ตรวจ และเกณฑ์ "เสร็จเมื่อ" ของทุกเวอร์ชันอยู่ใน **[docs/ROADMAP.th.md](docs/ROADMAP.th.md)**
 
 ## ดูตัวอย่างในเครื่อง
 
