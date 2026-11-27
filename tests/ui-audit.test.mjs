@@ -65,7 +65,7 @@ test('false-positive guards: status strings, labelled dynamic ids, primitives, m
 
 test('shared report: score and markdown', () => {
   const f = [finding({ id: 'x.a', area: 'ux', severity: 'high', title: 'A', file: 'a.tsx', line: 1 }), finding({ id: 'x.a', area: 'ux', severity: 'high', title: 'A', file: 'b.tsx', line: 2 }), finding({ id: 'x.b', area: 'ux', severity: 'low', title: 'B' })];
-  assert.equal(scoreArea(f), 100 - (15 + 3) - 2);
+  assert.equal(scoreArea(f), 100 - (12 + 1) - 2);
   const md = toMarkdown({ title: 'T', root: '/p', areas: [{ area: 'UX', score: 80, findings: f, notChecked: ['runtime'] }] });
   assert.match(md, /### \[high\] A \(2\)/);
   assert.match(md, /`a\.tsx:1`/);

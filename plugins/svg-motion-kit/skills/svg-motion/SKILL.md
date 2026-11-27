@@ -83,11 +83,25 @@ Use `--js` for JavaScript projects. Then edit the spot the scout found:
 
 Show the diff and ask before writing. Never install packages, never edit the theme, and add at most one animated illustration per view.
 
-### 7. Check it
+### 7. Render and review it
 
-- If a dev server or browser is available, open the page in light and dark mode, and once with reduced motion.
-- If not, tell the user exactly where to look.
-- Report: what was added and where, which theme roles it used, and anything that fell back to a default colour.
+```bash
+node "<skill-dir>/scripts/preview.mjs" /tmp/orders-empty.svg --project "<project>"
+```
+
+This builds `.svg-motion/preview.html`, which shows the illustration in light, in dark (using the project's own dark-mode switch) and with reduced motion, all on the project's background.
+
+- If you can open a browser, look at it. Check proportions, colours against the page, and dark mode, and confirm the reduced-motion version is a finished picture. Revise once if needed.
+- If you can't, tell the user to open the file.
+- Report what was added and where, which theme roles it used, and anything that fell back to a default colour.
+
+### Motion libraries the project already has
+
+The CSS animation inside the SVG works everywhere, so prefer it.
+
+- If the project already uses **framer-motion / motion** and the illustration should play only when scrolled into view, wrap the component: `<motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>`. Keep `<MotionConfig reducedMotion="user">` at the app root.
+- If the project already uses **GSAP**, trigger the same on scroll with ScrollTrigger. Animate only `opacity`/`transform` of the wrapper, never the SVG internals.
+- Never add one of these libraries for an illustration.
 
 ## Good judgement
 

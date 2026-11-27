@@ -8,7 +8,7 @@ Each folder here is one skill (`<name>/SKILL.md` plus optional `scripts/`, `refe
 | `svg-motion` | v0.1 | Find where motion helps, generate theme-aware animated SVG, place it as a component |
 | `design-lint` | v0.1 | Flag the generic "AI-made" look and propose grounded design directions |
 | `ui-audit` | v0.2 | UX states, forms, mobile, microcopy, contrast and accessibility |
-| `perf-audit` | Planned (v0.3) | Images, fonts, data fetching, caching, bundle |
+| `perf-audit` | v0.3 | Images, fonts, data fetching, caching, bundle |
 | `security-audit` | Planned (v0.4) | Secrets, XSS sinks, client-side auth, headers |
 | `polish-audit` | Planned (v0.5) | Design-system use, code health, i18n, meta, edge pages, SEO basics |
 | `audit` | Planned (v1.0) | Orchestrates all audits into one report with safe fixes |

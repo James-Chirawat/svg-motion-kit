@@ -61,7 +61,7 @@ Each example is a single self-contained SVG of 3–6 KB, with a built-in dark pa
 | `svg-motion` | ✅ v0.1 | Finds where motion helps UX, then generates theme-aware animated SVG (loaders, empty/error/success states, banners) as components |
 | `design-lint` | ✅ v0.1 | Flags the generic "AI-made" look (purple gradients, glass, blobs, emoji icons) and proposes grounded design directions |
 | `ui-audit` | ✅ v0.2 | UX states, forms, mobile, microcopy, WCAG contrast and accessibility basics |
-| `perf-audit` | 🗓 v0.3 | Images (AVIF/WebP, sizing), fonts (incl. Thai subsets), data fetching, caching, bundle |
+| `perf-audit` | ✅ v0.3 | Images (AVIF/WebP, sizing), fonts (incl. Thai subsets), data fetching, caching, bundle |
 | `security-audit` | 🗓 v0.4 | Leaked secrets, XSS sinks (incl. unsafe SVG), client-side auth, security headers |
 | `polish-audit` | 🗓 v0.5 | Design-system use, code health, i18n, meta/OG, 404/500 pages, SEO basics |
 | `audit` | 🗓 v1.0 | Runs everything, one prioritised report, safe fixes with diffs |
@@ -94,7 +94,7 @@ Bundled scripts are plain Node (`.mjs`). They have no dependencies, make no netw
 - [x] **v0.0** Repo, marketplace manifest, README examples, icon
 - [x] **v0.1** Theme-true motion: `theme-extract` ✅, `svg-motion` (scout + draw + place), `design-lint`
 - [x] **v0.2** UX and accessibility: `ui-audit`, shared report format, Vue and Svelte recipes
-- [ ] **v0.3** Performance: `perf-audit`, optional Lighthouse pass, motion libraries when present
+- [x] **v0.3** Performance: `perf-audit`, optional Lighthouse pass, motion libraries when present
 - [ ] **v0.4** Security: `security-audit`
 - [ ] **v0.5** Professional polish: `polish-audit`
 - [ ] **v1.0** One report, safe fixes: `audit` orchestrator, fix mode, gallery, plugin directory

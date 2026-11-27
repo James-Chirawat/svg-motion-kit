@@ -228,3 +228,18 @@ test('scout is idempotent: a spot with a generated illustration component is not
     assert.ok(!spot || spot.illustrated, JSON.stringify(spot));
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
+
+test('preview: page carries the project theme variables and shows light, dark and reduced motion', async () => {
+  const { buildPreview, themeVariableCss } = await import('../plugins/svg-motion-kit/skills/svg-motion/scripts/preview.mjs');
+  const css = fs.readFileSync(path.join(repo, 'examples/next-tailwind/app/globals.css'), 'utf8');
+  const vars = themeVariableCss(css);
+  assert.match(vars, /:root \{[^}]*--primary: oklch\(0\.541/);
+  assert.match(vars, /\.dark \{[^}]*--primary: oklch\(0\.606/);
+  assert.ok(!/@import|@theme/.test(vars));
+  const theme = themeOf('next-tailwind');
+  const { svg } = renderTemplate(tpl('success'), theme, { name: 'success', id: 'ab12cd' });
+  const html = buildPreview(svg, theme, css);
+  assert.match(html, /class="dark smk-preview-dark"/);
+  assert.equal((html.match(/class="smk-success-ab12cd"/g) || []).length, 3);
+  assert.match(html, /\.reduced \* \{ animation: none !important; \}/);
+});

@@ -1,6 +1,6 @@
 {
   "name": "svg-motion-kit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Read your project's real theme, find where the UX needs motion, add theme-true animated SVG as components, and flag the generic AI look with grounded design directions.",
   "icon": ".claude-plugin/icon.png",
   "author": {
