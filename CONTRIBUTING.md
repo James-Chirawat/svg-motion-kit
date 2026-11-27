@@ -35,7 +35,7 @@ examples/                           sample projects used to test the skills
 npm test
 ```
 
-This uses Node's built-in test runner, so there is nothing to install. Tests live in `tests/` and use the projects in `examples/` as fixtures. When you fix a bug found on a real project, add a small regression test that builds its own fixture with the `fixture()` helper.
+This uses Node's built-in test runner, so there is nothing to install. Before a release, also do the live run and the eval suite described in [docs/TESTING.md](docs/TESTING.md). Tests live in `tests/` and use the projects in `examples/` as fixtures. When you fix a bug found on a real project, add a small regression test that builds its own fixture with the `fixture()` helper.
 
 ## Workflow
 

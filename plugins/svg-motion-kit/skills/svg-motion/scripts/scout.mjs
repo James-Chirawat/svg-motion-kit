@@ -44,7 +44,8 @@ const SIGNALS = [
 
 const NETWORK = /\b(fetch\s*\(|axios\b|useSWR\b|useQuery\b|createApi\b|\$fetch\b|ky\.)/;
 const ONLINE_HANDLING = /navigator\.onLine|addEventListener\(\s*['"](online|offline)['"]|useNetworkState|useOnline\b|onlineManager/;
-const ILLUSTRATED = /<svg\b|<img\b|<Image\b|Illustration|Lottie|<Player\b|\.svg['"]|<Spinner\b|<Skeleton\b|animate-spin|animate-pulse/;
+// Includes components svg-motion itself generated (<OrdersEmpty …/>, illustrations/ imports), so re-running is idempotent.
+const ILLUSTRATED = /<svg\b|<img\b|<Image\b|Illustration|Lottie|<Player\b|\.svg['"]|<Spinner\b|<Skeleton\b|animate-spin|animate-pulse|<[A-Z]\w*(Empty|EmptyState|Loader|Loading|Error|Success|Offline|Upload|Hero)\b[^>]*\/>|illustrations\/|smk-[\w-]+/;
 
 function walk(root) {
   const files = [];

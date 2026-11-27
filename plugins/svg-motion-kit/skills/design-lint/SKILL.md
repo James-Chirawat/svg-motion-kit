@@ -9,6 +9,8 @@ Find the visual clichés that make a site look AI-generated, with file:line evid
 
 The script is in `scripts/` inside this skill's base directory. It is plain Node 18+, read-only, with no network.
 
+**Language:** reply in the language the user wrote in, Thai or English. Keep file names, code and CLI output as they are.
+
 ## 1. Run the lint
 
 ```bash
